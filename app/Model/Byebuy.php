@@ -1,7 +1,7 @@
 <?php
 
 
- class ByeBuy extends AppModel {
+ class Byebuy extends AppModel {
 
 }
 

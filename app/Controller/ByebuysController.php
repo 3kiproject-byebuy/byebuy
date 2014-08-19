@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 //App::import('vendor', 'facebook/php-sdk/src/facebook');
 
 
-class ByeBuysController extends AppController {
+class ByebuysController extends AppController {
     //public $helpers = array('Html', 'Form');//htmlヘルパーを使うよ！という宣言、使うヘルパーの名前を指定
     //今はappControllerでも同様の設定をしているのでコメントアウト
 
