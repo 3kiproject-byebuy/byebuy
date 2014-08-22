@@ -27,6 +27,47 @@ class GroupsController extends AppController {
 
 	}
 
+     //ブログ記事の追加
+     public function add() {
+
+        
+        if ($this->request->is('post')) {//このpostはpost送信のpost。post送信されたら
+            
+
+
+            
+            $this->Group->create(); //データーを新たにインサートするときに必要なコード
+
+            if ($this->Group->save($this->request->data)//成功したらtrueが返るので条件式に使える
+                ) {
+            
+            //createとsaveの組み合わせでインサート文が発行される。
+            /*
+            debug($this->request->data);
+            この中身は以下
+            array(
+                    'Post' => array(
+                                    'title' => 'aaa',
+                                    'body' => 'hhh'
+                              )
+            )
+            */
+                //setFlush 画面に文字を表示させるためのメソッド自分のページだけでなく遷移先にも表示させる。
+                //sessionヘルパー　appコントローラーにいる
+                $this->Session->setFlash(__('Your group has been saved.'));
+                
+                //(array('action' => 'index')同じモデルのindexファンクションへ飛ぶ
+                return $this->redirect(array('action' => 'index'));
+
+            }
+
+            //saveが失敗したとき用
+            $this->Session->setFlash(__('Unable to add your group.'));
+            
+        }
+        
+    }
+
  }
 
 
