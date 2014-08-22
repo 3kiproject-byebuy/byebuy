@@ -28,9 +28,9 @@ echo $this->Form->create('Group',array(
 echo $this->Form->input('name',
                               array(
                                   
-                                   'label' => ' <span class="glyphicon glyphicon-pencil"></span> カテゴリー名',
+                                   'label' => ' <span class="glyphicon glyphicon-pencil"></span> グループー名',
                                    'class' => array('form-control' ,'form-group'), //
-                                   'placeholder' => 'カテゴリー名を入力してください。'
+                                   'placeholder' => 'グループー名を入力してください。'
                                    // 'class' => form-control
                                    ));
 //<div class="input text"><label for="PostTitle">Title</label><input name="data[Post][title]" maxlength="50" type="text" id="PostTitle"/></div>

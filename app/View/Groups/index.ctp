@@ -31,6 +31,7 @@ echo '</div><div class="col-xs-3">';
 
            echo $this->Form->end();
 
+
      ?>
 </div>
 </div>
