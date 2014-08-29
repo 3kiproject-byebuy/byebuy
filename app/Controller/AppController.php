@@ -46,16 +46,15 @@ class AppController extends Controller {
                                     'Session',
                                     'Acl',
                                     'Auth' => array(
-                                            'loginAction' => array(
-                                                            'plugin' => 'facebook',
-                                                            'controller' => 'users',
-                                                            'action' => 'login'
-                                                            ),
-                                            'loginRedirect' =>  array(
-                                                            'controller' => 'fbconnects',
-                                                            'action' => 'showdata'
-                                                            ),
-                                            'logoutRedirect' => '/',
+                                            // 'loginAction' => array(
+                                            //                 'plugin' => 'facebook',
+                                            //                 'controller' => 'users',
+                                            //                 'action' => 'login'
+                                            //                 ),
+                                            // 'loginRedirect' =>  array(
+                                            //                 'controller' => 'fbconnects',
+                                            //                 'action' => 'showdata'
+                                            //                 ),
                                             'authenticate' => array(
                                                             'all' => array('userModel' => 'User'),
                                                             'Facebook.Oauth'
@@ -70,23 +69,16 @@ class AppController extends Controller {
             ),
         ));
         */
-	    //component コントローラーに対して効力をもつs
-	    //view でいうところのヘルパーのようなもの
-	    //共通処理
-	    // var $変数　＝　本来はローカル変数のような扱いだがappに記述する場合publicとそれほど差異はない。
-	    //paublic $変数　＝
-	    //Sessionコンポーネントがsetflushメソッドを持っている
-
 
     public function beforeFilter() {
 
-    	//ログインしないとアクセスできないという機能を外している。
     	parent::beforeFilter();
-    	$this->Auth->allow();//allow('ここにファンクション名')で指定できる。指定されたファンクションが実行された時はログイン機能無効になる。
-
+    	$this->Auth->allow();
+        //権限付与の単位。アクションごとに権限を管理＝'actions',コントローラー単位='crud'
+        $this->Auth->authorize = 'Actions';
         //AuthComponentの設定
-        $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
-        $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
+        $this->Auth->loginAction = array('controller' => 'byebuys', 'action' => 'index');
+        //$this->Auth->logoutRedirect = array('controller' => 'byebuys', 'action' => 'index');
         //$this->Auth->loginRedirect = array('controller' => 'blogs', 'action' => 'admin_add');
     }
 	    

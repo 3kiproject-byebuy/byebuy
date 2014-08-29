@@ -1,76 +1,147 @@
 <?php
 
 App::uses('AppController', 'Controller');
+App::import('Vendor','facebook',array('file' => 'facebook'.DS.'src'.DS.'facebook.php'));
 //App::import('vendor', 'facebook/php-sdk/src/facebook');
 
 
 class ByeBuysController extends AppController {
 
-	//User,Gropuモデルを使えるようにするために宣言	//定義済み関数
-	public $uses = array('User','Group','Selling_list','Watchlist');
+	public $uses = array('Selling_list','User','Group','Watchlist','Category');
 	public $helpers = array('Facebook.Facebook');
-
-    //サーチプラグインが提供しているPRgコンポーネントを使うためにセットしている。
     public $components = array('Search.Prg');
-    public $paginate = array('Selling_list' => array('limit' => 9));
+    public $paginate = array('Selling_list' => array('limit' => 9,
+                                                     'order' => array('id' => 'desc'))
+                             );
 
-	//ログインしなくてもアクセスできるように許可する、なるべく上の方に書いておく。
-	//どのファンクションでも、それが呼ばれる前に必ず挙動する。
+
     function beforeFilter() {
+
     	parent::beforeFilter();
-    	
-    	$this->Auth->allow();
+    	//$this->Auth->allow();
 	}
 
-    public function index($id=null){//　/index/アドレスに飛んだタイミングで実行され、その結果が.ctpに返る
 
-        $this->Prg->commonProcess();
-        $conditions = $this->Selling_list->parseCriteria($this->passedArgs);
-        $products = $this->paginate('Selling_list',$conditions);//モデル名、条件式
-        //$products = $this->Selling_list->find('all');
-       
+    public function index($id=null){
 
+    //サーチプラグイン
+    $this->Prg->commonProcess();
 
-        $conditions = array('User.id'=>$id,'del_flag !=' => 1); 
-        $self = $this->User->find('first',array('conditions'=>$conditions));
-        $this->set(compact('self','products'));
+    //商品
+    $conditions1 = $this->Selling_list->parseCriteria($this->passedArgs);
+    $conditions2 =  array('Selling_list.del_flg' => 0);
+    $conditions = array($conditions1,$conditions2);
+    $products = $this->paginate('Selling_list',$conditions);
 
-     
-        //debug($this->request->data);
+    // //現在ログインしているユーザー
+    $self = $this->Auth->user();
+    debug($self);
+ 
+    //カテゴリー
+    $categories = $this->Category->find('all');
 
-        $this->_favorite($id=null);
-
-
-	}
-
-    private function _favorite($id=null){
-
-       if(isset($this->request->data['Watchlist']['user_id'])){
-
-
-            if ($this->request->is('post')){//post送信されたら
-
-                $this->Watchlist->create();//Wacthlistテーブルにデータを保存
-
-                if($this->Watchlist->save($this->request->data)){//Watchlistテーブルにデータが入った  
-
-                    $this->Session->setFlash(__('お気に入りに登録しました'));
-                    return $this->redirect(array('action' => 'index'));
-                }
-                //saveが失敗したとき用
-                $this->Session->setFlash(__('お気に入りに登録できませんでした'));
-
-            }
-
-        }   
+    //View用の変数としてセット
+    $this->set(compact('products','self','categories'));
 
     }
 
-	public function login() {
+
+    public function favorite($id=null){
+        
+       if(isset($this->request->data['Watchlist']['user_id'])){
+        
+            $this->Watchlist->create();//Wacthlistテーブルにデータを保存
+
+            if($this->Watchlist->save($this->data)){//Watchlistテーブルにデータが入った  
+
+                $this->Session->setFlash(__('お気に入りに登録しました'));
+                return $this->redirect(array('action' => 'index'));
+
+            }
+
+            $this->Session->setFlash(__('お気に入りに登録できませんでした'));
+        }
+
+    }
+
+
+    public function category($category_id=null){
+
+        //カテゴリーを取得
+        $categories = $this->Category->find('all');
+
+        //現在ログインしているユーザー
+        $self = $this->Auth->user();
+
+        $conditions1 = $this->Selling_list->parseCriteria($this->passedArgs);
+        $conditions2 = array('Selling_list.category_id'=>$category_id);
+        $conditions3 =  array('Selling_list.del_flg' => 0);
+        $conditions = array($conditions1,$conditions2,$conditions3);
+
+        //出品中商品の取得
+        $products = $this->paginate('Selling_list',$conditions);
+
+        $this->set(compact('products','categories','self'));
+
+    }
+
+
+	public function login($id=null) {
+
+        //現在ログインしているユーザー
+        $self = $this->Auth->user();
+
+        //ログインしてないユーザー self=null  -> index
+        //ログインしてる承認済みユーザー　self!=null、del_flg==０で、status==1 ->index
+        //未承認ユーザー　self!=null、del_flg==0、status==３ ->　ログアウト ->　未承認ページ
+
+        //ログインしていないユーザーの場合
+        if(is_null($self)){
+            
+            $this->redirect(array('action'=>'index'));
+
+
+        }else{//ログインしているユーザー
+
+            if($self['del_flg']==0){
+            
+                if($self['status']==1){//承認済みユーザー
+
+                    $this->redirect(array('action'=>'index'));
+
+                }
+
+                $this->redirect(array('action'=>'logout'));    
+            }
+
+            $this->redirect(array('action'=>'logout'));    
+        }
 
     }
 
     public function logout() {
+
+        $facebook = new Facebook(array(
+        'appId' => '279683735571945',
+        'secret' => '97c9737e7de0176fe6c7737ac4535ddc',
+        ));
+
+        $logoutUrl = $facebook->getLogoutUrl();
+        $facebook->destroySession();
+
+        if($this->Auth->logout()){
+            debug('オースログアウト');
+
+            if($this->Session->delete('User')===true){
+            $this->Session->setFlash(__('セッションの破棄'));
+            }else{ 
+                debug('破棄できない');
+            }
+            
+            $this->Session->setFlash(__('管理者へByeBuy.comへの参加リクエストを送信しました。'));
+        }
+
+        //$this->redirect(array('controller' => 'Byebuys', 'action' => 'index'));
 
     }
 

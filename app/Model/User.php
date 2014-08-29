@@ -15,7 +15,8 @@ class User extends AppModel {
 
         'Selling_list' => array(
             'className' => 'Selling_list',
-            'foreignKey' => 'user_id')
+            'foreignKey' => 'user_id',
+            'condtions' => array('Selling_list.del_flg' => 0))
         );
 
     public $belongsTo = array(
@@ -35,7 +36,9 @@ class User extends AppModel {
         )
     );
 
+    //save時にarosにデータが入るための設定
     public $actsAs = array('Acl' => array('type' => 'requester'));
+
 
     //暗号化された値を返す
     public function beforeSave() {
