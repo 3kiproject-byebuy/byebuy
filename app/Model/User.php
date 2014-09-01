@@ -1,12 +1,6 @@
 <?php
 
 
-//Postモデルを作るためにAppModelを継承している。
-//AppModelはライブラリのModelを継承している。
-//ModelはcakePHPのブレインのような、libフォルダに入ってる。
-
-
-
 App::uses('AppModel', 'Model');
 App::uses('AuthComponent', 'Controller/Component');
 //バリデーション（検証、チェック機能）
@@ -16,7 +10,42 @@ App::uses('AuthComponent', 'Controller/Component');
 class User extends AppModel {
 
     public $name = 'User';
-    
+
+    //アソシエーション（はじめはここだけしかかいてないよ！）
+    public $hasMany= array(
+        'Watchlist' => array(
+            'className' => 'Watchlist',
+            'foreignKey' => 'user_id'),
+        'WantedList' => array(
+                'className' => 'WantedList',
+                'foreignKey' => 'user_id',
+                'conditions' => array('del_flg' => 0)
+            ),
+        'SellingList' => array(
+                'className' => 'SellingList',
+                'foreignKey' => 'user_id',
+                'conditions'    => array('del_flg' => 0)
+            ),
+        'SellingThreadList' => array(
+                'className' => 'SellingThreadList',
+                'foreignKey' => 'user_id',
+                'conditions'    => array('del_flg' => 0)
+            ),
+        'WantedThreadList' => array(
+                'className' => 'WantedThreadList',
+                'foreignKey' => 'user_id',
+                'conditions'    => array('del_flg' => 0)
+            )
+        );
+
+    public $belongsTo = array(
+        'Group' => array(
+            'className' => 'Group',
+            'foreignKey' => 'group_id')
+        );
+
+ 
+
     public $validate = array(
         'title' => array(
             'rule' => 'notEmpty'
@@ -26,7 +55,9 @@ class User extends AppModel {
         )
     );
 
+
     public $actsAs = array('Acl' => array('type' => 'requester'));
+
 
     //暗号化された値を返す
     public function beforeSave() {
