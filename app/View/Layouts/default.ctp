@@ -29,7 +29,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <?php
 
         echo $this->Html->meta('icon');
-        echo $this->Html->css('cake.generic'); //これを読んでおかないとスタイルが変になる。
+        //echo $this->Html->css('cake.generic'); //これを読んでおかないとスタイルが変になる。
 
         // jQuery CDN
         echo $this->Html->script('//code.jquery.com/jquery-1.10.2.min.js');
@@ -86,27 +86,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 <style text/css>
 
-body {
-    background: #ffffff;
-    color: #999999;
-    font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
-    /*font-size:90%;*/
-    margin: 0;
-}
-
-h2 {
-    /*background:#fff;*/
-    color: #999999;
-    font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
-    /*font-size: 190%;*/
-}
-
-h4 {
-    /*background:#fff;*/
-    color: #999999;
-    font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
-    /*font-size: 190%;*/
-}
 
 </style>
 
