@@ -71,10 +71,15 @@ if(is_null($self)){
 <!--ソート機能-->
 
 <?php
-echo $this->Paginator->sort('Selling_list.deadline', '締め切り');
-echo $this->Paginator->sort('Selling_list.sellingproduct_price', '価格安い順');?>
-<a href="/ByeBuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:desc" draggable="true">高い順？</a>
-<a href="/ByeBuy/byebuys/index/sort:Selling_list.id/direction:desc" draggable="true">新着順</a>
+// echo $this->Paginator->sort('Selling_list.deadline', '締め切り');?>
+<FORM name="form2">
+<SELECT NAME="select2">
+<option SELECTED> ▼ 下から選択してください　</option>
+<option value="/ByeBuy/byebuys/index/sort:Selling_list.id/direction:desc">新着</option>
+<option value="/ByeBuy/byebuys/index/sort:Selling_list.deadline/direction:asc">締め切り</option>
+<option value="/ByeBuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:desc">価格が高い</option>
+<option value="/ByeBuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:asc" draggable="true">価格が安い</option>
+</SELECT> <INPUT type="button" onclick="if(document.form2.select2.value){location.href=document.form2.select2.value;}" value="Go!"></FORM>
 
 <!--ここまで　ソート機能　ここまで-->
 

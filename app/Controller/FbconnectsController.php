@@ -1,5 +1,5 @@
 <?php
- 
+
 //【1】facebook認証
 App::import('Vendor','facebook',array('file' => 'facebook'.DS.'src'.DS.'facebook.php'));
 

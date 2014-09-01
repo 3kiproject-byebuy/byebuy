@@ -1,5 +1,6 @@
 <?php
 
+
 class GroupsController extends AppController {
 
     function beforeFilter() {

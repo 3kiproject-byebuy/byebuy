@@ -126,8 +126,6 @@ class ByeBuysController extends AppController {
 
     }
 
-
-
 }
 
 

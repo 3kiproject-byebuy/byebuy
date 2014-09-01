@@ -1,7 +1,8 @@
 <?php
 
+
 App::uses('AppController', 'Controller');
-//App::import('vendor', 'facebook/php-sdk/src/facebook');
+App::import('vendor', 'facebook/php-sdk/src/facebook');
 
 
 class UsersController extends AppController {
@@ -24,17 +25,10 @@ class UsersController extends AppController {
 
 	public function login() {
 
-        if ($this->request->is('post')) {
-            if ($this->Auth->login()) {
-                $this->redirect($this->Auth->redirect());
-            } else {
-                $this->Session->setFlash('Your username or password was incorrect.');
-            }
-        }
     }
 
     public function logout() {
-        $this->Auth->logout();
+       
     }
 
 }

@@ -1,4 +1,5 @@
 <!-- ログインボタン・ログインユーザーの表示 -->
+
 <?php
 
 if(is_null($self)){
@@ -56,12 +57,12 @@ if(is_null($self)){
 
 
 <!-- ナビゲーションバー -->
-<a href="/ByeBuy/groups/index" align="right">管理画面</a>
+<a href="/ByeBuy/managements/index" align="right">管理画面</a>
 <ul class="nav nav-tabs" role="tablist">
-	<li class="active"><a href="#">出品中</a></li>
-	<li><a href="#">ほしい</a></li>
-	<li><a href="#">ウォッチリスト</a></li>
-	<li><a href="#">投稿管理</a></li>
+	<li class="active"><a href="/ByeBuy/">出品中</a></li>
+	<li><a href="/ByeBuy/wanted_lists/index">ほしい</a></li>
+	<li><a href="/ByeBuy/watchlists/index">ウォッチリスト</a></li>
+	<li><a href="/ByeBuy/postmanagements/index">投稿管理</a></li>
 </ul>
 <!-- ここまで　ナビゲーションバー ここまで　-->
 
@@ -80,6 +81,7 @@ if(is_null($self)){
 ?>
 <!--ここまで　検索フォーム　ここまで-->
 
+
 <!--ページネーション-->
 <div class ="pagination pagination-large">
 
@@ -87,6 +89,7 @@ if(is_null($self)){
         //必要なページ番号のリンクを自動的に吐き出す ?>
 </div>
 <!--ここまで　ページネーション　ここまで-->
+
 
 <!--ソート機能-->
  <?php

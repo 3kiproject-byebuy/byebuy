@@ -2,7 +2,6 @@
 echo $this->Element('header');
 ?>
 
-
 <!-- コンテンツ -->
 <div class ="container" style="margin-top:50px;">
 	<div class="row">
