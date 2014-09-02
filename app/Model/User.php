@@ -10,32 +10,12 @@ App::uses('AuthComponent', 'Controller/Component');
 class User extends AppModel {
 
     public $name = 'User';
+    
+     public $hasMany = array(
 
-    //アソシエーション（はじめはここだけしかかいてないよ！）
-    public $hasMany= array(
-        'Watchlist' => array(
-            'className' => 'Watchlist',
-            'foreignKey' => 'user_id'),
-        'Wanted_list' => array(
-                'className' => 'Wanted_list',
-                'foreignKey' => 'user_id',
-                'conditions' => array('del_flg' => 0)
-            ),
         'Selling_list' => array(
-                'className' => 'Selling_list',
-                'foreignKey' => 'user_id',
-                'conditions'    => array('del_flg' => 0)
-            ),
-        'Selling_thread_list' => array(
-                'className' => 'Selling_thread_list',
-                'foreignKey' => 'user_id',
-                'conditions'    => array('del_flg' => 0)
-            ),
-        'Wanted_thread_list' => array(
-                'className' => 'Wanted_thread_list',
-                'foreignKey' => 'user_id',
-                'conditions'    => array('del_flg' => 0)
-            )
+            'className' => 'Selling_list',
+            'foreignKey' => 'user_id')
         );
 
     public $belongsTo = array(
@@ -55,9 +35,7 @@ class User extends AppModel {
         )
     );
 
-
     public $actsAs = array('Acl' => array('type' => 'requester'));
-
 
     //暗号化された値を返す
     public function beforeSave() {

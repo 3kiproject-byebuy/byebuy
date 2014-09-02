@@ -24,12 +24,12 @@ class ManagementsController extends AppController {
         if(isset($this->request->data['Search']['name'])){
 
             $name = $this->request->data['Search']['name'];
-            $conditions = array('User.name LIKE' => "%$name%","User.status !=" => "3");
+            $conditions = array('name LIKE' => "%$name%","status !=" => "3");
             $users = $this->User->find('all',array('conditions'=>$conditions));
         
         }else{
         
-            $conditions = array("User.status !=" => 3);
+            $conditions = array("status !=" => 3);
             $users = $this->User->find('all',array('conditions'=>$conditions));
         
         }
@@ -43,7 +43,7 @@ class ManagementsController extends AppController {
         
         if ($this->request->is('post')) {//このpostはpost送信のpost。post送信されたら
             
-            $conditions = array('User.id' => $id);
+            $conditions = array('id' => $id);
             $user = $this->User->find('first',array('conditions'=>$conditions));
 
             if(!$user['User']['block_flg']){
@@ -70,7 +70,7 @@ class ManagementsController extends AppController {
         
         if ($this->request->is('post')) {//このpostはpost送信のpost。post送信されたら
             
-            $conditions = array('User.id' => $id);
+            $conditions = array('id' => $id);
             $user = $this->User->find('first',array('conditions'=>$conditions));
 
             if(!$user['User']['del_flg']){
@@ -97,7 +97,7 @@ class ManagementsController extends AppController {
         
         if ($this->request->is('post')) {//このpostはpost送信のpost。post送信されたら
             
-            $conditions = array('User.id' => $id);
+            $conditions = array('id' => $id);
             $user = $this->User->find('first',array('conditions'=>$conditions));
 
             $data = array('User' => array('id' => $id, 'group_id' => $authority));
@@ -120,7 +120,7 @@ class ManagementsController extends AppController {
 
         public function agreement() {
 
-        $conditions = array('User.status' => "3");
+        $conditions = array('status' => "3");
         $users = $this->User->find('all',array('conditions'=>$conditions));
         //ユーザ名から検索
         $this->set(compact('users'));
@@ -131,7 +131,7 @@ class ManagementsController extends AppController {
 
         if ($this->request->is('post')) {//このpostはpost送信のpost。post送信されたら
             
-            $conditions = array('User.id' => $id);
+            $conditions = array('id' => $id);
             $user = $this->User->find('first',array('conditions'=>$conditions));
             $data = array('User' => array('id' => $id, 'status' => '1'));
             
@@ -176,7 +176,7 @@ class ManagementsController extends AppController {
 
         if ($this->request->is('post')) {//このpostはpost送信のpost。post送信されたら
             
-            $conditions = array('Category.id' => $id);
+            $conditions = array('id' => $id);
             $category = $this->Category->find('first',array('conditions'=>$conditions));
 
             if(!$category['Category']['del_flg']){
@@ -202,7 +202,7 @@ class ManagementsController extends AppController {
         public function edit_categories_mod($id) {
 
 
-        $conditions = array('Category.id' => $id);
+        $conditions = array('id' => $id);
         $category = $this->Category->find('first',array('conditions'=>$conditions));
         $this->set(compact('category'));
 
@@ -253,7 +253,7 @@ class ManagementsController extends AppController {
         if(isset($this->request->data['Search']['name'])){
             
             $name = $this->request->data['Search']['name'];
-            $conditions = array('Selling_list.sellingproduct_name LIKE' => "%$name%");
+            $conditions = array('sellingproduct_name LIKE' => "%$name%");
             $selling_lists = $this->Selling_list->find('all',array('conditions'=>$conditions));
             $this->set(compact('selling_lists'));
         
@@ -269,7 +269,7 @@ class ManagementsController extends AppController {
 
         public function selling_lists_threads($id) {
 
-        $conditions = array('Selling_thread_list.sellinglist_id' => $id);
+        $conditions = array('sellinglist_id' => $id);
         $selling_thread_lists = $this->Selling_thread_list->find('all',array('conditions'=>$conditions));
         $this->set(compact('selling_thread_lists'));
 
@@ -340,7 +340,7 @@ class ManagementsController extends AppController {
         if(isset($this->request->data['Search']['name'])){
             
             $name = $this->request->data['Search']['name'];
-            $conditions = array('Wanted_list.wanteddetail LIKE' => "%$name%");
+            $conditions = array('wanteddetail LIKE' => "%$name%");
             $wanted_lists = $this->Wanted_list->find('all',array('conditions'=>$conditions));
             $this->set(compact('wanted_lists'));
         

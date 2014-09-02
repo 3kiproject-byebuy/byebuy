@@ -21,7 +21,7 @@ class PostmanagementsController extends AppController {
 
     public function index($id){
 
-        $conditions = array("User.status !=" => 3,"User.id" => $id);
+        $conditions = array("status !=" => 3,"id" => $id);
         $user = $this->User->find('first',array('conditions'=>$conditions));
         
         //ユーザ名から検索

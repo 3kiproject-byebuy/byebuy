@@ -19,6 +19,7 @@ class Group extends AppModel {
         )
     );
 
+//グループを画面から登録したときに、groupテーブルのデータをUsersとArosと紐づける。
 public $actsAs = array('Acl' => array('type' => 'requester'));
 
     public function parentNode() {
