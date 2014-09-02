@@ -1,6 +1,46 @@
 <?php 
 echo $this->Element('header');
+
 ?>
+
+<div style="margin:20px;"><!--検索・ページネーション・ソート機能-->
+	<!--検索フォーム-->
+	<?php
+	   echo $this->Form->create('Selling_list',array(
+	   'class'=>'form-inline','role'=>'form',));
+
+	   echo $this->Form->input('Selling_list.keyword',array(
+	   'label'=>false,'class'=>'form-controll'));//このキーワードが連想配列のキーになっている。
+
+	   echo $this->Form->button('<span class="glyphicon glyphicon-search"></span>Search',array('type'=>'submit','label'=>false,'class'=>'btn btn-mini btn-default','escape'=>false));
+
+	   echo $this->Form->end();
+	?>
+	<!--ここまで　検索フォーム　ここまで-->
+
+
+	<!--ページネーション-->
+	<div class ="pagination pagination-large">
+
+	  <?php echo $this->Paginator->numbers();//必要なページ番号のリンクを自動的に吐き出す ?>
+	</div>
+	<!--ここまで　ページネーション　ここまで-->
+
+
+	<!--ソート機能-->
+	 <?php
+	// echo $this->Paginator->sort('Selling_list.deadline', '締め切り');?>
+	<FORM name="form2">
+	<SELECT NAME="select2">
+	<option SELECTED> ▼ 下から選択してください　</option>
+	<option value="/byebuy/byebuys/index/sort:Selling_list.id/direction:desc">新着</option>
+	<option value="/byebuy/byebuys/index/sort:Selling_list.deadline/direction:asc">締め切り</option>
+	<option value="/byebuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:desc">価格が高い</option>
+	<option value="/byebuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:asc" draggable="true">価格が安い</option>
+	</SELECT> <INPUT type="button" onclick="if(document.form2.select2.value){location.href=document.form2.select2.value;}" value="Go!"></FORM>
+	<!--ここまで　ソート機能　ここまで-->
+
+</div><!--検索・ページネーション・ソート機能-->
 
 <!-- コンテンツ -->
 <div class ="container" style="margin-top:50px;">
@@ -45,12 +85,11 @@ echo $this->Element('header');
 				$current_date = date('Y-m-d H:i:s');
 					if((strtotime($product['Selling_list']['deadline']) - strtotime($current_date)) < 86400){ ?>
 
-					<font color="#ff0000"> 
-					<?php
-					echo '締め切り:';
-				echo $product['Selling_list']['deadline'];
-				?>
-				</font>
+						<font color="#ff0000"> 
+						<?php
+						echo '締め切り:';
+						echo $product['Selling_list']['deadline']; ?>
+						</font>
 
 				<?php
 					}else{
@@ -66,6 +105,8 @@ echo $this->Element('header');
 				echo $product['User']['name']; ?><br /><?php 
 				
 				
+				//現在ログインしているユーザーを取得
+				$self = $this->Session->read('Auth.User');
 				if(is_null($self)){  
 
 					//debug('セルフがからっぽ');
@@ -81,7 +122,7 @@ echo $this->Element('header');
 					echo $this->Form->input('sellinglist_id',array('type'=>'hidden','value'=>$product['Selling_list']['id']));
 					//echo $this->Html->Html('<p align="right"><button class="btn btn-mini btn-default" type="submit">ウォッチリスト</button></p>',array('escape' => false,'label'=>false));
 					echo $this->Form->button('<span class ="glyphicon glyphicon-pencil"></span>
-お気に入り', array('type' => 'submit', 'class'=>'btn btn-primary', 'label' => false, 'escape' => false));
+					お気に入り', array('type' => 'submit', 'class'=>'btn btn-primary', 'label' => false, 'escape' => false));
 					echo $this->Form->end(); 
 
 				}?>
