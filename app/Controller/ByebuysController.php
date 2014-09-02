@@ -5,7 +5,7 @@ App::import('Vendor','facebook',array('file' => 'facebook'.DS.'src'.DS.'facebook
 //App::import('vendor', 'facebook/php-sdk/src/facebook');
 
 
-class ByeBuysController extends AppController {
+class ByebuysController extends AppController {
 
 	public $uses = array('Selling_list','User','Group','Watchlist','Category');
 	public $helpers = array('Facebook.Facebook');

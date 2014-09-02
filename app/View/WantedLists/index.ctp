@@ -56,22 +56,22 @@ li{
 
 
     <!-- 投稿表示 -->
-    <?php foreach ($WantedLists as $wantedList){ ?>
+    <?php foreach ($Wanted_lists as $wanted_list){ ?>
     <center>
     <dl id="acMenu">
     <dt>
         <div class="media">
 
   						<a class="pull-left" href="#">
-    						<img class="media-object img-circle" src="https://graph.facebook.com/<?php echo $wantedList['User']['facebook_id']; ?>/picture?type=square" alt="No image">
+    						<img class="media-object img-circle" src="https://graph.facebook.com/<?php echo $wanted_list['User']['facebook_id']; ?>/picture?type=square" alt="No image">
   						</a>
   			<div class="media-body">
     				<h4 class="media-heading">
               <table width="100%">
                 <tr>
                   <td>
-   						     <div style="float:left"><?php echo $wantedList['User']['name']; ?></div><!-- ユーザー名 -->
-    					     <div style="float:right"><?php echo $wantedList['WantedList']['created']; ?></div><!-- 投稿日時 -->	
+   						     <div style="float:left"><?php echo $wanted_list['User']['name']; ?></div><!-- ユーザー名 -->
+    					     <div style="float:right"><?php echo $wanted_list['Wanted_list']['created']; ?></div><!-- 投稿日時 -->	
                 </tr>
               </td>
     				</h4>
@@ -79,7 +79,7 @@ li{
                 <tr>
                   <td style="border: 2px solid #cccccc" align="left">
 
-    							 <?php echo $wantedList['WantedList']['wanteddetail']; ?><!-- 欲しいもの詳細表示 -->
+    							 <?php echo $wanted_list['Wanted_list']['wanteddetail']; ?><!-- 欲しいもの詳細表示 -->
 <?php //if(自分のID == DBから取得したIDの場合、編集ボタン表示)?>
                   </td>
                 </tr>
@@ -90,10 +90,10 @@ li{
                     <!-- //取引成立した場合、欲しいもの詳細の下にコメントを表示 -->
                     <?php
 
-                    if($wantedList['User']['id']== $login_user_id && $wantedList['WantedList']['status'] == 2){
+                    if($wanted_list['User']['id']== $login_user_id && $wanted_list['Wanted_list']['status'] == 2){
 
                       foreach($Users as $user){
-                        if($wantedList['WantedList']['trade_person_user_id'] == $user['User']['id']){
+                        if($wanted_list['Wanted_list']['trade_person_user_id'] == $user['User']['id']){
                           $trade_user_name = $user['User']['name'];
                           $trade_user_url = "https://www.facebook.com/".$user['User']['facebook_id'];
                           echo $trade_user_name."さんとの取引が成立しました！</br>";
@@ -103,7 +103,7 @@ li{
                         }
                       }
 
-                    }elseif($wantedList['WantedList']['status'] == 2) {
+                    }elseif($wanted_list['Wanted_list']['status'] == 2) {
                       echo "この商品は取引が終了しました。";
                     }
 
@@ -115,38 +115,38 @@ li{
     <dd>
 
               <!-- Thread -->
-        			<?php foreach ($wantedList['WantedThreadList'] as $wantedThread){ ?>
+        			<?php foreach ($wanted_list['Wanted_thread_list'] as $wanted_thread){ ?>
 
         <li style="display:block">
 
     				<div class="media">
   									<a class="pull-left" href="#">
-    									<img class="media-object img-circle" src="https://graph.facebook.com/<?php echo $wantedThread['User']['facebook_id']; ?>/picture?type=square" alt="No image">
+    									<img class="media-object img-circle" src="https://graph.facebook.com/<?php echo $wanted_thread['User']['facebook_id']; ?>/picture?type=square" alt="No image">
   									</a>
   							<div class="media-body">
   								<h4 class="media-heading">
                     <table width="100%">
                       <tr>
                         <td>
-   									      <div style="float:left"><?php echo $wantedThread['User']['name']; ?></div><!-- ユーザー名 -->
-    								      <div style="float:right"><?php echo $wantedThread['created']; ?></div><!-- 投稿日時 -->
+   									      <div style="float:left"><?php echo $wanted_thread['User']['name']; ?></div><!-- ユーザー名 -->
+    								      <div style="float:right"><?php echo $wanted_thread['created']; ?></div><!-- 投稿日時 -->
                         </td>
                       </tr>
     							</h4>
 
                        <tr>
                         <td style="border: 2px solid #cccccc" align="left">
-    							       <?php echo $wantedThread['thread']; ?>
+    							       <?php echo $wanted_thread['thread']; ?>
                         </td>
                         <td align="left">
 
                           <!-- (DBから取得したID==現在のログインID)かつ(status　!= 取引完了)かつ(ThreadListのUseID != 現在のログインID)の場合、'この人に決める'ボタン表示 -->
                           <?php
-                           if($wantedList['User']['id']== $login_user_id && $wantedList['WantedList']['status'] != 2 && $wantedThread['user_id'] != $login_user_id){
-                            echo $this->Form->create('WantedList',array('url'=>'decide'),array('class'=>'form-inline','role'=>'form')); //'url'=> 'decide'によりdecideファンクションに飛ばす
-                            echo $this->Form->input('id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$wantedList['WantedList']['id']));//WantedListのidを送信
+                           if($wanted_list['User']['id']== $login_user_id && $wanted_list['Wanted_list']['status'] != 2 && $wanted_thread['user_id'] != $login_user_id){
+                            echo $this->Form->create('Wanted_list',array('url'=>'decide'),array('class'=>'form-inline','role'=>'form')); //'url'=> 'decide'によりdecideファンクションに飛ばす
+                            echo $this->Form->input('id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$wanted_list['Wanted_list']['id']));//WantedListのidを送信
                             echo $this->Form->input('tradedate',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>date('Y-m-d H:i:s')));//tradedate（交渉成立日時）の保存
-                            echo $this->Form->input('trade_person_user_id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$wantedThread['User']['id']));//trade_person_user_id（交渉成立相手）の保存
+                            echo $this->Form->input('trade_person_user_id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$wanted_thread['User']['id']));//trade_person_user_id（交渉成立相手）の保存
                             echo $this->Form->input('status',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>'2'));//ステータスの保存
                             echo $this->Form->button('この人に決める',array('type'=>'submit','class'=>'btn btn-default btn-xs','label'=>false,'escape'=>false));
                             echo $this->Form->end();
@@ -167,10 +167,10 @@ li{
           
        		<!-- コメントボタン -->
 					<?php
-            if($wantedList['WantedList']['status'] != 2){//ステータスが2(取引完了）以外のときコメントボタンを表示
-						echo $this->Form->create('WantedThreadList',array('url' => 'addComment'),array('class'=>'form-inline','role'=>'form')); //'url'=> 'addComment'によりaddCommentファンクションに飛ばす
+            if($wanted_list['Wanted_list']['status'] != 2){//ステータスが2(取引完了）以外のときコメントボタンを表示
+						echo $this->Form->create('Wanted_thread_list',array('url' => 'addComment'),array('class'=>'form-inline','role'=>'form')); //'url'=> 'addComment'によりaddCommentファンクションに飛ばす
 						echo $this->Form->input('user_id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$login_user_id));//user_id保存
-						echo $this->Form->input('wantedlist_id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$wantedList['WantedList']['id']));//wantedlist_id保存
+						echo $this->Form->input('wantedlist_id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$wanted_list['Wanted_list']['id']));//wantedlist_id保存
             echo $this->Form->input('thread',array('label'=>false,'class'=>'form-control'));
             echo $this->Form->button('コメント', array('type'=>'submit','class'=>'btn btn-default btn-xs','label'=>false,'escape'=>false));
             echo $this->Form->end();
