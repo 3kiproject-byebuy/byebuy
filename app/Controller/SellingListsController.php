@@ -1,6 +1,6 @@
 <?php
 
-class Selling_listsController extends AppController {
+class SellingListsController extends AppController {
 
 
     public $helpers = array('Html', 'Form');
