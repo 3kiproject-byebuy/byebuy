@@ -1,6 +1,6 @@
 <?php
 
-class SellingListsController extends AppController {
+class Selling_listsController extends AppController {
 
 
     public $helpers = array('Html', 'Form');
@@ -8,7 +8,7 @@ class SellingListsController extends AppController {
 
 
     public $components = array('Search.Prg');
-    public $uses = array('Byebuy', 'SellingList', 'SellingThreadList', 'Category', 'User');
+    public $uses = array('Byebuy', 'Selling_list', 'Selling_thread_list', 'Category', 'User');
 
 
     //ログインユーザーに関する宣言
@@ -38,12 +38,12 @@ class SellingListsController extends AppController {
 
         if ($this->request->is('post') || $this->request->is('put')) {
 
-            $file1 = $this->request->data['SellingList']['img_file_name1']['tmp_name'];
-            $file2 = $this->request->data['SellingList']['img_file_name2']['tmp_name'];
-            $file3 = $this->request->data['SellingList']['img_file_name3']['tmp_name'];
-            $tmp1 = $this->request->data['SellingList']['img_file_name1']['name'];
-            $tmp2 = $this->request->data['SellingList']['img_file_name2']['name'];
-            $tmp3 = $this->request->data['SellingList']['img_file_name3']['name'];
+            $file1 = $this->request->data['Selling_list']['img_file_name1']['tmp_name'];
+            $file2 = $this->request->data['Selling_list']['img_file_name2']['tmp_name'];
+            $file3 = $this->request->data['Selling_list']['img_file_name3']['tmp_name'];
+            $tmp1 = $this->request->data['Selling_list']['img_file_name1']['name'];
+            $tmp2 = $this->request->data['Selling_list']['img_file_name2']['name'];
+            $tmp3 = $this->request->data['Selling_list']['img_file_name3']['name'];
 
 
             $uploaddir = APP. 'webroot/img/';
@@ -71,16 +71,15 @@ class SellingListsController extends AppController {
             // move_uploaded_file('一時保存されているアップロードしたいファイル名前', $uploadfile);
 
 
-            $this->request->data['SellingList']['img_file_name1'] = $tmp1;
-            $this->request->data['SellingList']['img_file_name2'] = $tmp2;
-            $this->request->data['SellingList']['img_file_name3'] = $tmp3;
+            $this->request->data['Selling_list']['img_file_name1'] = $tmp1;
+            $this->request->data['Selling_list']['img_file_name2'] = $tmp2;
+            $this->request->data['Selling_list']['img_file_name3'] = $tmp3;
 
-            $this->SellingList->save($this->request->data, array('validate' => false));
+            $this->Selling_list->save($this->request->data, array('validate' => false));
 
             //画像の保存
-            if($this->SellingList->save($this->request->data)){
+            if($this->Selling_list->save($this->request->data)){
                 $this->log('save成功');
-
             }else{
                 $this->log('save失敗');
 
@@ -108,11 +107,11 @@ class SellingListsController extends AppController {
 
         //del_flgが立っていれば取得データから除外する。 
         //$conditions = array("SellingList.del_flg" => 0); 
-        $conditions = array("SellingList.id" => $id,
-                            "SellingList.del_flg" => 0);
+        $conditions = array("Selling_list.id" => $id,
+                            "Selling_list.del_flg" => 0);
 
 		//$sellinglists = $this->SellingList->findById($id
-        $sellinglists = $this->SellingList->find('all',
+        $sellinglists = $this->Selling_list->find('all',
                                             //del_flagがたっているものを除外する
                                             array('conditions' => $conditions)
                                                 );
@@ -122,11 +121,8 @@ class SellingListsController extends AppController {
 
         debug($sellinglists);
 
-
-       
-
         //コメント用のデータをviewにおくる
-        $sellingthreadlists = $this->SellingThreadList->find('all');
+        $sellingthreadlists = $this->Selling_thread_list->find('all');
 
         $this->set(compact('sellingthreadlists'));
 
@@ -139,20 +135,20 @@ class SellingListsController extends AppController {
 
     	//商品投稿内容編集用
     	if ($this->request->is(array('post', 'put'))) {
-            $this->SellingList->id = $id;
+            $this->Selling_list->id = $id;
 
 
         //場合分け
-        if(isset($this->request->data['SellingList']['img_file_name1']))
+        if(isset($this->request->data['Selling_list']['img_file_name1']))
         {
             //----------------------------------------------
 
-            $file1 = $this->request->data['SellingList']['img_file_name1']['tmp_name'];
-            $file2 = $this->request->data['SellingList']['img_file_name2']['tmp_name'];
-            $file3 = $this->request->data['SellingList']['img_file_name3']['tmp_name'];
-            $tmp1 = $this->request->data['SellingList']['img_file_name1']['name'];
-            $tmp2 = $this->request->data['SellingList']['img_file_name2']['name'];
-            $tmp3 = $this->request->data['SellingList']['img_file_name3']['name'];
+            $file1 = $this->request->data['Selling_list']['img_file_name1']['tmp_name'];
+            $file2 = $this->request->data['Selling_list']['img_file_name2']['tmp_name'];
+            $file3 = $this->request->data['Selling_list']['img_file_name3']['tmp_name'];
+            $tmp1 = $this->request->data['Selling_list']['img_file_name1']['name'];
+            $tmp2 = $this->request->data['Selling_list']['img_file_name2']['name'];
+            $tmp3 = $this->request->data['Selling_list']['img_file_name3']['name'];
 
             $uploaddir = APP. 'webroot/img/';
             $uploadfile = $uploaddir.basename($tmp1);
@@ -169,11 +165,11 @@ class SellingListsController extends AppController {
             debug($uploaddir);
             debug($uploadfile);
 
-            $this->request->data['SellingList']['img_file_name1'] = $tmp1;
-            $this->request->data['SellingList']['img_file_name2'] = $tmp2;
-            $this->request->data['SellingList']['img_file_name3'] = $tmp3;
+            $this->request->data['Selling_list']['img_file_name1'] = $tmp1;
+            $this->request->data['Selling_list']['img_file_name2'] = $tmp2;
+            $this->request->data['Selling_list']['img_file_name3'] = $tmp3;
 
-            if($this->SellingList->save($this->request->data, array('validate' => false)))
+            if($this->Selling_list->save($this->request->data, array('validate' => false)))
             {
                 $this->Session->setFlash(__('編集が完了しました'));
                 return $this->redirect($this->referer());
@@ -194,13 +190,13 @@ class SellingListsController extends AppController {
 
 
         //場合分け
-        if(isset($this->request->data['SellingThreadList']['thread']))
+        if(isset($this->request->data['Selling_thread_list']['thread']))
         {
 
             //コメント内容反映
             if ($this->request->is('post')) {
-                $this->SellingThreadList->create();
-            if ($this->SellingThreadList->save($this->request->data)) {
+                $this->Selling_thread_list->create();
+            if ($this->Selling_thread_list->save($this->request->data)) {
                 $this->Session->setFlash(__('<div class="alert alert-success" role="alert">コメントが投稿されました</div>'));
                 // return $this->redirect(array('action' => 'productdetail'));
                 //元のページへリダイレクト

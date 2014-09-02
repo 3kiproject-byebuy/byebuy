@@ -13,26 +13,22 @@ App::uses('AuthComponent', 'Controller/Component');
 
 
 
-class WantedList extends AppModel {
+class Selling_thread_list extends AppModel {
 
-    public $name = 'Wantedist';
-
+    public $name = 'Selling_thread_list';
+    
     public $belongsTo = array(
         //categoryにはモデル名を書く。
+        'Selling_list' => array(
+                'className' => 'Selling_list',
+                'foreignKey' => 'sellinglist_id'
+            ),
         'User' => array(
                 'className' => 'User',
                 'foreignKey' => 'user_id'
             )
 
-    );
-
-    public $hasMany = array(
-        'WantedThreadList' => array(
-            'className' => 'WantedThreadList', //クラスの名前
-            'foreignKey' => 'wantedlist_id',
-            'conditions' => array('del_flg' => 0)
-            )
-    );
+        );
 
 
 }

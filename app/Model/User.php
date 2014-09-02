@@ -16,23 +16,23 @@ class User extends AppModel {
         'Watchlist' => array(
             'className' => 'Watchlist',
             'foreignKey' => 'user_id'),
-        'WantedList' => array(
-                'className' => 'WantedList',
+        'Wanted_list' => array(
+                'className' => 'Wanted_list',
                 'foreignKey' => 'user_id',
                 'conditions' => array('del_flg' => 0)
             ),
-        'SellingList' => array(
-                'className' => 'SellingList',
+        'Selling_list' => array(
+                'className' => 'Selling_list',
                 'foreignKey' => 'user_id',
                 'conditions'    => array('del_flg' => 0)
             ),
-        'SellingThreadList' => array(
-                'className' => 'SellingThreadList',
+        'Selling_thread_list' => array(
+                'className' => 'Selling_thread_list',
                 'foreignKey' => 'user_id',
                 'conditions'    => array('del_flg' => 0)
             ),
-        'WantedThreadList' => array(
-                'className' => 'WantedThreadList',
+        'Wanted_thread_list' => array(
+                'className' => 'Wanted_thread_list',
                 'foreignKey' => 'user_id',
                 'conditions'    => array('del_flg' => 0)
             )
