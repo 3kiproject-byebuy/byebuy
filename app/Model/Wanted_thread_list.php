@@ -13,14 +13,14 @@ App::uses('AuthComponent', 'Controller/Component');
 
 
 
-class WantedThreadList extends AppModel {
+class Wanted_thread_list extends AppModel {
 
-    public $name = 'WantedThreadList';
+    public $name = 'Wanted_thread_list';
     
     public $belongsTo = array(
         //categoryにはモデル名を書く。
-        'WantedList' => array(
-                'className' => 'WantedList',
+        'Wanted_list' => array(
+                'className' => 'Wanted_list',
                 'foreignKey' => 'wantedlist_id'
             ),
         'User' => array(

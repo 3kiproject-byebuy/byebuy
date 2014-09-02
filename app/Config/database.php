@@ -65,7 +65,7 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql', //データーベースの種類	
 		'persistent' => false,
-		'host' => '192.168.33.10',
+		'host' => 'localhost',
 		'login' => 'root',//ログインするユーザーはrootにしておく
 		'password' => 'camp2014',
 		'database' => 'ByeBuy',//作成したデータベース名
