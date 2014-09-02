@@ -33,9 +33,9 @@ class ByebuysController extends AppController {
     $conditions = array($conditions1,$conditions2);
     $products = $this->paginate('Selling_list',$conditions);
 
-    // //現在ログインしているユーザー
-    $self = $this->Auth->user();
-    debug($self);
+    // // //現在ログインしているユーザー
+    // $self = $this->Auth->user();
+    // debug($self);
  
     //カテゴリー
     $categories = $this->Category->find('all');
