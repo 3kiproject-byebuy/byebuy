@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 //App::import('vendor', 'facebook/php-sdk/src/facebook');
 
 
-class Wanted_listsController extends AppController {
+class WantedListsController extends AppController {
     //public $helpers = array('Html', 'Form');//htmlヘルパーを使うよ！という宣言、使うヘルパーの名前を指定
     //今はappControllerでも同様の設定をしているのでコメントアウト
 
@@ -24,7 +24,7 @@ class Wanted_listsController extends AppController {
 
 	public function index(){//　/index/アドレスに飛んだタイミングで実行され、その結果が.ctpに返る
 
-        $WantedLists = $this->Wanted_list->find('all',array(
+        $Wanted_lists = $this->Wanted_list->find('all',array(
         											     //'fields' => array('user_id', 'wanteddetail', 'created'),
                                                         'conditions' => array('Wanted_list.del_flg' => 0),
                                                         //'order' => array('created' => 'desc'),
