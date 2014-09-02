@@ -26,7 +26,7 @@ if(is_null($self)){
 
 
 <!--いいね、シェア-->
-<div class="fb-like" data-href="https://dev.ByeBuy.com/" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+<div class="fb-like" data-href="https://dev.byebuy.com/" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
 <!--ここまで　いいね、シェア　ここまで-->
 
 
@@ -42,7 +42,7 @@ if(is_null($self)){
           FB.ui({
           method: 'send',
           name: 'ByeBuy.comをお友達に知らせよう。',
-          link: 'http://dev.ByeBuy.com/ByeBuy',
+          link: 'http://dev.byebuy.com/byebuy',
 		  description: 'ラガージャ専用フリマサイト、ByeBuy.comに参加してみませんか？',
           });
 
@@ -57,12 +57,12 @@ if(is_null($self)){
 
 
 <!-- ナビゲーションバー -->
-<a href="/ByeBuy/managements/index" align="right">管理画面</a>
+<a href="/byebuy/managements/index" align="right">管理画面</a>
 <ul class="nav nav-tabs" role="tablist">
-	<li class="active"><a href="/ByeBuy/">出品中</a></li>
-	<li><a href="/ByeBuy/wanted_lists/index">ほしい</a></li>
-	<li><a href="/ByeBuy/watchlists/index">ウォッチリスト</a></li>
-	<li><a href="/ByeBuy/postmanagements/index">投稿管理</a></li>
+	<li class="active"><a href="/byebuy/">出品中</a></li>
+	<li><a href="/byebuy/wanted_lists/index">ほしい</a></li>
+	<li><a href="/byebuy/watchlists/index">ウォッチリスト</a></li>
+	<li><a href="/byebuy/postmanagements/index">投稿管理</a></li>
 </ul>
 <!-- ここまで　ナビゲーションバー ここまで　-->
 
@@ -97,10 +97,10 @@ if(is_null($self)){
 <FORM name="form2">
 <SELECT NAME="select2">
 <option SELECTED> ▼ 下から選択してください　</option>
-<option value="/ByeBuy/byebuys/index/sort:Selling_list.id/direction:desc">新着</option>
-<option value="/ByeBuy/byebuys/index/sort:Selling_list.deadline/direction:asc">締め切り</option>
-<option value="/ByeBuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:desc">価格が高い</option>
-<option value="/ByeBuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:asc" draggable="true">価格が安い</option>
+<option value="/byebuy/byebuys/index/sort:Selling_list.id/direction:desc">新着</option>
+<option value="/byebuy/byebuys/index/sort:Selling_list.deadline/direction:asc">締め切り</option>
+<option value="/byebuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:desc">価格が高い</option>
+<option value="/byebuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:asc" draggable="true">価格が安い</option>
 </SELECT> <INPUT type="button" onclick="if(document.form2.select2.value){location.href=document.form2.select2.value;}" value="Go!"></FORM>
 <!--ここまで　ソート機能　ここまで-->
 
