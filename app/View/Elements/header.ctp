@@ -2,6 +2,9 @@
 
 <?php
 
+//現在ログインしているユーザーを取得
+$self = $this->Session->read('Auth.User');
+
 if(is_null($self)){
 		
 
@@ -43,10 +46,10 @@ if(is_null($self)){
           method: 'send',
           name: 'ByeBuy.comをお友達に知らせよう。',
           link: 'http://dev.byebuy.com/byebuy',
-		  description: 'ラガージャ専用フリマサイト、ByeBuy.comに参加してみませんか？',
+		      description: 'ラガージャ専用フリマサイト、ByeBuy.comに参加してみませんか？',
           });
 
-          //});
+         //});
      	}
 </script>
 
@@ -66,42 +69,3 @@ if(is_null($self)){
 </ul>
 <!-- ここまで　ナビゲーションバー ここまで　-->
 
-<div style="margin:20px;">
-<!--検索フォーム-->
-<?php
-   echo $this->Form->create('Selling_list',array(
-   'class'=>'form-inline','role'=>'form',));
-
-   echo $this->Form->input('Selling_list.keyword',array(
-   'label'=>false,'class'=>'form-controll'));//このキーワードが連想配列のキーになっている。
-
-   echo $this->Form->button('<span class="glyphicon glyphicon-search"></span>Search',array('type'=>'submit','label'=>false,'class'=>'btn btn-mini btn-default','escape'=>false));
-
-   echo $this->Form->end();
-?>
-<!--ここまで　検索フォーム　ここまで-->
-
-
-<!--ページネーション-->
-<div class ="pagination pagination-large">
-
-    <?php echo $this->Paginator->numbers();
-        //必要なページ番号のリンクを自動的に吐き出す ?>
-</div>
-<!--ここまで　ページネーション　ここまで-->
-
-
-<!--ソート機能-->
- <?php
-// echo $this->Paginator->sort('Selling_list.deadline', '締め切り');?>
-<FORM name="form2">
-<SELECT NAME="select2">
-<option SELECTED> ▼ 下から選択してください　</option>
-<option value="/byebuy/byebuys/index/sort:Selling_list.id/direction:desc">新着</option>
-<option value="/byebuy/byebuys/index/sort:Selling_list.deadline/direction:asc">締め切り</option>
-<option value="/byebuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:desc">価格が高い</option>
-<option value="/byebuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:asc" draggable="true">価格が安い</option>
-</SELECT> <INPUT type="button" onclick="if(document.form2.select2.value){location.href=document.form2.select2.value;}" value="Go!"></FORM>
-<!--ここまで　ソート機能　ここまで-->
-
-</div>

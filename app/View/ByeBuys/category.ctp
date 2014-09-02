@@ -1,51 +1,11 @@
 
-<!-- ログインボタン・ログインユーザーの表示 -->
-
-<?php
-
-if(is_null($self)){
-		
-
-		echo $this->Html->link('<div style="text-align:right;"><button class="btn btn-mini btn-default" type="button">ログイン</button></div>',array('controller' => 'fbconnects','action' => 'facebook'),array('escape' => false));
-		
-		}else{ ?>
-
-		<div align="right">
-		<div class="media" style="margin-top:10px;">
-		   <a class="pull-right" href="#">
-			 <img src="https://graph.facebook.com/<?php echo $self['facebook_id']; ?>/picture?type=square" align="left" style="margin-left:10px;" class="img-circle"></a>
-				<div class="media-body">
-				  <h4 class="media-heading"><?php echo $self['name'];?></h4>
-	
-		</div>
-		</div>
-		<?php
-		echo $this->Html->link('<div style="text-align:right;"><button class="btn btn-mini btn-default" type="button">logout</button></div>',array('controller' => 'fbconnects','action' => 'logout'),array('escape' => false));
-
-		 }
-	
-		 
+<?php 
+echo $this->Element('header');
 ?>
 
-
-<!-- ここまで　ログインボタン・ログインユーザーの表示　ここまで -->
-
-<!-- ナビゲーションバー -->
-
-<a href="/ByeBuy/groups/index" align="right">管理画面</a>
-<ul class="nav nav-tabs" role="tablist">
-  <li class="active"><a href="#">出品中</a></li>
-  <li><a href="#">ほしい</a></li>
-  <li><a href="#">ウォッチリスト</a></li>
-  <li><a href="#">投稿管理</a></li>
-</ul>
-
-
-<!-- ここまで　ナビゲーションバー ここまで　-->
-
-
+<div style="margin:20px;"><!--検索・ページネーション・ソート機能-->
 <!--検索フォーム-->
-<?php
+	<?php
        echo $this->Form->create('Selling_list',array(
        'class'=>'form-inline','role'=>'form',));
 
@@ -55,37 +15,37 @@ if(is_null($self)){
        echo $this->Form->button('<span class="glyphicon glyphicon-search"></span>Search',array('type'=>'submit','label'=>false,'class'=>'btn btn-mini btn-default','escape'=>false));
 
        echo $this->Form->end();
-?>
+	?>
 <!--ここまで　検索フォーム　ここまで-->
 
 <!--ページネーション-->
 
-<div class ="pagination pagination-large">
+	<div class ="pagination pagination-large">
 
-        <?php echo $this->Paginator->numbers();
-        //必要なページ番号のリンクを自動的に吐き出す ?>
-</div>
+	    <?php echo $this->Paginator->numbers();
+	        //必要なページ番号のリンクを自動的に吐き出す ?>
+	</div>
 
 <!--ここまで　ページネーション　ここまで-->
 
 <!--ソート機能-->
 
-<?php
-// echo $this->Paginator->sort('Selling_list.deadline', '締め切り');?>
-<FORM name="form2">
-<SELECT NAME="select2">
-<option SELECTED> ▼ 下から選択してください　</option>
-<option value="/ByeBuy/byebuys/index/sort:Selling_list.id/direction:desc">新着</option>
-<option value="/ByeBuy/byebuys/index/sort:Selling_list.deadline/direction:asc">締め切り</option>
-<option value="/ByeBuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:desc">価格が高い</option>
-<option value="/ByeBuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:asc" draggable="true">価格が安い</option>
-</SELECT> <INPUT type="button" onclick="if(document.form2.select2.value){location.href=document.form2.select2.value;}" value="Go!"></FORM>
+	<?php
+	// echo $this->Paginator->sort('Selling_list.deadline', '締め切り');?>
+	<FORM name="form2">
+	<SELECT NAME="select2">
+	<option SELECTED> ▼ 下から選択してください　</option>
+	<option value="/ByeBuy/byebuys/index/sort:Selling_list.id/direction:desc">新着</option>
+	<option value="/ByeBuy/byebuys/index/sort:Selling_list.deadline/direction:asc">締め切り</option>
+	<option value="/ByeBuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:desc">価格が高い</option>
+	<option value="/ByeBuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:asc" draggable="true">価格が安い</option>
+	</SELECT> <INPUT type="button" onclick="if(document.form2.select2.value){location.href=document.form2.select2.value;}" value="Go!"></FORM>
 
 <!--ここまで　ソート機能　ここまで-->
+</div><!--検索・ページネーション・ソート機能-->
 
 
 <!-- コンテンツ -->
-
 <div class ="container" align="center" style="margin:20px;margin-top:50px;">
 	<div class="row">
 
@@ -177,7 +137,7 @@ if(is_null($self)){
 							echo $this->Form->input('sellinglist_id',array('type'=>'hidden','value'=>$product['Selling_list']['id']));
 							//echo $this->Html->Html('<p align="right"><button class="btn btn-mini btn-default" type="submit">ウォッチリスト</button></p>',array('escape' => false,'label'=>false));
 							echo $this->Form->button('<span class ="glyphicon glyphicon-pencil"></span>
-		お気に入り', array('type' => 'submit', 'class'=>'btn btn-primary', 'label' => false, 'escape' => false));
+							お気に入り', array('type' => 'submit', 'class'=>'btn btn-primary', 'label' => false, 'escape' => false));
 							echo $this->Form->end(); 
 
 						}?>
