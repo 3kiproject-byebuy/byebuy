@@ -1,6 +1,6 @@
 <?php
 
-class Selling_thread_listsController extends AppController {
+class SellingThreadListsController extends AppController {
     public $helpers = array('Html', 'Form');
 
 
