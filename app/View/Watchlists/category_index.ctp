@@ -3,7 +3,7 @@
 
 <?php //startページネーション------------------------------------------------------------------------?>
 
-<!-- 		<div align = "center">
+		<div align = "center">
 			<div class = "pagination pagination-large">
 				<li>
 					<?php echo $this->Paginator->prev('前へ'); ?>
@@ -11,7 +11,8 @@
 					<?php echo $this->Paginator->next('次へ'); ?>
 				</li> 
 			</div>	
-		</div> -->
+		</div>
+
 <?php //endページネーション------------------------------------------------------------------------?>
 
 
@@ -20,32 +21,32 @@
 <?php //start検索--------------------------------------------------------------------------------- ?>
 <?php
 	//キーワード検索にしたいので、文字をkeywordにする
-    echo $this->Form->input('keyword',
-                                array(
-                                    'class' => array('form-control','form-inline'),
-                                    'placeholder'=>'検索ワード入力',
-                                    'label' => false,
-                                    // 'div' => ''
+    // echo $this->Form->input('keyword',
+    //                             array(
+    //                                 'class' => array('form-control','form-inline'),
+    //                                 'placeholder'=>'検索ワード入力',
+    //                                 'label' => false,
+    //                                 // 'div' => ''
 
 
-                                    )
-                          );
+    //                                 )
+    //                       );
 
 ?>   
-	</div>
+
 <?php
 
-	echo $this->Form->button('<span class="glyphicon glyphicon-search"></span>Search', 
-                                array('type' => 'submit',
-                                    'class' => 'btn',
-                                    'label' => false,
-                                    // 'div' => 'col-xs-4', array('style' => 'foat:right;')
-                                    )
-                                );
+	// echo $this->Form->button('<span class="glyphicon glyphicon-search"></span>Search', 
+ //                                array('type' => 'submit',
+ //                                    'class' => 'btn',
+ //                                    'label' => false,
+ //                                    // 'div' => 'col-xs-4', array('style' => 'foat:right;')
+ //                                    )
+ //                                );
 
 
 
-    echo $this->Form->end();
+ //    echo $this->Form->end();
 ?>
 
 

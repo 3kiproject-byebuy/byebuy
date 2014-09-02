@@ -7,7 +7,7 @@
 
 <?php //startページネーション------------------------------------------------------------------------?>
 
-<!-- 		<div align = "center">
+ 		<div align = "center">
 			<div class = "pagination pagination-large">
 				<li>
 					<?php echo $this->Paginator->prev('前へ'); ?>
@@ -15,7 +15,7 @@
 					<?php echo $this->Paginator->next('次へ'); ?>
 				</li> 
 			</div>	
-		</div> -->
+		</div>
 <?php //endページネーション------------------------------------------------------------------------?>
 
 
@@ -101,7 +101,7 @@
 <!-- <div class = "container well"> -->
 <br />
 <?php //Watchlistのデータをforeachでまわして読み取る ?>
-<?php foreach($user['Watchlist'] as $watchlist): ?>
+<?php foreach($watchlists as $watchlist): ?>
 <!-- <div class="row"> -->
   <div class="col-md-4 item" style="margin-bottom:15px;">
     <div class="thumbnail">

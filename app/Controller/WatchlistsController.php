@@ -63,21 +63,21 @@ class WatchlistsController extends AppController {
         $this->Prg->commonProcess();
 
 		//recursiveの設定
-		$this->User->recursive = 2;
+		//$this->User->recursive = 2;
         $this->Watchlist->parseCriteria($this->passedArgs); //サーチプラグインの条件
 
         $conditions = array(
-                        'id' => 1, //今はAuthがきいてないので1に限定している
+                        'Watchlist.user_id' => 1, //今はAuthがきいてないので1に限定している
                         
                         //'recursive' => 2,
                             );
 
-        $user = $this->User->find('first', array(
-                                                'pagination',
-                                                'conditions' => $conditions));
+        $watchlists = $this->paginate('Watchlist',$conditions);
         //$user = $this->paginate('User', array('conditions' => $conditions));
 
-        $this->set(compact('user'));
+        $this->set(compact('watchlists'));
+
+        debug('watchlists');
 
 
 
@@ -98,9 +98,12 @@ class WatchlistsController extends AppController {
             //categoriesデータの取得
             $categories = $this->Category->find('all');
 
-            $conditions = array('category_id' => $category_id);
+            $conditions = array(
+                                'category_id' => $category_id,
+                                'Watchlist.user_id' => 1,
+                                );
 
-            $watchlists = $this->Watchlist->find('all', array('conditions' => $conditions));
+            $watchlists = $this->paginate('Watchlist', $conditions);
 
             $this->set(compact('watchlists', 'categories'));
 
