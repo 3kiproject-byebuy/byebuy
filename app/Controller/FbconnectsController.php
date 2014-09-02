@@ -92,7 +92,7 @@ class FbconnectsController extends AppController {
 
                     if($this->Auth->login($self['User'])){//オースでログインできたら
 
-                        $this->redirect(array('controller'=>'byebuys','action' => 'login',$id));
+                        $this->redirect(array('controller'=>'Byebuys','action' => 'login',$id));
                          //debug('$User>fbidない>保存>オースでログイン');
 
                     }else{//オースでログインできなかったら
@@ -115,7 +115,7 @@ class FbconnectsController extends AppController {
             debug('$userない');
             $params = array(
                          'scope' => 'public_profile',
-                         'redirect_uri' => 'http://dev.byebuy.com/ByeBuy/fbconnects/facebook'
+                         'redirect_uri' => 'http://dev.byebuy.com/byebuy/fbconnects/facebook'
                     );
             $loginUrl = $this->facebook->getLoginUrl($params); 
             $this->redirect($loginUrl);
