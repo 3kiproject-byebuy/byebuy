@@ -29,7 +29,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <?php
 
         echo $this->Html->meta('icon');
-        //echo $this->Html->css('cake.generic'); //これを読んでおかないとスタイルが変になる。
+        echo $this->Html->css('cake.generic'); //これを読んでおかないとスタイルが変になる。
 
         // jQuery CDN
         echo $this->Html->script('//code.jquery.com/jquery-1.10.2.min.js');
@@ -57,35 +57,56 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 		</script>
 
-<script type="text/javascript">
-//     window.fbAsyncInit = function()
-//             {
-//                 FB.init
-//                 ({
-//                     appId   : '279683735571945
-// ',
-//                     status  : true, // check login status
-//                     cookie  : true, // enable cookies to allow the server to access the session
-//                     xfbml   : true, // parse XFBML
-//                     oauth   : true
-//                 });
-//                 FB.Event.subscribe('auth.login', function()
-//                 {
-//                     window.location.reload();
-//                 });
-//             };
+		<script type="text/javascript">
+    window.fbAsyncInit = function()
+            {
+                FB.init
+                ({
+                    appId   : '279683735571945
+',
+                    status  : true, // check login status
+                    cookie  : true, // enable cookies to allow the server to access the session
+                    xfbml   : true, // parse XFBML
+                    oauth   : true
+                });
+                FB.Event.subscribe('auth.login', function()
+                {
+                    window.location.reload();
+                });
+            };
 
-//           (function()
-//           {
-//             var e = document.createElement('script');
-//             e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
-//             e.async = true;
-//             document.getElementById('fb-root').appendChild(e);
-//             }());
-// </script>
+          (function()
+          {
+            var e = document.createElement('script');
+            e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+            e.async = true;
+            document.getElementById('fb-root').appendChild(e);
+            }());
+</script>
 
 <style text/css>
 
+body {
+    background: #ffffff;
+    color: #999999;
+    font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
+    /*font-size:90%;*/
+    margin: 0;
+}
+
+h2 {
+    /*background:#fff;*/
+    color: #999999;
+    font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
+    /*font-size: 190%;*/
+}
+
+h4 {
+    /*background:#fff;*/
+    color: #999999;
+    font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
+    /*font-size: 190%;*/
+}
 
 </style>
 
@@ -93,47 +114,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 </head>
 <body>
-
-<div id="fb-root"></div>
- <script>
-      window.fbAsyncInit = function()
-      {
-        FB.init({
-          appId      : '{279683735571945}',
-          xfbml      : true,
-          version    : 'v2.0',
-          status  : true, // check login status
-          cookie  : true, // enable cookies to allow the server to access the session
-          xfbml   : true, // parse XFBML
-          oauth   : true
-        });
-
-        FB.Event.subscribe('auth.login', function()
-        {
-            window.location.reload();
-        });
-      };
-
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         // js.src = "//connect.facebook.net/en_US/sdk.js";
-         js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&appId=279683735571945&version=v2.0";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-    </script>
-
-<!-- <script>(function(d, s, id) {
-//   var js, fjs = d.getElementsByTagName(s)[0];
-//   if (d.getElementById(id)) return;
-//   js = d.createElement(s); js.id = id;
-//   js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&appId=279683735571945&version=v2.0";
-//   fjs.parentNode.insertBefore(js, fjs);
-// }(document, 'script', 'facebook-jssdk'));
-// </script> -->
-
-
 	<div id="container">
 
         <div id="header">

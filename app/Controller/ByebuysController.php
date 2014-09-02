@@ -29,7 +29,6 @@ class ByeBuysController extends AppController {
 
     //商品
     $conditions1 = $this->Selling_list->parseCriteria($this->passedArgs);
-    debug($this->passedArgs);
     $conditions2 =  array('Selling_list.del_flg' => 0);
     $conditions = array($conditions1,$conditions2);
     $products = $this->paginate('Selling_list',$conditions);

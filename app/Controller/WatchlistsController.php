@@ -5,7 +5,7 @@ class WatchlistsController extends AppController {
 
     public $components = array('Search.Prg');
 
-    public $uses = array('Watchlist','Byebuy', 'Selling_list', 'SellingThreadList', 'Category', 'User');
+    public $uses = array('Watchlist','Byebuy', 'Selling_list', 'Selling_thread_list', 'Category', 'User');
     public $paginate = array('Watchlist' => array(
                                                 'limit' => 20,
                                                 'recursive' => 2,
