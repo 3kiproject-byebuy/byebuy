@@ -61,7 +61,7 @@
 	<p>商品詳細: <?php echo $sellinglists[0]['SellingList']['sellingproduct_detail']; ?></p>
 
 	<?php //商品カテゴリー ?>
-	<p>カテゴリー: <?php echo $sellinglists[0]['SellingList']['category_id']; ?></p>
+	<p>カテゴリー: <?php echo $sellinglists[0]['Category']['category_title']; ?></p>
 
 	<?php //商品価格 ?>
 	<p>商品価格: <?php echo $sellinglists[0]['SellingList']['sellingproduct_price']; ?></p>
