@@ -46,7 +46,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
         echo $this->fetch('script');
     ?>
 
-
+<!--topページの商品サムネイルを綺麗に敷き詰めるためのプラグインに必要なファンクション-->
 		<script>
 		  $(function(){
 		    $('#container2').masonry({
@@ -56,33 +56,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		  });
 
 		</script>
-
-		<script type="text/javascript">
-    window.fbAsyncInit = function()
-            {
-                FB.init
-                ({
-                    appId   : '279683735571945
-',
-                    status  : true, // check login status
-                    cookie  : true, // enable cookies to allow the server to access the session
-                    xfbml   : true, // parse XFBML
-                    oauth   : true
-                });
-                FB.Event.subscribe('auth.login', function()
-                {
-                    window.location.reload();
-                });
-            };
-
-          (function()
-          {
-            var e = document.createElement('script');
-            e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
-            e.async = true;
-            document.getElementById('fb-root').appendChild(e);
-            }());
-</script>
+<!--topページの商品サムネイルを綺麗に敷き詰めるためのプラグインに必要なファンクション-->
 
 <style text/css>
 
@@ -114,6 +88,39 @@ h4 {
 
 </head>
 <body>
+
+<!--facebookとの接続に必要なjavascriptのイニシャライズ-->
+<div id="fb-root"></div>
+ <script>
+      window.fbAsyncInit = function()
+      {
+        FB.init({
+          appId      : '{279683735571945}',
+          xfbml      : true,
+          version    : 'v2.0',
+          status  : true, // check login status
+          cookie  : true, // enable cookies to allow the server to access the session
+          xfbml   : true, // parse XFBML
+          oauth   : true
+        });
+
+        FB.Event.subscribe('auth.login', function()
+        {
+            window.location.reload();
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         // js.src = "//connect.facebook.net/en_US/sdk.js";
+         js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&appId=279683735571945&version=v2.0";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+<!--facebookとの接続に必要なjavascriptのイニシャライズ-->
+
 	<div id="container">
 
         <div id="header">

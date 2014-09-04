@@ -36,12 +36,12 @@ class FbconnectsController extends AppController {
             $conditions = array('facebook_id'=>$user); //DBにユーザーのfacebook_idがあるかどうか。
             $self = $this->User->find('first',array('conditions'=>$conditions));//Userテーブルからconditionsを元に取得したデータ
 
-            debug($self);
+            //debug($self);
             
             
             if(isset($self['User'])){//DBにfacebook_idがあったら
-                debug('データベースにfacebook_idがある！');
-                debug($self);
+                //debug('データベースにfacebook_idがある！');
+                //debug($self);
                 $self['User']['password'] = $self['User']['facebook_id'];//ハッシュ化されてるpassを元に戻す
                 $id = $self['User']['id'];
 
@@ -50,7 +50,7 @@ class FbconnectsController extends AppController {
 
                     //debug('$User>fbidあり>オースログイン');
                
-                        $this->redirect(array('controller'=>'Byebuys','action'=>'login',$id));
+                        $this->redirect(array('controller'=>'byebuys','action'=>'login',$id));
 
 
                 }else{
@@ -92,17 +92,17 @@ class FbconnectsController extends AppController {
 
                     if($this->Auth->login($self['User'])){//オースでログインできたら
 
-                        $this->redirect(array('controller'=>'Byebuys','action' => 'login',$id));
+                        $this->redirect(array('controller'=>'byebuys','action' => 'login',$id));
                          //debug('$User>fbidない>保存>オースでログイン');
 
                     }else{//オースでログインできなかったら
 
-                         debug('$User>fbidない>保存>オースでログイン不可');
+                         //debug('$User>fbidない>保存>オースでログイン不可');
                     }
 
                 }else{  //データがDBに保存できなかったら  
 
-                    debug('$User>fbidない>保存できない');
+                    //debug('$User>fbidない>保存できない');
                 }
                 
             
