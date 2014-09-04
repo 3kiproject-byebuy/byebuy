@@ -7,7 +7,7 @@
 	<div class="panel panel-default col-xs-3 panel-warning">
 <?php
     echo $this->element('sidemenu');
-    ?>
+?>
 	</div>
 
 <!-- メインコンテンツ -->

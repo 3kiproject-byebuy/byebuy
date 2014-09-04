@@ -25,8 +25,8 @@ class Watchlist extends AppModel {
 
     //アソシエーション     
     public $belongsTo= array(
-        'SellingList' => array(
-             'className' => 'SellingList',
+        'Selling_list' => array(
+             'className' => 'Selling_list',
              'foreignKey' => 'sellinglist_id'),
         'User' => array(
             'className' => 'User',
@@ -34,8 +34,8 @@ class Watchlist extends AppModel {
         );
 
     public $hasMany= array(
-        'SellingList' => array(
-             'className' => 'SellingList',
+        'Selling_list' => array(
+             'className' => 'Selling_list',
              'foreignKey' => 'id')
         );
     

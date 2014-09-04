@@ -1,5 +1,36 @@
-<h2>ウォッチリスト（こぴぺ）</h2>
 
+
+<?php //headerのよみこみ
+	echo $this->Element('header'); ?>
+	<!-- ナビゲーションバー -->
+
+<ul class="nav nav-tabs nav-justified" role="tablist">
+  <br />
+    <li><?php echo $this->HTML->link('出品中', 
+                      array(
+                        'controller' => 'byebuys',
+                        'action'=>'index')
+                          ); ?></li>
+
+    <li><?php echo $this->HTML->link('ほしい', 
+                          array(
+                            'controller' => 'wanted_lists',
+                            'action'=>'index')
+                          ); ?></li>
+                          
+    <li class="active"><?php echo $this->HTML->link('ウォッチリスト',
+                        array(
+                          'controller'=>'watchlists',
+                          'action'=>'index')
+                          ); ?></li>
+
+
+    <li><?php echo $this->HTML->link('投稿管理',
+                        array(
+                          'controller'=>'postmanagements',
+                          'action'=>'index')
+                          ); ?></li>
+</ul>
 
 <?php //startページネーション------------------------------------------------------------------------?>
 
