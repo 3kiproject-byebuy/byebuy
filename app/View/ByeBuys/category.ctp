@@ -1,6 +1,8 @@
 
 <?php 
 echo $this->Element('header');
+echo $this->Element('nav');
+debug($this->passedArgs[0]);
 ?>
 
 <div style="margin:20px;"><!--検索・ページネーション・ソート機能-->
@@ -10,13 +12,20 @@ echo $this->Element('header');
        'class'=>'form-inline','role'=>'form',));
 
        echo $this->Form->input('keyword',array(
-       'label'=>false,'class'=>'form-controll'));//このキーワードが連想配列のキーになっている。
+       'label'=>false,'class'=>'form-controll','div' => array('class' => 'form-group')));//このキーワードが連想配列のキーになっている。
 
-       echo $this->Form->button('<span class="glyphicon glyphicon-search"></span>Search',array('type'=>'submit','label'=>false,'class'=>'btn btn-mini btn-default','escape'=>false));
+       echo $this->Form->button('<span class="glyphicon glyphicon-search"></span>Search',array('type'=>'submit','label'=>false,'class'=>'btn btn-sm btn-default','escape'=>false));
 
        echo $this->Form->end();
 	?>
 <!--ここまで　検索フォーム　ここまで-->
+
+<!--ソート機能-->
+	<a href="/byebuy/byebuys/category/<?php echo $this->passedArgs[0];?>/sort:Selling_list.id/direction:desc" class="btn btn-default btn-sm" role="button">新着</a>
+	<a href="/byebuy/byebuys/category/<?php echo $this->passedArgs[0]; ?>/sort:Selling_list.deadline/direction:asc" class="btn btn-default btn-sm" role="button">締め切り</a>
+	<a href="/byebuy/byebuys/category/<?php echo $this->passedArgs[0]; ?>/sort:Selling_list.sellingproduct_price/direction:desc" class="btn btn-default btn-sm" role="button">価格が高い</a>
+	<a href="/byebuy/byebuys/category/<?php echo $this->passedArgs[0] ?>/sort:Selling_list.sellingproduct_price/direction:asc" class="btn btn-default btn-sm" role="button">価格が安い</a>
+<!--ここまで　ソート機能　ここまで-->
 
 <!--ページネーション-->
 
@@ -27,21 +36,6 @@ echo $this->Element('header');
 	</div>
 
 <!--ここまで　ページネーション　ここまで-->
-
-<!--ソート機能-->
-
-	<?php
-	// echo $this->Paginator->sort('Selling_list.deadline', '締め切り');?>
-	<FORM name="form2">
-	<SELECT NAME="select2">
-	<option SELECTED> ▼ 下から選択してください　</option>
-	<option value="/ByeBuy/byebuys/index/sort:Selling_list.id/direction:desc">新着</option>
-	<option value="/ByeBuy/byebuys/index/sort:Selling_list.deadline/direction:asc">締め切り</option>
-	<option value="/ByeBuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:desc">価格が高い</option>
-	<option value="/ByeBuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:asc" draggable="true">価格が安い</option>
-	</SELECT> <INPUT type="button" onclick="if(document.form2.select2.value){location.href=document.form2.select2.value;}" value="Go!"></FORM>
-
-<!--ここまで　ソート機能　ここまで-->
 </div><!--検索・ページネーション・ソート機能-->
 
 
@@ -61,7 +55,7 @@ echo $this->Element('header');
 
 		}?>
 
-		<a href="/ByeBuy/byebuys/index" class="list-group-item" draggable="true">すべてのカテゴリー</a>
+		<a href="/byebuy/byebuys/index" class="list-group-item" draggable="true">すべてのカテゴリー</a>
 		
 
 		</div>
@@ -130,10 +124,10 @@ echo $this->Element('header');
 
 		                    //debug($self['id']);
 		                    //debug($product['Selling_list']['id']);
-		                    $id = $self['User']['id'];
+		                    $id = $self['id'];
 
 							echo $this->Form->create('Wacthlist');
-							echo $this->Form->input('user_id',array('type'=>'hidden','value'=>$self['User']['id']));
+							echo $this->Form->input('user_id',array('type'=>'hidden','value'=>$self['id']));
 							echo $this->Form->input('sellinglist_id',array('type'=>'hidden','value'=>$product['Selling_list']['id']));
 							//echo $this->Html->Html('<p align="right"><button class="btn btn-mini btn-default" type="submit">ウォッチリスト</button></p>',array('escape' => false,'label'=>false));
 							echo $this->Form->button('<span class ="glyphicon glyphicon-pencil"></span>

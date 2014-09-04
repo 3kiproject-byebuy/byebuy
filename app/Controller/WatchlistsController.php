@@ -23,13 +23,7 @@ class WatchlistsController extends AppController {
          }
 
 
-
-
-
-
-
 	public function index(){
-
 
         //カテゴリーデータの取得
         $categories = $this->Category->find('all');
@@ -66,8 +60,10 @@ class WatchlistsController extends AppController {
 		//$this->User->recursive = 2;
         $this->Watchlist->parseCriteria($this->passedArgs); //サーチプラグインの条件
 
+        //現在ログインしているユーザー
+        $self = $this->Auth->user();        
         $conditions = array(
-                        'Watchlist.user_id' => 1, //今はAuthがきいてないので1に限定している
+                        'Watchlist.user_id' =>$self['id'], //今はAuthがきいてないので1に限定している
                         
                         //'recursive' => 2,
                             );
@@ -78,14 +74,6 @@ class WatchlistsController extends AppController {
         $this->set(compact('watchlists'));
 
         debug('watchlists');
-
-
-
-        
-
-
-
-
 
          }
 
@@ -98,9 +86,11 @@ class WatchlistsController extends AppController {
             //categoriesデータの取得
             $categories = $this->Category->find('all');
 
+            //現在ログインしているユーザー
+            $self = $this->Auth->user();     
             $conditions = array(
                                 'category_id' => $category_id,
-                                'Watchlist.user_id' => 1,
+                                'Watchlist.user_id' => $self['id'],
                                 );
 
             $watchlists = $this->paginate('Watchlist', $conditions);
