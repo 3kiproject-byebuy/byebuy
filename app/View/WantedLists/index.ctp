@@ -27,31 +27,52 @@ li{
     });
 </script>
 
+<?php echo $this->Element('header'); ?>
 
-<?php $login_user_id = 4; ?>
+<?php //$login_user_id = $login_user['id']; ?>
 
-		<div class="col-md-12 text-center"> 
-    		<h1 style="display:inline;margin-bottom:15px;">欲しいものを投稿する</h1>
+<?php $login_user_id = 1; ?>
+
 		
+    <center>
+
+    		<h1 style="font-size:150%; margin:20px;">欲しいものを投稿する</h1>
+      
     	<!-- 欲しいもの投稿ボタン -->
-			<?php 
-				echo $this->Form->create('WantedList',array('url' => 'addWantedList')); //'url'=> 'addWantedList'によりaddWantedListファンクションに飛ばす
+			<?php
+				echo $this->Form->create('Wanted_list',array('url' => 'addWantedList')); //'url'=> 'addWantedList'によりaddWantedListファンクションに飛ばす
 				echo $this->Form->input('user_id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$login_user_id));//user_id保存
-        echo $this->Form->input('wanteddetail',array('label'=>false,'class'=>'form-control'));
-        echo $this->Form->button('投稿', array('type'=>'submit','class'=>'btn btn-default btn-xs','label'=>false,'escape'=>false));
+        echo $this->Form->input('wanteddetail',array('type'=>'textarea','rows' => '3','label'=>false,'class'=>'form-control', 'style'=>'width:80%;height:80px;'));//'required'=>false：required属性
+
+      //block,delete,承認待ちユーザーのいずれでも無い場合、投稿ボタンを機能させる
+      if($Users[$login_user_id-1]['User']['block_flg'] == 0 && $Users[$login_user_id-1]['User']['del_flg'] == 0 && $Users[$login_user_id-1]['User']['status'] == 1){
+
+        echo $this->Form->button('投稿', array('type'=>'submit','class'=>'btn btn-default btn-mini','label'=>false,'escape'=>false, 'style'=>'width:150px;margin-bottom:40px;'));
+
+      //block,delete,承認待ちユーザーのいずれかの場合、投稿ボタンを押した際にAlertを出す
+      }else{
+
+        echo $this->Form->button('投稿', array('type'=>'button','class'=>'btn btn-default btn-mini','label'=>false,'escape'=>false, 'style'=>'width:150px;margin-bottom:40px;', 'onclick'=>"alert('ログインして下さい')"));
+
+      }
         echo $this->Form->end();
       ?>
       <!-- 欲しいもの投稿ボタン -->
 
-    </div><!--class="col-xs-12"-->
-
+    </center>
+    
         	
-        <table border="2" bordercolor="#cccccc" width="100%" align="center">
+        <table border="2" bordercolor="#cccccc" width="100%" align="center" style="width:100%;margin-bottom:40px;font-size:12pt;">
         	<tr>
         		<td align="center">みんなの欲しいもの投稿一覧</td>
         	</tr>
     	</table>
 
+<center>
+    <div class="pagination pagination-large">    
+        <?php echo $this->Paginator->numbers(); ?>
+    </div>
+</center>
 
 
 
@@ -90,21 +111,27 @@ li{
                     <!-- //取引成立した場合、欲しいもの詳細の下にコメントを表示 -->
                     <?php
 
-                    if($wanted_list['User']['id']== $login_user_id && $wanted_list['Wanted_list']['status'] == 2){
+                    if($wanted_list['User']['id'] == $login_user_id && $wanted_list['Wanted_list']['status'] == 2){
 
                       foreach($Users as $user){
+
                         if($wanted_list['Wanted_list']['trade_person_user_id'] == $user['User']['id']){
+
                           $trade_user_name = $user['User']['name'];
                           $trade_user_url = "https://www.facebook.com/".$user['User']['facebook_id'];
                           echo $trade_user_name."さんとの取引が成立しました！</br>";
                           echo "facebookメッセージを送って詳細を決めましょう！</br>";
                           echo "<A Href="."\"".$trade_user_url."\"target=\"_blank\">".$trade_user_name."</A>";
                           break;
+
                         }
+
                       }
 
                     }elseif($wanted_list['Wanted_list']['status'] == 2) {
+
                       echo "この商品は取引が終了しました。";
+
                     }
 
                     ?>
@@ -113,6 +140,9 @@ li{
               </table>	
     </dt>
     <dd>
+
+  <div style="width:95%; height:3px; background-color:#cccccc; margin:40px;"></div>
+
 
               <!-- Thread -->
         			<?php foreach ($wanted_list['Wanted_thread_list'] as $wanted_thread){ ?>
@@ -140,7 +170,8 @@ li{
                         </td>
                         <td align="left">
 
-                          <!-- (DBから取得したID==現在のログインID)かつ(status　!= 取引完了)かつ(ThreadListのUseID != 現在のログインID)の場合、'この人に決める'ボタン表示 -->
+                          <!-- 'この人に決める'ボタン -->
+                          <!-- (DBから取得したID==現在のログインID)かつ(status　!= 取引完了)かつ(ThreadListのUseID != 現在のログインID)の場合、ボタン表示 -->
                           <?php
                            if($wanted_list['User']['id']== $login_user_id && $wanted_list['Wanted_list']['status'] != 2 && $wanted_thread['user_id'] != $login_user_id){
                             echo $this->Form->create('Wanted_list',array('url'=>'decide'),array('class'=>'form-inline','role'=>'form')); //'url'=> 'decide'によりdecideファンクションに飛ばす
@@ -167,12 +198,23 @@ li{
           
        		<!-- コメントボタン -->
 					<?php
-            if($wanted_list['Wanted_list']['status'] != 2){//ステータスが2(取引完了）以外のときコメントボタンを表示
+          if($wanted_list['Wanted_list']['status'] != 2){//ステータスが2(取引完了）以外のときコメントボタンを表示
 						echo $this->Form->create('Wanted_thread_list',array('url' => 'addComment'),array('class'=>'form-inline','role'=>'form')); //'url'=> 'addComment'によりaddCommentファンクションに飛ばす
 						echo $this->Form->input('user_id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$login_user_id));//user_id保存
 						echo $this->Form->input('wantedlist_id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$wanted_list['Wanted_list']['id']));//wantedlist_id保存
-            echo $this->Form->input('thread',array('label'=>false,'class'=>'form-control'));
-            echo $this->Form->button('コメント', array('type'=>'submit','class'=>'btn btn-default btn-xs','label'=>false,'escape'=>false));
+            echo $this->Form->input('thread',array('label'=>false,'class'=>'form-control','required'=>true));
+
+            //block,delete,承認待ちユーザーのいずれでも無い場合、投稿ボタンを機能させる
+            if($Users[$login_user_id-1]['User']['block_flg'] == 0 && $Users[$login_user_id-1]['User']['del_flg'] == 0 && $Users[$login_user_id-1]['User']['status'] == 1){
+
+              echo $this->Form->button('コメント', array('type'=>'submit','class'=>'btn btn-default btn-xs','label'=>false,'escape'=>false));
+
+            //block,delete,承認待ちユーザーのいずれかの場合、投稿ボタンを押した際にAlertを出す
+            }else{
+
+              echo $this->Form->button('コメント', array('type'=>'button','class'=>'btn btn-default btn-xs','label'=>false,'escape'=>false, 'onclick'=>"alert('ログインして下さい')"));
+
+            }
             echo $this->Form->end();
           }
         	?>
@@ -183,8 +225,15 @@ li{
 		</div><!--class="media"-->
 
   </dl>
+
   </center> 	
 	<?php }?><!-- foreach ($WantedLists as $wantedList) -->
+
+  <center>
+    <div class="pagination pagination-large">    
+        <?php echo $this->Paginator->numbers(); ?>
+    </div>
+</center>
 	
   
 

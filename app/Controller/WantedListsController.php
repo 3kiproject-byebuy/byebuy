@@ -10,7 +10,22 @@ class WantedListsController extends AppController {
 
 	//モデルを使えるようにするために宣言	//定義済み関数
 	public $uses = array('Wanted_list','Wanted_thread_list','User');
-	//public $helpers = array('Facebook.Facebook');
+	
+    //ページネイトにて１ページに表示するデータ指定（デフォルトは20データ／ページ）
+    public $paginate = array(
+                        'Wanted_list' => array(
+                                        //'fields' => array('user_id', 'wanteddetail', 'created'),
+                                        'conditions' => array('Wanted_list.del_flg' => 0),
+                                        'order' => array('Wanted_list.created' => 'desc'),
+                                        'limit' => 3,
+                                        //'group' => array('Model.field'),
+                                        //'page' => n,
+                                        //'offset' => n,
+                                        //'callbacks' => true,
+                                        'recursive' => 2,
+                                        )
+                            );
+
 
 	//ログインしなくてもアクセスできるように許可する、なるべく上の方に書いておく。
 	//どのファンクションでも、それが呼ばれる前に必ず挙動する。
@@ -23,25 +38,11 @@ class WantedListsController extends AppController {
 
 
 	public function index(){//　/index/アドレスに飛んだタイミングで実行され、その結果が.ctpに返る
-
-        $Wanted_lists = $this->Wanted_list->find('all',array(
-        											     //'fields' => array('user_id', 'wanteddetail', 'created'),
-                                                        'conditions' => array('Wanted_list.del_flg' => 0),
-                                                        //'order' => array('created' => 'desc'),
-                                                        //'limit' => 1,
-                                                        //'group' => array('Model.field'),
-                                                        //'page' => n,
-                                                        //'offset' => n,
-                                                        //'callbacks' => true,
-                                                        'recursive' => 2,
-                                                        )
-                                        );
-
         
         //'この人に決める'ボタン押下後、スレッドに取引成立相手の名前を表示するためデータを取得
         $Users = $this->User->find('all',array(
-                                            'fields' => array('id', 'facebook_id', 'name'),
-                                            //'conditions' => array('User.id' => $decide_user_id),
+                                            'fields' => array('id', 'facebook_id', 'name', 'block_flg', 'del_flg', 'status'),
+                                            //'conditions' => array('User.block_flg'=>0, 'User.del_flg'=>0, 'User.status'=>1),
                                             //'order' => array('created' => 'desc'),
                                             //'limit' => 1,
                                             //'group' => array('Model.field'),
@@ -52,7 +53,12 @@ class WantedListsController extends AppController {
                                             )
                                         );
 
-        $this->set(compact('Wanted_lists','Users'));
+        
+        $login_user = $this->Auth->user();
+
+        $Wanted_lists = $this->paginate("Wanted_list");
+
+        $this->set(compact('Wanted_lists','Users','login_user'));
 
 	}
 
@@ -64,19 +70,20 @@ class WantedListsController extends AppController {
 		//isset()で変数が存在しているか（index.ctpから取得できているか）を確認
         if (isset($this->request->data['Wanted_list']['wanteddetail'],$this->request->data['Wanted_list']['user_id'])) {
 
-            debug($this->request->data);
             //createメソッドの作成(データをinsertする際に必要)
             $this->Wanted_list->create();
 
             //"$this->request->data"の連想配列の保存が成功した場合(save()メソッドは保存が成功するとtrueを返す)
             //if ($this->WantedList->save($this->request->data['WantedList']['wanteddetail'])) {
-            if ($this->Wanted_list->save($this->data)) { 
+            if ($this->Wanted_list->save($this->data)){ //save()の第2引数にarray('validate' => false)を指定するとsave()時のvalidateを行わない
                 
                 return $this->redirect(array('action' => 'index'));
             }
 
             //saveが失敗した場合の処理
             $this->Session->setFlash(__('Miss!'));
+            debug($this->Wanted_list->validates());
+
         }
 
 	}
@@ -118,7 +125,7 @@ class WantedListsController extends AppController {
             debug($this->request->data);
             //createメソッドの作成(データをinsertする際に必要)
             $this->Wanted_list->create();
-            $this->Wanted_list->$wantedList['Wanted_list']['id'];//指定したidのカラムを更新
+            
 
             //"$this->request->data"の連想配列の保存が成功した場合(save()メソッドは保存が成功するとtrueを返す)
             //if ($this->WantedList->save($this->request->data['WantedList']['wanteddetail'])) {
