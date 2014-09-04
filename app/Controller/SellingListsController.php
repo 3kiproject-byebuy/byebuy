@@ -5,27 +5,26 @@ class SellingListsController extends AppController {
 
     public $helpers = array('Html', 'Form');
 
-
-
     public $components = array('Search.Prg');
     public $uses = array('Byebuy', 'Selling_list', 'Selling_thread_list', 'Category', 'User');
 
 
     //ログインユーザーに関する宣言
-    function beforeFilter() { 
-           parent::beforefilter();
-            $this->Auth->allow();
-            $this->set('user', $this->Auth->user()); //ctpで$userを使えるようにする
+    // function beforeFilter() { 
+    //        parent::beforefilter();
+    //         $this->Auth->allow();
+    //         $this->set('user', $this->Auth->user()); //ctpで$userを使えるようにする
 
-         }
-
-
+    //      }
 
 
 
 //index----------------------------------------------------------------------------------------------------------
     public function index(){
-
+    
+        //ログインユーザー情報を送る
+        $self = $this->Auth->user();
+        $this->set(compact('self'));
 
         //debug($_FILES);
 
@@ -96,6 +95,12 @@ class SellingListsController extends AppController {
 //商品詳細
      public function productdetail($id = null) {
 
+        //ログインユーザー情報を送る
+        $self = $this->Auth->user();
+        $this->set(compact('self'));
+
+        debug($self['id']);
+
         //カテゴリーデータの取得
         $categories = $this->Category->find('list', array('fields' => array('category_title')));
         $this->set(compact('categories'));
@@ -115,7 +120,8 @@ class SellingListsController extends AppController {
                                             //del_flagがたっているものを除外する
                                             array('conditions' => $conditions)
                                                 );
-
+        //編集ようにフォームに既存のデータを表示させる
+        $this->request->data = $sellinglists[0];
 
     	$this->set(compact('sellinglists'));
 
@@ -133,59 +139,61 @@ class SellingListsController extends AppController {
 		}
 
 
-    	//商品投稿内容編集用
-    	if ($this->request->is(array('post', 'put'))) {
-            $this->Selling_list->id = $id;
+    	// //商品投稿内容編集用
+    	// if ($this->request->is(array('post', 'put'))) {
+     //        // $this->Selling_list->id = $id;
+
+     //        $this->Selling_list->create();
 
 
-        //場合分け
-        if(isset($this->request->data['Selling_list']['img_file_name1']))
-        {
-            //----------------------------------------------
+     //    //場合分け
+     //    if(isset($this->request->data['Selling_list']['img_file_name1']))
+     //    {
+     //        //----------------------------------------------
 
-            $file1 = $this->request->data['Selling_list']['img_file_name1']['tmp_name'];
-            $file2 = $this->request->data['Selling_list']['img_file_name2']['tmp_name'];
-            $file3 = $this->request->data['Selling_list']['img_file_name3']['tmp_name'];
-            $tmp1 = $this->request->data['Selling_list']['img_file_name1']['name'];
-            $tmp2 = $this->request->data['Selling_list']['img_file_name2']['name'];
-            $tmp3 = $this->request->data['Selling_list']['img_file_name3']['name'];
+     //        $file1 = $this->request->data['Selling_list']['img_file_name1']['tmp_name'];
+     //        $file2 = $this->request->data['Selling_list']['img_file_name2']['tmp_name'];
+     //        $file3 = $this->request->data['Selling_list']['img_file_name3']['tmp_name'];
+     //        $tmp1 = $this->request->data['Selling_list']['img_file_name1']['name'];
+     //        $tmp2 = $this->request->data['Selling_list']['img_file_name2']['name'];
+     //        $tmp3 = $this->request->data['Selling_list']['img_file_name3']['name'];
 
-            $uploaddir = APP. 'webroot/img/';
-            $uploadfile = $uploaddir.basename($tmp1);
-            move_uploaded_file($file, $uploadfile);
+     //        $uploaddir = APP. 'webroot/img/';
+     //        $uploadfile = $uploaddir.basename($tmp1);
+     //        move_uploaded_file($file, $uploadfile);
 
-            $uploaddir = APP. 'webroot/img/';
-            $uploadfile = $uploaddir.basename($tmp2);
-            move_uploaded_file($file, $uploadfile);
+     //        $uploaddir = APP. 'webroot/img/';
+     //        $uploadfile = $uploaddir.basename($tmp2);
+     //        move_uploaded_file($file, $uploadfile);
 
-            $uploaddir = APP. 'webroot/img/';
-            $uploadfile = $uploaddir.basename($tmp3);
-            move_uploaded_file($file, $uploadfile);
+     //        $uploaddir = APP. 'webroot/img/';
+     //        $uploadfile = $uploaddir.basename($tmp3);
+     //        move_uploaded_file($file, $uploadfile);
 
-            debug($uploaddir);
-            debug($uploadfile);
+     //        debug($uploaddir);
+     //        debug($uploadfile);
 
-            $this->request->data['Selling_list']['img_file_name1'] = $tmp1;
-            $this->request->data['Selling_list']['img_file_name2'] = $tmp2;
-            $this->request->data['Selling_list']['img_file_name3'] = $tmp3;
+     //        $this->request->data['Selling_list']['img_file_name1'] = $tmp1;
+     //        $this->request->data['Selling_list']['img_file_name2'] = $tmp2;
+     //        $this->request->data['Selling_list']['img_file_name3'] = $tmp3;
 
-            if($this->Selling_list->save($this->request->data, array('validate' => false)))
-            {
-                $this->Session->setFlash(__('編集が完了しました'));
-                return $this->redirect($this->referer());
-            }
+     //        if($this->Selling_list->save($this->request->data, array('validate' => false)))
+     //        {
+     //            $this->Session->setFlash(__('編集が完了しました'));
+     //            return $this->redirect($this->referer());
+     //        }
             
 
-            //-----------------------------------------------
+     //        //-----------------------------------------------
 
-    	   }
+    	//    }
 
-        }//場合分け終了
+     //    }//場合分け終了
 
-            //投稿されてないときに、フォームの中にデータを表示している。
-            if (!$this->request->data) {
-                $this->request->data = $sellinglists;
-            }
+     //        //投稿されてないときに、フォームの中にデータを表示している。
+     //        if (!$this->request->data) {
+     //            $this->request->data = $sellinglists;
+     //        }
 
 
 
@@ -214,6 +222,130 @@ class SellingListsController extends AppController {
 //---------------------------------------------------
 
 
+    public function decide(){
+
+        //isset()で変数が存在しているか（index.ctpから取得できているか）を確認
+        if (isset($this->request->data['Selling_list']['trade_person_use_id'])) {
+
+            debug($this->request->data);
+            //createメソッドの作成
+            $this->Selling_list->create();
+
+            // $this->Wanted_list->create();
+            // $this->Wanted_list->$wantedList['Wanted_list']['id'];//指定したidのカラムを更新
+
+
+            if ($this->Selling_list->save($this->data)) { 
+                $this->Session->setFlash(__('<div class="alert alert-success" role="alert">保存成功</div>'));
+                return $this->redirect($this->referer());
+            }
+
+            //saveが失敗した場合の処理
+            $this->Session->setFlash(__('Miss!'));
+        }
+
+    }
+
+    //---------------------------------------------------------
+
+
+
+    public function edit(){
+
+
+            //商品投稿内容編集用
+        if ($this->request->is(array('post', 'put'))) {
+            // $this->Selling_list->id = $id;
+
+        $this->Selling_list->create();
+
+
+        //場合分け
+        if(isset($this->request->data['Selling_list']))
+        {
+            //----------------------------------------------
+
+        if(
+            //isset($this->request->data['Selling_list']['img_file_name1'])
+         //&& 
+         $this->request->data['Selling_list']['img_file_name1'] !== '')
+         
+          {
+            $file1 = $this->request->data['Selling_list']['img_file_name1']['tmp_name'];
+            $tmp1 = $this->request->data['Selling_list']['img_file_name1']['name'];
+
+            $uploaddir = APP. 'webroot/img/';
+            $uploadfile = $uploaddir.basename($tmp1);
+            move_uploaded_file($file1, $uploadfile);
+
+            $this->request->data['Selling_list']['img_file_name1'] = $tmp1;
+        }
+
+        debug($this->request->data['Selling_list']['img_file_name1']);
+
+        if(
+            //isset($this->request->data['Selling_list']['img_file_name2']))
+            $this->request->data['Selling_list']['img_file_name2'] !== '')
+          {
+            $file2 = $this->request->data['Selling_list']['img_file_name2']['tmp_name'];
+            $tmp2 = $this->request->data['Selling_list']['img_file_name2']['name'];
+
+            $uploaddir = APP. 'webroot/img/';
+            $uploadfile = $uploaddir.basename($tmp2);
+            move_uploaded_file($file2, $uploadfile);
+
+            $this->request->data['Selling_list']['img_file_name2'] = $tmp2;
+        }
+
+        if(
+            //isset($this->request->data['Selling_list']['img_file_name3']))
+            $this->request->data['Selling_list']['img_file_name3'] !== '')
+        {
+            $file3 = $this->request->data['Selling_list']['img_file_name3']['tmp_name'];
+            $tmp3 = $this->request->data['Selling_list']['img_file_name3']['name'];
+
+            $uploaddir = APP. 'webroot/img/';
+            $uploadfile = $uploaddir.basename($tmp3);
+            move_uploaded_file($file3, $uploadfile);
+
+            $this->request->data['Selling_list']['img_file_name3'] = $tmp3;
+        }
+                    
+            debug($uploaddir);
+            debug($uploadfile);
+
+            if ($this->Selling_list->save($this->data, array('validate' => false)))
+            //if($this->Selling_list->save($this->request->data, array('validate' => false)))
+            {
+                $this->Session->setFlash(__('編集が完了しました'));
+                return $this->redirect($this->referer());
+            }
+            
+
+            //-----------------------------------------------
+
+           }
+
+        }//場合分け終了
+
+            //投稿されてないときに、フォームの中にデータを表示している。
+            if (!$this->request->data) {
+                $this->request->data = $sellinglists;
+            }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -221,6 +353,23 @@ class SellingListsController extends AppController {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

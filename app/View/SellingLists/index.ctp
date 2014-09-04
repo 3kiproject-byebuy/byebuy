@@ -5,7 +5,7 @@
 
 
 <?php 
-	echo $this->Form->create('SellingList', 
+	echo $this->Form->create('Selling_list', 
 							array('type'=>'file','enctype' => 'multipart/form-data'));
  ?>
 
