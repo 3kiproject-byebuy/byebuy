@@ -46,16 +46,16 @@ class AppController extends Controller {
                                     'Session',
                                     'Acl',
                                     'Auth' => array(
-                                            'loginAction' => array(
-                                                            'plugin' => 'facebook',
-                                                            'controller' => 'users',
-                                                            'action' => 'login'
-                                                            ),
-                                            'loginRedirect' =>  array(
-                                                            'controller' => 'fbconnects',
-                                                            'action' => 'showdata'
-                                                            ),
-                                            'logoutRedirect' => '/',
+                                            // 'loginAction' => array(
+                                            //                 'plugin' => 'facebook',
+                                            //                 'controller' => 'users',
+                                            //                 'action' => 'login'
+                                            //                 ),
+                                            // 'loginRedirect' =>  array(
+                                            //                 'controller' => 'fbconnects',
+                                            //                 'action' => 'showdata'
+                                            //                 ),
+                                            'logoutRedirect' => '/byebuy/',
                                             'authenticate' => array(
                                                             'all' => array('userModel' => 'User'),
                                                             'Facebook.Oauth'
@@ -85,8 +85,8 @@ class AppController extends Controller {
     	$this->Auth->allow();//allow('ここにファンクション名')で指定できる。指定されたファンクションが実行された時はログイン機能無効になる。
 
         //AuthComponentの設定
-        $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
-        $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
+        //$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
+        //$this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
         //$this->Auth->loginRedirect = array('controller' => 'blogs', 'action' => 'admin_add');
     }
 	    

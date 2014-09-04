@@ -1,8 +1,36 @@
-<h2>ウォッチリスト</h2>
-
 
 <?php //headerのよみこみ
-	//echo $this->Element('header'); ?>
+	echo $this->Element('header'); ?>
+
+<!-- ナビゲーションバー -->
+
+<ul class="nav nav-tabs nav-justified" role="tablist">
+  <br />
+    <li><?php echo $this->HTML->link('出品中', 
+                      array(
+                        'controller' => 'byebuys',
+                        'action'=>'index')
+                          ); ?></li>
+
+    <li><?php echo $this->HTML->link('ほしい', 
+                          array(
+                            'controller' => 'wanted_lists',
+                            'action'=>'index')
+                          ); ?></li>
+                          
+    <li class="active"><?php echo $this->HTML->link('ウォッチリスト',
+                        array(
+                          'controller'=>'watchlists',
+                          'action'=>'index')
+                          ); ?></li>
+
+
+    <li><?php echo $this->HTML->link('投稿管理',
+                        array(
+                          'controller'=>'postmanagements',
+                          'action'=>'index')
+                          ); ?></li>
+</ul>
 
 
 <?php //startページネーション------------------------------------------------------------------------?>
@@ -61,10 +89,11 @@
 
 
 <?php //startカテゴリーリスト------------------------------------------------------------------------?>
-
+<div class ="container" style="margin-top:50px;">
+	<div class="row">
 
 <?php //カテゴリーによりソートされたときの表示 ?>
-<div class="col-md-2">
+<div class="col-md-3">
 <div class = "list-group">
 	<?php foreach ($categories as $category): ?>
 <?php //↓カテゴリー件数表示処理↓------------------- ?>
@@ -96,11 +125,12 @@
 
 <?php //商品一覧------------------------------------------------------------------------?>
 
-<div class = "col-md-9">
 
-<!-- <div class = "container well"> -->
-<br />
+<div class = "col-md-9">
+<div id="container2">
+
 <?php //Watchlistのデータをforeachでまわして読み取る ?>
+
 <?php foreach($watchlists as $watchlist): ?>
 <!-- <div class="row"> -->
   <div class="col-md-4 item" style="margin-bottom:15px;">
@@ -128,15 +158,11 @@
         <p>出品者: <?php echo $watchlist['User']['name']; ?></p>
       </div>
     </div>
-<!--   </div> -->
 </div>
 <?php endforeach; ?>
-
-
-
-<!-- </div>  -->
-
-</div>
+</div><!-- container2 -->
+</div><!--row-->
+</div><!--container-->
 
 
 <?php //end商品一覧------------------------------------------------------------------------?>
