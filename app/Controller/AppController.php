@@ -46,15 +46,14 @@ class AppController extends Controller {
                                     'Session',
                                     'Acl',
                                     'Auth' => array(
-                                            // 'loginAction' => array(
-                                            //                 'plugin' => 'facebook',
-                                            //                 'controller' => 'users',
-                                            //                 'action' => 'login'
-                                            //                 ),
-                                            // 'loginRedirect' =>  array(
-                                            //                 'controller' => 'fbconnects',
-                                            //                 'action' => 'showdata'
-                                            //                 ),
+                                            'loginAction' => array(
+                                                            'controller' => 'byebuys',
+                                                            'action' => 'index'
+                                                            ),
+                                            'loginRedirect' =>  array(
+                                                            'controller' => 'byebuys',
+                                                            'action' => 'index'
+                                                            ),
                                             'logoutRedirect' => '/byebuy/',
                                             'authenticate' => array(
                                                             'all' => array('userModel' => 'User'),
