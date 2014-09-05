@@ -8,16 +8,10 @@
 	  ?>
 
 
-		<!--ページネーション-->
-			<CENTER>
-			<div class ="pagination pagination-large" style="margin:0px;">
-			  <?php echo $this->Paginator->numbers();//必要なページ番号のリンクを自動的に吐き出す ?>
-			</div>
-			</CENTER>
-		<!--ここまで　ページネーション　ここまで-->
+
 
 <!-- コンテンツ -->
-<div class ="container" style="margin-top:10px;">
+<div class ="container" style="margin-top:30px;">
 	<div class="row">
 
 	  <!-- カテゴリー一覧 -->
@@ -48,7 +42,6 @@
 			<?php
 			}
 		}
-		
 		?>
 		
 	  </div><!--col-md-3-->
@@ -57,13 +50,17 @@
 	<!-- 商品一覧 -->
 	<div class="col-md-9">
 		<!-- <div class="container"> --><!--検索・ソート機能-->
-		  <div class="row" align="right">
-		    <div class="col-md-5 col-md-offset-2" style="padding-right:0px;"><!--ソート機能-->
+		  <div class="row" align="right" style="height:30px;">
+		    <div class="col-md-7" style="padding-right:0px;padding-left:30px;"><!--ソート機能-->
 			<!-- 	 <?php// echo $this->Paginator->sort('Selling_list.deadline', '締め切り');?> -->
-			<a href="/byebuy/byebuys/index/sort:Selling_list.id/direction:desc" class="btn btn-default btn-sm" role="button">新着</a>
-			<a href="/byebuy/byebuys/index/sort:Selling_list.deadline/direction:asc" class="btn btn-default btn-sm" role="button">締め切り</a>
-			<a href="/byebuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:desc" class="btn btn-default btn-sm" role="button">価格が高い</a>
-			<a href="/byebuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:asc" class="btn btn-default btn-sm" role="button">価格が安い</a>
+			<a href="/byebuy/byebuys/index/sort:Selling_list.id/direction:desc" 
+			class="btn btn-default btn-sm col-md-2" role="button">新着</a>
+			<a href="/byebuy/byebuys/index/sort:Selling_list.deadline/direction:asc"
+			class="btn btn-default btn-sm col-md-2 col-md-offset-1" role="button">締め切り</a>
+			<a href="/byebuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:desc"
+			class="btn btn-default btn-sm col-md-2 col-md-offset-1" role="button">価格が高い</a>
+			<a href="/byebuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:asc"
+			class="btn btn-default btn-sm col-md-2 col-md-offset-1" role="button">価格が安い</a>
 			</div><!--ここまで　ソート機能　ここまで-->
 
 			<div class="col-md-5" style="padding-right:30px;padding-left:0px;"><!--検索フォーム-->
@@ -82,6 +79,13 @@
 		    </div>
 		</div><!--row-->
 		<!--検索・ソート機能-->
+				<!--ページネーション-->
+			<CENTER>
+			<div class ="pagination pagination-large" style="margin-top:0px;margin-bottom:15px;">
+			  <?php echo $this->Paginator->numbers();//必要なページ番号のリンクを自動的に吐き出す ?>
+			</div>
+			</CENTER>
+		<!--ここまで　ページネーション　ここまで-->
 
 
 	<div id="container2">
@@ -89,7 +93,7 @@
 
 		  <div class="col-md-4 item" style="margin-bottom:15px;">
 		    <div class="thumbnail">
-		      <a href="/ByeBuy/seliinglists/productdetail/<?php echo $product['Selling_list']['id'];?>"><img src="/ByeBuy/img/<?php echo $product['Selling_list']['img_file_name1']; ?>" alt="表示できません"></a>
+		      <a href="/byebuy/SellingLists/productdetail/<?php echo $product['Selling_list']['id'];?>"><img src="/byebuy/img/<?php echo $product['Selling_list']['img_file_name1']; ?>" alt="表示できません"></a>
 
 		      <div class="caption">
 		        <h3><?php echo $product['Selling_list']['sellingproduct_name'];?></h3>
@@ -127,24 +131,31 @@
 				
 				//現在ログインしているユーザーを取得
 				$self = $this->Session->read('Auth.User');
+				
+
+				//ログイン判定
 				if(is_null($self)){  
 
 					//debug('セルフがからっぽ');
 
+				//ユーザーがログイン中の場合、ステータスを確認
 				}else{
 
-                    //debug($self['id']);
-                    //debug($product['Selling_list']['id']);
-                    $id = $self['id'];
+					//承認済みユーザーの場合
+					if($self['status']==1){ 
 
-					echo $this->Form->create('Watchlist',array('url'=>'favorite'));
-					echo $this->Form->input('user_id',array('type'=>'hidden','value'=>$self['id']));
-					echo $this->Form->input('sellinglist_id',array('type'=>'hidden','value'=>$product['Selling_list']['id']));
-					//echo $this->Html->Html('<p align="right"><button class="btn btn-mini btn-default" type="submit">ウォッチリスト</button></p>',array('escape' => false,'label'=>false));
-					echo $this->Form->button('<span class ="glyphicon glyphicon-pencil"></span>
-					お気に入り', array('type' => 'submit', 'class'=>'btn btn-primary','style'=>'margin:20px;', 'label' => false, 'escape' => false));
-					echo $this->Form->end(); 
+						$id = $self['id'];
 
+						echo $this->Form->create('Watchlist',array('url'=>'favorite'));
+						echo $this->Form->input('user_id',array('type'=>'hidden','value'=>$self['id']));
+						echo $this->Form->input('sellinglist_id',array('type'=>'hidden','value'=>$product['Selling_list']['id']));
+						//echo $this->Html->Html('<p align="right"><button class="btn btn-mini btn-default" type="submit">ウォッチリスト</button></p>',array('escape' => false,'label'=>false));
+						echo $this->Form->button('<span class ="glyphicon glyphicon-pencil"></span>
+						お気に入り', array('type' => 'submit', 'class'=>'btn btn-primary','style'=>'margin-top:15px;', 'label' => false, 'escape' => false));
+						echo $this->Form->end(); 
+
+					}
+                    
 				}?>
 
 		        </div>
