@@ -1,6 +1,25 @@
+<?php
+//現在ログインしているユーザーを取得
+$self = $this->Session->read('Auth.User');
+debug($self);
+?>
+
 <!--管理画面へ-->
+
 <div class="col-md-2 col-md-offset-9" align="right" style="bottom:0px;">
-<a href="/byebuy/managements/index">管理画面</a>
+<?php 
+
+if(is_null($self)){
+
+}else{
+
+  if($self['group_id']==1){
+  echo '<a href="/byebuy/managements/index">管理画面</a>';
+  }
+
+}
+
+?>
 </div>
 <!--管理画面へ-->
 
@@ -36,33 +55,45 @@
     
 
 <?php
-//現在ログインしているユーザーを取得
-$self = $this->Session->read('Auth.User');
-
-
 //ログイン判定、ログインボタン・ユーザーの表示
-if(is_null($self)){
-		
-  echo '<div class="col-md-2">';
-	echo $this->Html->link('<button class="btn btn-mini btn-default" type="button">login</button>',array('controller' => 'fbconnects','action' => 'facebook'),array('escape' => false));
-  echo '</div>';
-	
-	}else{ ?>
+//ユーザーが未ログインの場合
+//echo '<button class="btn btn-mini btn-default" type="button">login</button>';
+if (is_null($self)){ 
+  
+    echo '<div class="col-md-2">';
+    echo $this->Html->link($this->Html->image('active200.png'),array('controller' => 'fbconnects','action' => 'facebook'),array('escape' => false));
+    echo '</div>';
+  
 
+//ユーザーがログイン中の場合、ステータスを確認
+ }else{
 
-					<div class="media col-md-4" style="margin-top:10px;">
-						  <img src="https://graph.facebook.com/<?php echo $self['facebook_id']; ?>/picture?type=square" 
-              align="left" style="margin-left:10px;" class="img-circle">
-							<div class="media-body">
-							  <h4 class="media-heading" style="height:30px;line-height:50px;margin-left:10px;"><?php echo $self['name'];?></h4>
-					    </div>
-					</div>
+    //【ステータス１】＝ 【承認済みユーザー】 の場合
+    if($self['status']==1){?>
 
-					<?php echo $this->Html->link('<button class="btn btn-mini btn-default" type="button">logout</button>',array(
+        <div class="media col-md-4" style="margin-top:10px;">
+          <img src="https://graph.facebook.com/<?php echo $self['facebook_id']; ?>/picture?type=square" 
+          align="left" style="margin-left:10px;" class="img-circle">
+            <div class="media-body">
+              <h4 class="media-heading" style="height:30px;line-height:50px;margin-left:10px;"><?php echo $self['name'];?></h4>
+            </div>
+        </div>
+
+          <?php echo $this->Html->link('<button class="btn btn-mini btn-default col-md-4" type="button">logout</button>',array(
                 'controller' => 'fbconnects','action' => 'logout'),array('escape' => false));
-				
 
-	}?>
+    //【ステータス２】または【ステータス３】＝ 【未承認ユーザー】 の場合
+    }else{
+
+      echo '<div class="col-md-2">';
+      echo $this->Html->link('<button class="btn btn-mini btn-default" type="button">login</button>',array('controller' => 'fbconnects','action' => 'facebook'),array('escape' => false));
+      echo '</div>';
+      
+    }
+}
+?>
+
+
 
   </div>
 </div>

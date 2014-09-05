@@ -2,7 +2,7 @@
 <?php 
 echo $this->Element('header');
 echo $this->Element('nav');
-debug($this->passedArgs[0]);
+
 ?>
 
 <div style="margin:20px;"><!--検索・ページネーション・ソート機能-->
