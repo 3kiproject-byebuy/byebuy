@@ -82,8 +82,8 @@ class AppController extends Controller {
 
     	//ログインしないとアクセスできないという機能を外している。
     	parent::beforeFilter();
-    	$this->Auth->allow();//allow('ここにファンクション名')で指定できる。指定されたファンクションが実行された時はログイン機能無効になる。
-
+    	//$this->Auth->allow();//allow('ここにファンクション名')で指定できる。指定されたファンクションが実行された時はログイン機能無効になる。
+        $this->Auth->authorize = 'Actions';
         //AuthComponentの設定
         //$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
         //$this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
