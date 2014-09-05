@@ -16,7 +16,7 @@ class PostmanagementsController extends AppController {
 	//どのファンクションでも、それが呼ばれる前に必ず挙動する。
     function beforeFilter() {
     	parent::beforeFilter();
-    	$this->Auth->allow();
+    	//$this->Auth->allow();
 	}
 
     public function index($id){

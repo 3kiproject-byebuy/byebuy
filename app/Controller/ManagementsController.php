@@ -16,7 +16,7 @@ class ManagementsController extends AppController {
 	//どのファンクションでも、それが呼ばれる前に必ず挙動する。
     function beforeFilter() {
     	parent::beforeFilter();    	
-    	$this->Auth->allow();
+    	//$this->Auth->allow();
 	}
 
     public function index(){//　/index/アドレスに飛んだタイミングで実行され、その結果が.ctpに返る
