@@ -1,3 +1,57 @@
+<?php echo $this->Element('header'); ?>
+
+
+
+<ul class="nav nav-tabs nav-justified" role="tablist" style="margin-top:20px;margin-bottom:20px;">
+  <br />
+    <li class="active"><?php echo $this->HTML->link('<b>出品中</b>', 
+                      array(
+                        'controller' => 'byebuys',
+                        'action'=>'index'),
+                      array(
+                        'escape'=>false)
+                          ); ?></li>
+
+    <li><?php echo $this->HTML->link('<b>ほしい</b>', 
+                          array(
+                            'controller' => 'wanted_lists',
+                            'action'=>'index'),
+                          array(
+                            'escape'=>false)
+                          ); ?></li>
+                          
+    <li><?php echo $this->HTML->link('<b>ウォッチリスト</b>',
+                        array(
+                          'controller'=>'watchlists',
+                          'action'=>'index'),
+                        array(
+                            'escape'=>false)
+                          ); ?></li>
+
+
+    <li><?php echo $this->HTML->link('<b>投稿管理</b>',
+                        array(
+                          'controller'=>'postmanagements',
+                          'action'=>'index'),
+                        array(
+                            'escape'=>false)
+                          ); ?></li>
+</ul>
+
+<br />
+
+
+
+<?php
+if(is_null($self)){ ?>
+<center>
+	<br />
+	商品を投稿するにはログインしてください
+	<br />
+</center>
+
+<?php }else { ?>
+
 <h2>商品を投稿する</h2>
 
 <div class = "container well">
@@ -7,6 +61,14 @@
 <?php 
 	echo $this->Form->create('Selling_list', 
 							array('type'=>'file','enctype' => 'multipart/form-data'));
+ ?>
+
+<?php //投稿者のユーザーidを送る ?>
+<?php echo $this->Form->input('user_id',
+ 							array(
+ 								'type' => 'hidden',
+ 								'value' => $self['id'])
+ 							);
  ?>
 
 <?php //画像アップ------------------------------  ?>
@@ -92,22 +154,33 @@
 
 <?php //商品価格----- ?>
 <div class="row">
-<!-- <div class="col-xs-2"> -->
-	<?php echo $this->Form->input('sellingproduct_price',
-										array(
-											'label'=>'&nbsp&nbsp&nbsp&nbsp商品価格&nbsp;&nbsp;',
-											'type' => 'text',
-											'class'=>
-												array(
-													//'form-control',
-													'form-group'
-													),
-											// 'placeholder'=>'価格を入力してください'
-											 )
-										);
+	<table>
+		<tr>
+			<td>
+				<!-- <div class="col-xs-2"> -->
+				<?php echo $this->Form->input('sellingproduct_price',
+													array(
+														'label'=>'&nbsp&nbsp&nbsp&nbsp商品価格&nbsp;&nbsp;',
+														'type' => 'text',
+														'class'=>
+															array(
+																//'form-control',
+																'form-group'
+																),
+														// 'placeholder'=>'価格を入力してください'
+											 			)
+													);
 
-	?> 
-<!-- </div> -->
+				?> 
+			</td>
+			<td>
+				&nbsp;ペソ
+			</td>
+			<td>
+				&nbsp;&nbsp;※価格は数字で入力してください
+			</td>
+		</tr>
+	</table>
 </div>
 
 <?php //echo $this->Form->checkbox('sellingproduct_price.チェックボックス',
@@ -153,7 +226,7 @@ $msg = __('商品を投稿します。よろしいですか？', true);
 </div>
 
 
-
+<?php } ?>
 
 
 

@@ -44,6 +44,8 @@ class SellingListsController extends AppController {
             $tmp2 = $this->request->data['Selling_list']['img_file_name2']['name'];
             $tmp3 = $this->request->data['Selling_list']['img_file_name3']['name'];
 
+            debug($this->request->data);
+
 
             $uploaddir = APP. 'webroot/img/';
             $uploadfile = $uploaddir.basename($tmp1);
@@ -74,7 +76,14 @@ class SellingListsController extends AppController {
             $this->request->data['Selling_list']['img_file_name2'] = $tmp2;
             $this->request->data['Selling_list']['img_file_name3'] = $tmp3;
 
-            $this->Selling_list->save($this->request->data, array('validate' => false));
+            if($this->Selling_list->save($this->request->data, array('validate' => false))) {
+            $this->Session->setFlash(__('<div class="alert alert-success" role="alert">商品を投稿しました</div>'));
+            return $this->redirect(array('controller' => 'byebuys','action' => 'index'));
+          }
+          else{
+            $this->Session->setFlash(__('<div class="alert alert-success" role="alert">商品の投稿に失敗しました</div>'));
+
+          }
 
             //画像の保存
             if($this->Selling_list->save($this->request->data)){
@@ -210,7 +219,7 @@ class SellingListsController extends AppController {
                 //元のページへリダイレクト
                 return $this->redirect($this->referer());
                 }
-                $this->Session->setFlash(__('<div class="alert alert-danger" role="alert">Unable to add your post.</div>'));
+                $this->Session->setFlash(__('<div class="alert alert-danger" role="alert">コメント投稿に失敗しました。</div>'));
             }
 
 
