@@ -36,8 +36,8 @@ if(is_null($self)){
               FB.ui({
               method: 'send',
               name: 'ByeBuy.comをお友達に知らせよう。',
-              link: 'http://dev.byebuy.com/byebuy',
-              description: 'ラガージャ専用フリマサイト、ByeBuy.comに参加してみませんか？',
+              link: 'http://geechscamp.lovepop.jp/byebuy',
+              description: 'ラガージャ専用フリマサイト、ByeBuyに参加してみませんか？',
               });
           }
     </script>
