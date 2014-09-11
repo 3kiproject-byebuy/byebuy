@@ -3,7 +3,7 @@
 $self = $this->Session->read('Auth.User');
 debug($self);
 ?>
-
+ああああああああああああああ
 <!--管理画面へ-->
 
 <div class="col-md-2 col-md-offset-9" align="right" style="bottom:0px;">
@@ -60,7 +60,7 @@ if(is_null($self)){
 //echo '<button class="btn btn-mini btn-default" type="button">login</button>';
 if (is_null($self)){ 
   
-    echo '<div class="col-md-2">';
+    echo '<div class="col-md-2" style="margin-top:15px;padding-left:30px;">';
     echo $this->Html->link($this->Html->image('active200.png'),array('controller' => 'fbconnects','action' => 'facebook'),array('escape' => false));
     echo '</div>';
     echo '</div>';
@@ -91,7 +91,7 @@ if (is_null($self)){
     //【ステータス２】または【ステータス３】＝ 【未承認ユーザー】 の場合
     }else{
 
-      echo '<div class="col-md-2">';
+      echo '<div class="col-md-2" style="margin-top:15px;">';
       echo $this->Html->link($this->Html->image('active200.png'),array('controller' => 'fbconnects','action' => 'facebook'),array('escape' => false));
       echo '</div>';
       echo 'あなたは現在承認待ちユーザーです。管理者からの承認をお待ちください';
