@@ -174,10 +174,10 @@ if(is_null($self)){ ?>
 				?> 
 			</td>
 			<td>
-				&nbsp;ペソ
+				<p>&nbsp;PHP</p>
 			</td>
 			<td>
-				&nbsp;&nbsp;※価格は数字で入力してください
+				<p>&nbsp;&nbsp;※価格は数字で入力してください(無料の場合は0と入力してください)</p>
 			</td>
 		</tr>
 	</table>
