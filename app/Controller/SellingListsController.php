@@ -6,7 +6,7 @@ class SellingListsController extends AppController {
     public $helpers = array('Html', 'Form');
 
     public $components = array('Search.Prg');
-    public $uses = array('Byebuy', 'Selling_list', 'Selling_thread_list', 'Category', 'User');
+    public $uses = array('Selling_list', 'Selling_thread_list', 'Category', 'User');
 
 
     //ログインユーザーに関する宣言
