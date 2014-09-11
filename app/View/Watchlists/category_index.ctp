@@ -173,7 +173,11 @@ $self = $this->Session->read('Auth.User');
 		
 	?>
 	<?php endforeach; ?>
-  <a href="/byebuy/byebuys/index" class="list-group-item" draggable="true">すべてのカテゴリー</a>
+  <?php echo $this->Form->postLink('すべてのカテゴリー', array(
+                                                        'controller'=>'watchlists',
+                                                        'action'=>'index',$self['id']),
+                                                      array('class'=>'list-group-item'));
+                                                        ?>
 </div>
 </div>
 
@@ -189,9 +193,15 @@ $self = $this->Session->read('Auth.User');
 <?php //商品一覧------------------------------------------------------------------------?>
 
 <div class = "col-md-9">
+<div id="container2">
 
-<!-- <div class = "container well"> -->
-<br />
+  <?php 
+  if(!$watchlists){
+
+    echo 'このカテゴリーの商品は現在ありません。';
+
+  }?>
+
 <?php //Watchlistのデータをforeachでまわして読み取る ?>
 <?php foreach($watchlists as $watchlist): ?>
 <!-- <div class="row"> -->

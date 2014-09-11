@@ -5,61 +5,19 @@ echo $this->Element('nav');
 
 ?>
 
-<div style="margin:20px;"><!--検索・ページネーション・ソート機能-->
-<!--検索フォーム-->
-	<?php
-       echo $this->Form->create('Selling_list',array(
-       'class'=>'form-inline','role'=>'form',));
-
-       echo $this->Form->input('Selling_list.keyword',array(
-       'label'=>false,'class'=>'form-controll','div' => array('class' => 'form-group')));//このキーワードが連想配列のキーになっている。
-
-       echo $this->Form->button('<span class="glyphicon glyphicon-search"></span>Search',array('type'=>'submit','label'=>false,'class'=>'btn btn-sm btn-default','escape'=>false));
-
-       echo $this->Form->end();
-	?>
-<!--ここまで　検索フォーム　ここまで-->
-
-<!--ソート機能-->
-	<a href="/byebuy/byebuys/category/<?php echo $this->passedArgs[0];?>/sort:Selling_list.id/direction:desc" class="btn btn-default btn-sm" role="button">新着</a>
-	<a href="/byebuy/byebuys/category/<?php echo $this->passedArgs[0]; ?>/sort:Selling_list.deadline/direction:asc" class="btn btn-default btn-sm" role="button">締め切り</a>
-	<a href="/byebuy/byebuys/category/<?php echo $this->passedArgs[0]; ?>/sort:Selling_list.sellingproduct_price/direction:desc" class="btn btn-default btn-sm" role="button">価格が高い</a>
-	<a href="/byebuy/byebuys/category/<?php echo $this->passedArgs[0] ?>/sort:Selling_list.sellingproduct_price/direction:asc" class="btn btn-default btn-sm" role="button">価格が安い</a>
-<!--ここまで　ソート機能　ここまで-->
-
-<!--ページネーション-->
-
-	<div class ="pagination pagination-large">
-
-	    <?php echo $this->Paginator->numbers();
-	        //必要なページ番号のリンクを自動的に吐き出す ?>
-	</div>
-
-<!--ここまで　ページネーション　ここまで-->
-</div><!--検索・ページネーション・ソート機能-->
-
-
 <!-- コンテンツ -->
-<div class ="container" align="center" style="margin:20px;margin-top:50px;">
+<div class ="container" style="margin-top:30px;">
 	<div class="row">
 
 	  <!-- カテゴリー一覧 -->
 	  <div class="col-md-3">
 		<div class="list-group">
-
 		<?php 
-		
-		foreach ($categories as $category) {
-			
+		foreach ($categories as $category) {	
 		echo $this->Html->link($category['Category']['category_title'],array('controller'=>'byebuys','action'=>'category',$category['Category']['id']),array('class'=>'list-group-item')); 
-
 		}?>
-
 		<a href="/byebuy/byebuys/index" class="list-group-item" draggable="true">すべてのカテゴリー</a>
-		
-
 		</div>
-
 		<?php 
 		if (is_null($self)){ ?>
 
@@ -80,17 +38,55 @@ echo $this->Element('nav');
 			}
 		}
 		?>
-	   </div>
-	  <!--col-md-3-->
+		
+	  </div><!--col-md-3-->
 	  <!-- ここまで　カテゴリー一覧 ここまで　-->
 
 	<!-- 商品一覧 -->
 	<div class="col-md-9">
+		<!-- <div class="container"> --><!--検索・ソート機能-->
+		  <div class="row" align="right" style="height:30px;">
+		    <div class="col-md-7" style="padding-right:0px;padding-left:30px;"><!--ソート機能-->
+			<!-- 	 <?php// echo $this->Paginator->sort('Selling_list.deadline', '締め切り');?> -->
+			<a href="/byebuy/byebuys/index/sort:Selling_list.id/direction:desc" 
+			class="btn btn-default btn-sm col-md-2" role="button">新着</a>
+			<a href="/byebuy/byebuys/index/sort:Selling_list.deadline/direction:asc"
+			class="btn btn-default btn-sm col-md-2 col-md-offset-1" role="button">締め切り</a>
+			<a href="/byebuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:desc"
+			class="btn btn-default btn-sm col-md-2 col-md-offset-1" role="button">価格が高い</a>
+			<a href="/byebuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:asc"
+			class="btn btn-default btn-sm col-md-2 col-md-offset-1" role="button">価格が安い</a>
+			</div><!--ここまで　ソート機能　ここまで-->
+
+			<div class="col-md-5" style="padding-right:30px;padding-left:0px;"><!--検索フォーム-->
+			<?php
+			echo $this->Form->create('Selling_list',array(
+			'class'=>'form-inline','role'=>'form','style' => 'margin-bottom:20px;'));
+
+			echo $this->Form->input('Selling_list.keyword',array(
+			'label'=>false,'class'=>'form-controll','style' => 'margin-right:10px;','div' => array('class' => 'form-group')));//このキーワードが連想配列のキーになっている。
+
+			echo $this->Form->button('<span class="glyphicon glyphicon-search"></span>Search',array('type'=>'submit','label'=>false,'class'=>'btn btn-sm btn-default','escape'=>false));
+
+			echo $this->Form->end();
+			?>
+			<!-- </div> --><!--ここまで　検索フォーム　ここまで-->
+		    </div>
+		</div><!--row-->
+		<!--検索・ソート機能-->
+				<!--ページネーション-->
+			<CENTER>
+			<div class ="pagination pagination-large" style="margin-top:0px;margin-bottom:15px;">
+			  <?php echo $this->Paginator->numbers();//必要なページ番号のリンクを自動的に吐き出す ?>
+			</div>
+			</CENTER>
+		<!--ここまで　ページネーション　ここまで-->
 	<div id="container2">
+
 	<?php 
 	if(!$products){
 
-		echo 'このカテゴリーの商品はないよーーーん。';
+		echo 'このカテゴリーの商品は現在ありません。';
 
 	}
 

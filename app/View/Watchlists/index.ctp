@@ -174,7 +174,11 @@ $self = $this->Session->read('Auth.User');?>
 		
 	?>
 	<?php endforeach; ?>
-  <a href="/byebuy/byebuys/index" class="list-group-item" draggable="true">すべてのカテゴリー</a>
+  <?php echo $this->Form->postLink('すべてのカテゴリー', array(
+                                                        'controller'=>'watchlists',
+                                                        'action'=>'index',$self['id']),
+                                                      array('class'=>'list-group-item'));
+                                                        ?>
 </div>
 </div>
 

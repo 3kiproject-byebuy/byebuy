@@ -23,7 +23,7 @@ class WatchlistsController extends AppController {
          }
 
 
-	public function index(){
+	public function index($id=null){
 
         //カテゴリーデータの取得
         $categories = $this->Category->find('all');
@@ -63,7 +63,7 @@ class WatchlistsController extends AppController {
         //現在ログインしているユーザー
         $self = $this->Auth->user();        
         $conditions = array(
-                        'Watchlist.user_id' =>$self['id'], //今はAuthがきいてないので1に限定している
+                        'Watchlist.user_id' =>$self['id'], 
                         
                         //'recursive' => 2,
                             );
