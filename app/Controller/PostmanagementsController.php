@@ -20,13 +20,21 @@ class PostmanagementsController extends AppController {
 	}
 
     public function index($id){
+    if ($this->request->is('post')){
 
+        $conditions = array("User.status !=" => 3,"User.id" => $id);
+        $user = $this->User->find('first',array('conditions'=>$conditions));
+        $test = "OK";
+        //ユーザ名から検索
+        $this->set(compact('user'));
+        $this->set(compact('test'));
+    }else{
         $conditions = array("User.status !=" => 3,"User.id" => $id);
         $user = $this->User->find('first',array('conditions'=>$conditions));
         
         //ユーザ名から検索
         $this->set(compact('user'));
-			
+		}	
 	}
      
     }

@@ -14,5 +14,5 @@
   			</ul>
   		<div class="panel-heading">その他</div>
   			<ul class="list-group">
-    			<a class="list-group-item" href="/byebuy/Managements/">サイトに戻る</a>
+    			<a class="list-group-item" href="/byebuy/">サイトに戻る</a>
  			</ul>

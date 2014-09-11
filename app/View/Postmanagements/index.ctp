@@ -5,12 +5,13 @@
 <?php
 //現在ログインしているユーザーを取得
 $self = $this->Session->read('Auth.User');
+debug($self);
 ?>
 <!-- ナビゲーションバー -->
 
 <ul class="nav nav-tabs nav-justified" role="tablist" style="margin-top:20px;margin-bottom:20px;">
   <br />
-    <li class="active"><?php echo $this->HTML->link('<b>出品中</b>', 
+    <li><?php echo $this->HTML->link('<b>出品中</b>', 
                       array(
                         'controller' => 'byebuys',
                         'action'=>'index'),
@@ -26,18 +27,11 @@ $self = $this->Session->read('Auth.User');
                             'escape'=>false)
                           ); ?></li>
                           
-    <li><?php
+    <?php
           //ユーザーが未ログインの場合
           if (is_null($self)){ 
             
-             echo $this->HTML->link('<b>ウォッチリスト</b>',
-                    array(
-                      'controller'=>'fbconnects',
-                      'action'=>'facebook'),
-                    array(
-                        'escape'=>false)
-                      );
-            
+              //なにも表示させない
 
           //ユーザーがログイン中の場合、ステータスを確認
            }else{
@@ -45,30 +39,62 @@ $self = $this->Session->read('Auth.User');
               //【ステータス１】＝ 【承認済みユーザー】 の場合
               if($self['status']==1){
 
-               echo $this->HTML->link('<b>ウォッチリスト</b>',
+               echo '<li>';
+
+               echo $this->Form->postLink('<b>ウォッチリスト</b>',
                     array(
-                      'controller'=>'sellingLists',
-                      'action'=>'index'),
+                      'controller'=>'watchlists',
+                      'action'=>'index',
+                      $self['id']),
                     array(
                         'escape'=>false)
                       ); 
 
+               echo '</li>';
+
               //【ステータス２】または【ステータス３】＝ 【未承認ユーザー】 の場合
               }else{
 
-                
-                echo $this->HTML->link('<b>ウォッチリスト</b>',
-                        array(
-                          'controller'=>'byebuys',
-                          'action'=>'login'),
-                        array(
-                            'escape'=>false)
-                          );
-                
+                  //なにも表示させない
 
             }
           }?>
-    </li>
+
+
+    <?php
+          //ユーザーが未ログインの場合
+          if (is_null($self)){ 
+
+            //なにも表示させない
+
+          //ユーザーがログイン中の場合、ステータスを確認
+           }else{
+
+              //【ステータス１】＝ 【承認済みユーザー】 の場合
+              if($self['status']==1){
+
+               echo '<li class="active">';
+
+               echo $this->Form->postLink('<b>投稿管理</b>',
+                    array(
+                      'controller'=>'postmanagements',
+                      'action'=>'index',
+                       $self['id']),
+                    array(
+                        'escape'=>false)
+                      ); 
+
+               echo '</li>';
+
+              //【ステータス２】または【ステータス３】＝ 【未承認ユーザー】 の場合
+              }else{
+
+                  //なにも表示させない
+                
+            }
+
+          }?>
+</ul>
 
 
     <li><?php
@@ -76,14 +102,13 @@ $self = $this->Session->read('Auth.User');
           if (is_null($self)){ 
             
           
-            
-             echo $this->HTML->link('<b>投稿管理</b>',
+               echo $this->Form->postlink('<b>投稿管理</b>',
                     array(
-                      'controller'=>'fbconnects',
-                      'action'=>'facebook'),
+                      'controller'=>'postmanagements',
+                      'action'=>'index','1'),
                     array(
                         'escape'=>false)
-                      );
+                      ); 
             
 
           //ユーザーがログイン中の場合、ステータスを確認
@@ -91,11 +116,11 @@ $self = $this->Session->read('Auth.User');
 
               //【ステータス１】＝ 【承認済みユーザー】 の場合
               if($self['status']==1){
-
-               echo $this->HTML->link('<b>投稿管理</b>',
+                
+               echo $this->Form->postlink('<b>投稿管理</b>',
                     array(
                       'controller'=>'postmanagements',
-                      'action'=>'index'),
+                      'action'=>'index','1'),
                     array(
                         'escape'=>false)
                       ); 
@@ -103,13 +128,13 @@ $self = $this->Session->read('Auth.User');
               //【ステータス２】または【ステータス３】＝ 【未承認ユーザー】 の場合
               }else{
 
-                echo $this->HTML->link('<b>投稿管理</b>',
-                        array(
-                          'controller'=>'byebuys',
-                          'action'=>'login'),
-                        array(
-                            'escape'=>false)
-                          );
+               echo $this->Form->postlink('<b>投稿管理</b>',
+                    array(
+                      'controller'=>'postmanagements',
+                      'action'=>'index','1'),
+                    array(
+                        'escape'=>false)
+                      ); 
                 
             }
 
@@ -119,7 +144,23 @@ $self = $this->Session->read('Auth.User');
 <?php
 
 //当降順に各記事を全てソートして配列に保存
-$post_lists = array_merge($user['Selling_list'],$user['Selling_thread_list'],$user['Wanted_list'],$user['Wanted_thread_list']);
+if(!empty($user['Selling_list'])){
+  $post_lists = $user['Selling_list'];
+}
+
+if(!empty($user['Selling_thread_list'])){
+  $post_lists = array_merge( $post_lists,$user['Selling_thread_list']);
+}
+
+if(!empty($user['Wanted_thread_list'])){
+
+  $post_lists = array_merge( $post_lists,$user['Wanted_thread_list']);
+
+}
+
+if(!empty($post_lists)){
+
+//$post_lists = array_merge($user['Selling_list'],$user['Selling_thread_list'],$user['Wanted_list'],$user['Wanted_thread_list']);
 foreach($post_lists as $key => $row){
 $foo[$key] = $row["created"];
 }
@@ -225,19 +266,6 @@ array_multisort($foo,SORT_DESC,$post_lists);
       </div>
     
 
-    <?php } ?>
+    <?php }  }?>
 
 </div>
-
-<!-- 
-<?php $this->Html->scriptStart(array('inline' => false)); ?>
-function test(){
-
-    window.location=$(this).find("a").attr("href");
-    return false;
-
-}
-
-
-<?php $this->Html->scriptEnd(); ?>
- -->
