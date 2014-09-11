@@ -3,7 +3,7 @@
 $self = $this->Session->read('Auth.User');
 debug($self);
 ?>
-ああああああああああああああ
+
 <!--管理画面へ-->
 
 <div class="col-md-2 col-md-offset-9" align="right" style="bottom:0px;">

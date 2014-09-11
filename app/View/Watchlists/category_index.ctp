@@ -10,7 +10,7 @@ $self = $this->Session->read('Auth.User');
 
 <ul class="nav nav-tabs nav-justified" role="tablist" style="margin-top:20px;margin-bottom:20px;">
   <br />
-    <li class="active"><?php echo $this->HTML->link('<b>出品中</b>', 
+    <li><?php echo $this->HTML->link('<b>出品中</b>', 
                       array(
                         'controller' => 'byebuys',
                         'action'=>'index'),
@@ -38,7 +38,7 @@ $self = $this->Session->read('Auth.User');
               //【ステータス１】＝ 【承認済みユーザー】 の場合
               if($self['status']==1){
 
-               echo '<li>';
+               echo '<li class="active">';
 
                echo $this->Form->postLink('<b>ウォッチリスト</b>',
                     array(
@@ -210,21 +210,40 @@ $self = $this->Session->read('Auth.User');
 
           }
            ?><br /></p>
+           
+        <?php
+        $current_date = date('Y-m-d H:i:s');
+        //締め切り-現在　=> 24h 黒字
+        // 締め切り-現在　<= 0 掲載終了
+        // 0 ＜　締め切りー現在　＜　24h 赤字
 
-		<?php //締め切り-現在の日付が１日よりすくなかったら
-			$current_date = date('Y-m-d H:i:s');
-					if((strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) < 86400) { ?>
-						
-        				<p>締め切り日: 
-        					<font color="#ff0000"> 
-        					<?php echo $watchlist['Selling_list']['deadline']; ?>
-        					</font>
-        				</p>
-        				
-        			<?php
-					}else{ ?>
-						<p>締め切り日: <?php echo $watchlist['Selling_list']['deadline']; ?></p>
-					<?php } ?>
+        if((strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) >= 86400 ){
+
+            echo '締め切り:';
+            echo $watchlist['Selling_list']['deadline']; 
+
+        }
+
+        if((strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) <= 0){ ?>
+
+              <font color="#ff0000"> 
+              <?php
+            echo 'この商品取引は終了しました。';
+            ?>
+            </font>
+
+    <?php  }
+
+        if( 0 < (strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) &&
+          (strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) < 86400){ ?>
+
+            <font color="#ff0000"> 
+            <?php
+            echo '締め切り:';
+            echo $watchlist['Selling_list']['deadline']; ?>
+            </font>
+
+        <?php } ?>
 
         <p>出品者: <?php echo $watchlist['User']['name']; ?></p>
       </div>

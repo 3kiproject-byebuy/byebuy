@@ -29,15 +29,12 @@ class ByebuysController extends AppController {
 
     //商品
     $conditions1 = $this->Selling_list->parseCriteria($this->passedArgs);
-    debug($conditions1);
     $conditions2 =  array('Selling_list.del_flg' => 0);
     $conditions = array($conditions1,$conditions2);
     $products = $this->paginate('Selling_list',$conditions);
 
-    //ウォッチリストに登録済みか否かをを読みに行く。
+    //ログイン中のユーザーのウォッチリストを取得
     $conditions3 = array('Watchlist.user_id' => $id);
-    //$conditions4 = array('Watchlist.sellinglist_id' => $product['Selling_list']['id']);
-    //$conditions5 = array($conditions3,$conditions4);
     $myListItems = $this->Watchlist->find('all',$conditions3);
     //debug($myListItems);
     
@@ -87,7 +84,11 @@ class ByebuysController extends AppController {
         //出品中商品の取得
         $products = $this->paginate('Selling_list',$conditions);
 
-        $this->set(compact('products','categories','self'));
+        //ログイン中のユーザーのウォッチリストを取得
+        $conditions3 = array('Watchlist.user_id' => $self['id']);
+        $myListItems = $this->Watchlist->find('all',$conditions3);
+
+        $this->set(compact('products','categories','self','myListItems'));
 
     }
 

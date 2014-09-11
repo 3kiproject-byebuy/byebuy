@@ -121,22 +121,37 @@ echo $this->Element('nav');
 						echo $product['Selling_list']['sellingproduct_name']; ?><br /><?php
 
 						$current_date = date('Y-m-d H:i:s');
-      					if((strtotime($product['Selling_list']['deadline']) - strtotime($current_date)) < 86400){ ?>
+      					//締め切り-現在　=> 24h 黒字
+						// 締め切り-現在　<= 0 掲載終了
+						// 0 ＜　締め切りー現在　＜　24h 赤字
 
-      					<font color="#ff0000"> 
-      					<?php
-      					echo '締め切り:';
-						echo $product['Selling_list']['deadline'];
-						?>
-						</font>
+						if((strtotime($product['Selling_list']['deadline']) - strtotime($current_date)) >= 86400 ){
 
-						<?php
-      					}else{
+								echo '締め切り:';
+								echo $product['Selling_list']['deadline']; 
 
-						echo '締め切り:';
-						echo $product['Selling_list']['deadline']; 
+						}
 
-      					} ?>
+						if((strtotime($product['Selling_list']['deadline']) - strtotime($current_date)) <= 0){ ?>
+
+							  	<font color="#ff0000"> 
+							  	<?php
+								echo 'この商品取引は終了しました。';
+								?>
+								</font>
+
+				 <?php  }
+
+						if( 0 < (strtotime($product['Selling_list']['deadline']) - strtotime($current_date)) &&
+							(strtotime($product['Selling_list']['deadline']) - strtotime($current_date)) < 86400){ ?>
+
+								<font color="#ff0000"> 
+								<?php
+								echo '締め切り:';
+								echo $product['Selling_list']['deadline']; ?>
+								</font>
+
+				  <?php } ?>
 
 
 						<br /><?php
@@ -149,19 +164,25 @@ echo $this->Element('nav');
 							//debug('セルフがからっぽ');
 
 						}else{
-							//debug('セルフあり');
-
-		                    //debug($self['id']);
-		                    //debug($product['Selling_list']['id']);
 		                    $id = $self['id'];
 
 							echo $this->Form->create('Wacthlist');
 							echo $this->Form->input('user_id',array('type'=>'hidden','value'=>$self['id']));
 							echo $this->Form->input('sellinglist_id',array('type'=>'hidden','value'=>$product['Selling_list']['id']));
-							//echo $this->Html->Html('<p align="right"><button class="btn btn-mini btn-default" type="submit">ウォッチリスト</button></p>',array('escape' => false,'label'=>false));
-							echo $this->Form->button('<span class ="glyphicon glyphicon-pencil"></span>
-							お気に入り', array('type' => 'submit', 'class'=>'btn btn-primary', 'label' => false, 'escape' => false));
-							echo $this->Form->end(); 
+							
+							foreach ($myListItems as $myListItem) {
+
+
+							if($myListItem['Watchlist']['sellinglist_id']==$product['Selling_list']['id']){
+
+								echo 'ウォッチリストに登録済み';
+								break;
+								
+							}
+							
+						}
+						echo $this->Form->button('ウォッチリストに追加', array('type' => 'submit', 'class'=>'btn btn-primary', 'label' => false, 'escape' => false));
+						echo $this->Form->end(); 
 
 						}?>
 
