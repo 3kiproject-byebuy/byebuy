@@ -1,37 +1,100 @@
 
 <?php //headerのよみこみ
-	echo $this->Element('header'); ?>
+	echo $this->Element('header'); 
+  
+//現在ログインしているユーザーを取得
+$self = $this->Session->read('Auth.User');?>
 
 <!-- ナビゲーションバー -->
 
-<ul class="nav nav-tabs nav-justified" role="tablist">
+<ul class="nav nav-tabs nav-justified" role="tablist" style="margin-top:20px;margin-bottom:20px;">
   <br />
-    <li><?php echo $this->HTML->link('出品中', 
+    <li class="active"><?php echo $this->HTML->link('<b>出品中</b>', 
                       array(
                         'controller' => 'byebuys',
-                        'action'=>'index')
+                        'action'=>'index'),
+                      array(
+                        'escape'=>false)
                           ); ?></li>
 
-    <li><?php echo $this->HTML->link('ほしい', 
+    <li><?php echo $this->HTML->link('<b>ほしい</b>', 
                           array(
                             'controller' => 'wanted_lists',
-                            'action'=>'index')
+                            'action'=>'index'),
+                          array(
+                            'escape'=>false)
                           ); ?></li>
                           
-    <li class="active"><?php echo $this->HTML->link('ウォッチリスト',
-                        array(
-                          'controller'=>'watchlists',
-                          'action'=>'index')
-                          ); ?></li>
+    <?php
+          //ユーザーが未ログインの場合
+          if (is_null($self)){ 
+            
+              //なにも表示させない
+
+          //ユーザーがログイン中の場合、ステータスを確認
+           }else{
+
+              //【ステータス１】＝ 【承認済みユーザー】 の場合
+              if($self['status']==1){
+
+               echo '<li>';
+
+               echo $this->Form->postLink('<b>ウォッチリスト</b>',
+                    array(
+                      'controller'=>'watchlists',
+                      'action'=>'index',
+                      $self['id']),
+                    array(
+                        'escape'=>false)
+                      ); 
+
+               echo '</li>';
+
+              //【ステータス２】または【ステータス３】＝ 【未承認ユーザー】 の場合
+              }else{
+
+                  //なにも表示させない
+
+            }
+          }?>
 
 
-    <li><?php echo $this->HTML->link('投稿管理',
-                        array(
-                          'controller'=>'postmanagements',
-                          'action'=>'index')
-                          ); ?></li>
+    <?php
+          //ユーザーが未ログインの場合
+          if (is_null($self)){ 
+
+            //なにも表示させない
+
+          //ユーザーがログイン中の場合、ステータスを確認
+           }else{
+
+              //【ステータス１】＝ 【承認済みユーザー】 の場合
+              if($self['status']==1){
+
+               echo '<li>';
+
+               echo $this->Form->postLink('<b>投稿管理</b>',
+                    array(
+                      'controller'=>'postmanagements',
+                      'action'=>'index',
+                       $self['id']),
+                    array(
+                        'escape'=>false)
+                      ); 
+
+               echo '</li>';
+
+              //【ステータス２】または【ステータス３】＝ 【未承認ユーザー】 の場合
+              }else{
+
+                  //なにも表示させない
+                
+            }
+
+          }?>
 </ul>
 
+<!--ここまで　ナビゲーションバー　ここまで-->
 
 <?php //startページネーション------------------------------------------------------------------------?>
 
@@ -111,6 +174,7 @@
 		
 	?>
 	<?php endforeach; ?>
+  <a href="/byebuy/byebuys/index" class="list-group-item" draggable="true">すべてのカテゴリー</a>
 </div>
 </div>
 
@@ -135,10 +199,19 @@
 <!-- <div class="row"> -->
   <div class="col-md-4 item" style="margin-bottom:15px;">
     <div class="thumbnail">
-      <img src="/byebuy/app/webroot/img/<?php echo $watchlist['Selling_list']['img_file_name1']?>"  width ='50%' height='50%'>
+       <a href="/byebuy/SellingLists/productdetail/<?php echo $watchlist['Selling_list']['id'];?>">
+      <img src="/byebuy/app/webroot/img/<?php echo $watchlist['Selling_list']['img_file_name1']?>"></a>
       <div class="caption">
         <h3>商品名: <?php echo $watchlist['Selling_list']['sellingproduct_name']; ?></h3>
-        <p>価格: <?php echo $watchlist['Selling_list']['sellingproduct_price']; ?></p>
+        <p>価格:<?php if($watchlist['Selling_list']['sellingproduct_price']==0){
+            echo '無料';
+          }else{
+
+            echo $watchlist['Selling_list']['sellingproduct_price'];
+            echo 'PHP';
+
+          }
+           ?><br /></p>
 
 		<?php //締め切り-現在の日付が１日よりすくなかったら
 			$current_date = date('Y-m-d H:i:s');

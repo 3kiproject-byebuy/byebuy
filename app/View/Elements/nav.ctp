@@ -1,6 +1,7 @@
 <?php
 //現在ログインしているユーザーを取得
 $self = $this->Session->read('Auth.User');
+debug($self);
 ?>
 <!-- ナビゲーションバー -->
 
@@ -22,18 +23,11 @@ $self = $this->Session->read('Auth.User');
                             'escape'=>false)
                           ); ?></li>
                           
-    <li><?php
+    <?php
           //ユーザーが未ログインの場合
           if (is_null($self)){ 
             
-             echo $this->HTML->link('<b>ウォッチリスト</b>',
-                    array(
-                      'controller'=>'fbconnects',
-                      'action'=>'facebook'),
-                    array(
-                        'escape'=>false)
-                      );
-            
+              //なにも表示させない
 
           //ユーザーがログイン中の場合、ステータスを確認
            }else{
@@ -41,46 +35,33 @@ $self = $this->Session->read('Auth.User');
               //【ステータス１】＝ 【承認済みユーザー】 の場合
               if($self['status']==1){
 
-               echo $this->HTML->link('<b>ウォッチリスト</b>',
+               echo '<li>';
+
+               echo $this->Form->postLink('<b>ウォッチリスト</b>',
                     array(
-                      'controller'=>'sellingLists',
-                      'action'=>'index'),
+                      'controller'=>'watchlists',
+                      'action'=>'index',
+                      $self['id']),
                     array(
                         'escape'=>false)
                       ); 
 
+               echo '</li>';
+
               //【ステータス２】または【ステータス３】＝ 【未承認ユーザー】 の場合
               }else{
 
-                
-                echo $this->HTML->link('<b>ウォッチリスト</b>',
-                        array(
-                          'controller'=>'byebuys',
-                          'action'=>'login'),
-                        array(
-                            'escape'=>false)
-                          );
-                
+                  //なにも表示させない
 
             }
           }?>
-    </li>
 
 
-    <li><?php
+    <?php
           //ユーザーが未ログインの場合
           if (is_null($self)){ 
-            
-          
-            
-             echo $this->HTML->link('<b>投稿管理</b>',
-                    array(
-                      'controller'=>'fbconnects',
-                      'action'=>'facebook'),
-                    array(
-                        'escape'=>false)
-                      );
-            
+
+            //なにも表示させない
 
           //ユーザーがログイン中の場合、ステータスを確認
            }else{
@@ -88,28 +69,27 @@ $self = $this->Session->read('Auth.User');
               //【ステータス１】＝ 【承認済みユーザー】 の場合
               if($self['status']==1){
 
-               echo $this->HTML->link('<b>投稿管理</b>',
+               echo '<li>';
+
+               echo $this->Form->postLink('<b>投稿管理</b>',
                     array(
                       'controller'=>'postmanagements',
-                      'action'=>'index'),
+                      'action'=>'index',
+                       $self['id']),
                     array(
                         'escape'=>false)
                       ); 
 
+               echo '</li>';
+
               //【ステータス２】または【ステータス３】＝ 【未承認ユーザー】 の場合
               }else{
 
-                echo $this->HTML->link('<b>投稿管理</b>',
-                        array(
-                          'controller'=>'byebuys',
-                          'action'=>'login'),
-                        array(
-                            'escape'=>false)
-                          );
+                  //なにも表示させない
                 
             }
 
-          }?></li>
+          }?>
 </ul>
 
 <!--ここまで　ナビゲーションバー　ここまで-->

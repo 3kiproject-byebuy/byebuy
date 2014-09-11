@@ -11,7 +11,7 @@ echo $this->Element('nav');
        echo $this->Form->create('Selling_list',array(
        'class'=>'form-inline','role'=>'form',));
 
-       echo $this->Form->input('keyword',array(
+       echo $this->Form->input('Selling_list.keyword',array(
        'label'=>false,'class'=>'form-controll','div' => array('class' => 'form-group')));//このキーワードが連想配列のキーになっている。
 
        echo $this->Form->button('<span class="glyphicon glyphicon-search"></span>Search',array('type'=>'submit','label'=>false,'class'=>'btn btn-sm btn-default','escape'=>false));
@@ -59,6 +59,27 @@ echo $this->Element('nav');
 		
 
 		</div>
+
+		<?php 
+		if (is_null($self)){ ?>
+
+		<!--なにも表示させない-->
+
+		<?php }else{
+
+			if($self['status']==1){ ?>
+
+			<a href="/byebuy/sellingLists/index"><button type="button" class="btn btn-default btn-sm">出品する</button></a>
+
+			<?php
+			}else{?>
+
+			<!--なにも表示させない-->
+
+			<?php
+			}
+		}
+		?>
 	   </div>
 	  <!--col-md-3-->
 	  <!-- ここまで　カテゴリー一覧 ここまで　-->
@@ -78,7 +99,7 @@ echo $this->Element('nav');
 				  <div class="col-md-4 item" style="margin-bottom:15px;">
 				    <div class="thumbnail">
 				      
-				      <a href="/ByeBuy/seliinglists/productdetail/<?php echo $product['Selling_list']['id'];?>"><img src="/ByeBuy/img/<?php echo $product['Selling_list']['img_file_name1']; ?>" alt="表示できません"></a>
+				      <a href="/ByeBuy/seliinglists/productdetail/<?php echo $product['Selling_list']['id'];?>"><img src="/byebuy/img/<?php echo $product['Selling_list']['img_file_name1']; ?>" alt="表示できません"></a>
 
 				      <div class="caption">
 				        <h3><?php echo $product['Selling_list']['sellingproduct_name'];?></h3>
@@ -87,7 +108,15 @@ echo $this->Element('nav');
 					    <?php 
 
 					  	echo '価格:';
-					  	echo $product['Selling_list']['sellingproduct_price']; ?>PHP<br /><?php
+					  	if($product['Selling_list']['sellingproduct_price']==0){
+			  				echo '無料';
+			  			}else{
+
+			  				echo $product['Selling_list']['sellingproduct_price'];
+			  				echo 'PHP';
+
+			  			}
+			  	 		?><br /><?php
 						echo '商品:';
 						echo $product['Selling_list']['sellingproduct_name']; ?><br /><?php
 

@@ -26,7 +26,7 @@
 		<?php 
 		if (is_null($self)){ ?>
 
-			<a href="/byebuy/fbconnects/facebook"><button type="button" class="btn btn-default btn-sm">出品する</button></a>
+		<!--なにも表示させない-->
 
 		<?php }else{
 
@@ -37,7 +37,7 @@
 			<?php
 			}else{?>
 
-			<a href="/byebuy/byebuys/login"><button type="button" class="btn btn-default btn-sm">出品する</button></a>
+			<!--なにも表示させない-->
 
 			<?php
 			}
@@ -102,12 +102,44 @@
 			    <?php 
 
 			  	echo '価格:';
-			  	echo $product['Selling_list']['sellingproduct_price']; ?>PHP<br /><?php
+			  	if($product['Selling_list']['sellingproduct_price']==0){
+			  		echo '無料';
+			  	}else{
+
+			  		echo $product['Selling_list']['sellingproduct_price'];
+			  		echo 'PHP';
+
+			  	}
+			  	 ?><br /><?php
 				echo '商品:';
 				echo $product['Selling_list']['sellingproduct_name']; ?><br /><?php
 
 				$current_date = date('Y-m-d H:i:s');
-					if((strtotime($product['Selling_list']['deadline']) - strtotime($current_date)) < 86400){ ?>
+
+
+				//締め切り-現在　=> 24h 黒字
+				// 締め切り-現在　<= 0 掲載終了
+				// 0 ＜　締め切りー現在　＜　24h 赤字
+
+				if((strtotime($product['Selling_list']['deadline']) - strtotime($current_date)) >= 86400 ){
+
+						echo '締め切り:';
+						echo $product['Selling_list']['deadline']; 
+
+				}
+
+				if((strtotime($product['Selling_list']['deadline']) - strtotime($current_date)) <= 0){ ?>
+
+					  	<font color="#ff0000"> 
+					  	<?php
+						echo 'この商品取引は終了しました。';
+						?>
+						</font>
+
+		<?php  }
+
+				if( 0 < (strtotime($product['Selling_list']['deadline']) - strtotime($current_date)) &&
+					(strtotime($product['Selling_list']['deadline']) - strtotime($current_date)) < 86400){ ?>
 
 						<font color="#ff0000"> 
 						<?php
@@ -115,13 +147,7 @@
 						echo $product['Selling_list']['deadline']; ?>
 						</font>
 
-				<?php
-					}else{
-
-				echo '締め切り:';
-				echo $product['Selling_list']['deadline']; 
-
-					} ?>
+				<?php } ?>
 
 
 				<br /><?php
@@ -142,16 +168,29 @@
 				}else{
 
 					//承認済みユーザーの場合
-					if($self['status']==1){ 
-
+					if($self['status']==1){
+						
 						$id = $self['id'];
-
-						echo $this->Form->create('Watchlist',array('url'=>'favorite'));
+						echo $this->Form->create('Watchlist',array('url'=>'favorite',$id));
 						echo $this->Form->input('user_id',array('type'=>'hidden','value'=>$self['id']));
 						echo $this->Form->input('sellinglist_id',array('type'=>'hidden','value'=>$product['Selling_list']['id']));
 						//echo $this->Html->Html('<p align="right"><button class="btn btn-mini btn-default" type="submit">ウォッチリスト</button></p>',array('escape' => false,'label'=>false));
-						echo $this->Form->button('<span class ="glyphicon glyphicon-pencil"></span>
-						お気に入り', array('type' => 'submit', 'class'=>'btn btn-primary','style'=>'margin-top:15px;', 'label' => false, 'escape' => false));
+					
+						foreach ($myListItems as $myListItem) {
+
+
+							if($myListItem['Watchlist']['sellinglist_id']==$product['Selling_list']['id']){
+
+								echo 'ウォッチリストに登録済み';
+								break;
+								
+							}
+							
+						}
+						echo $this->Form->button('ウォッチリストに登録', 
+						array('type' => 'submit','class'=>'btn btn-primary','style'=>'margin-top:15px;', 'label' => false, 'escape' => false));
+
+						
 						echo $this->Form->end(); 
 
 					}

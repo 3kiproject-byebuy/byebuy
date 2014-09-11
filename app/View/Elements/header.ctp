@@ -28,7 +28,7 @@ if(is_null($self)){
 <div class="row" style="margin:20px;">
 
     <!--いいね、シェア-->
-    <div class="col-md-2 col-md-offset-6" align="right" style="bottom:0px;">
+    <div class="col-md-2 col-md-offset-8" align="right" style="bottom:0px;">
     <script language="javascript" type="text/javascript">
      
              function invite(){
@@ -49,10 +49,10 @@ if(is_null($self)){
 
     <!--友達招待-->
     <div class="col-md-2" style="bottom:0px;">
-    <div class="fb-like" data-href="https://dev.byebuy.com/byebuy" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+    <div class="fb-like" data-href="https://geechscamp.lovepop.jp/byebuy" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
     </div>
+
     <!--ここまで　友達招待　ここまで-->
-    
 
 <?php
 //ログイン判定、ログインボタン・ユーザーの表示
@@ -63,6 +63,7 @@ if (is_null($self)){
     echo '<div class="col-md-2">';
     echo $this->Html->link($this->Html->image('active200.png'),array('controller' => 'fbconnects','action' => 'facebook'),array('escape' => false));
     echo '</div>';
+    echo '</div>';
   
 
 //ユーザーがログイン中の場合、ステータスを確認
@@ -70,33 +71,36 @@ if (is_null($self)){
 
     //【ステータス１】＝ 【承認済みユーザー】 の場合
     if($self['status']==1){?>
+      </div> 
+      <div class="row" style="margin:20px;">
 
-        <div class="media col-md-4" style="margin-top:10px;">
+        <div class="media col-md-3 col-md-offset-9" style="margin-top:10px;">
           <img src="https://graph.facebook.com/<?php echo $self['facebook_id']; ?>/picture?type=square" 
           align="left" style="margin-left:10px;" class="img-circle">
             <div class="media-body">
-              <h4 class="media-heading" style="height:30px;line-height:50px;margin-left:10px;"><?php echo $self['name'];?></h4>
+              <h4 class="media-heading" style="height:50px;line-height:50px;margin-left:10px;">
+               <?php echo $self['name'];?>
+               <?php echo $this->Html->link('<button class="btn btn-sm btn-default" type="button">logout</button>',array(
+                'controller' => 'fbconnects','action' => 'logout'),array('escape' => false));?></h4>
             </div>
         </div>
+      </div>      
 
-          <?php echo $this->Html->link('<button class="btn btn-mini btn-default col-md-4" type="button">logout</button>',array(
-                'controller' => 'fbconnects','action' => 'logout'),array('escape' => false));
-
+         
+<?php
     //【ステータス２】または【ステータス３】＝ 【未承認ユーザー】 の場合
     }else{
 
       echo '<div class="col-md-2">';
-      echo $this->Html->link('<button class="btn btn-mini btn-default" type="button">login</button>',array('controller' => 'fbconnects','action' => 'facebook'),array('escape' => false));
+      echo $this->Html->link($this->Html->image('active200.png'),array('controller' => 'fbconnects','action' => 'facebook'),array('escape' => false));
+      echo '</div>';
+      echo 'あなたは現在承認待ちユーザーです。管理者からの承認をお待ちください';
       echo '</div>';
       
     }
 }
 ?>
 
-
-
-  </div>
-</div>
 
 <!--ロゴ-->
 <div align="center">

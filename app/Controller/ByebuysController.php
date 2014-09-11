@@ -29,19 +29,24 @@ class ByebuysController extends AppController {
 
     //商品
     $conditions1 = $this->Selling_list->parseCriteria($this->passedArgs);
+    debug($conditions1);
     $conditions2 =  array('Selling_list.del_flg' => 0);
     $conditions = array($conditions1,$conditions2);
     $products = $this->paginate('Selling_list',$conditions);
 
-    // // //現在ログインしているユーザー
-    // $self = $this->Auth->user();
-    // debug($self);
- 
+    //ウォッチリストに登録済みか否かをを読みに行く。
+    $conditions3 = array('Watchlist.user_id' => $id);
+    //$conditions4 = array('Watchlist.sellinglist_id' => $product['Selling_list']['id']);
+    //$conditions5 = array($conditions3,$conditions4);
+    $myListItems = $this->Watchlist->find('all',$conditions3);
+    //debug($myListItems);
+    
+
     //カテゴリー
     $categories = $this->Category->find('all');
 
     //View用の変数としてセット
-    $this->set(compact('products','self','categories'));
+    $this->set(compact('products','self','categories','myListItems'));
 
     }
 
@@ -55,7 +60,7 @@ class ByebuysController extends AppController {
             if($this->Watchlist->save($this->data)){//Watchlistテーブルにデータが入った  
 
                 $this->Session->setFlash(__('お気に入りに登録しました'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(array('controller'=>'watchlists', 'action' => 'index'));
 
             }
 
@@ -74,6 +79,7 @@ class ByebuysController extends AppController {
         $self = $this->Auth->user();
 
         $conditions1 = $this->Selling_list->parseCriteria($this->passedArgs);
+        debug($conditions1);
         $conditions2 = array('Selling_list.category_id'=>$category_id);
         $conditions3 =  array('Selling_list.del_flg' => 0);
         $conditions = array($conditions1,$conditions2,$conditions3);
@@ -105,17 +111,20 @@ class ByebuysController extends AppController {
         //ログインしていないユーザーの場合
         if(is_null($self)){
             
-            $this->redirect(array('action'=>'index'));
+            return $this->redirect($this->referer());
 
 
         }else{//ログインしているユーザーの場合
 
             if($self['del_flg']==0){
+
+                if($self['block_flg']==0){
             
-                if($self['status']==1){//承認済みユーザーの場合
+                    if($self['status']==1){//承認済みユーザーの場合
 
-                    $this->redirect(array('action'=>'index'));
+                        return $this->redirect($this->referer());
 
+                    }
                 }
 
                 //$this->redirect(array('action'=>'logout'));    
