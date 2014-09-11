@@ -17,7 +17,7 @@ class WantedListsController extends AppController {
                                         //'fields' => array('user_id', 'wanteddetail', 'created'),
                                         'conditions' => array('Wanted_list.del_flg' => 0),
                                         'order' => array('Wanted_list.created' => 'desc'),
-                                        'limit' => 3,
+                                        'limit' => 10,
                                         //'group' => array('Model.field'),
                                         //'page' => n,
                                         //'offset' => n,
@@ -54,11 +54,10 @@ class WantedListsController extends AppController {
                                         );
 
         
-        $login_user = $this->Auth->user();
-
+        
         $Wanted_lists = $this->paginate("Wanted_list");
 
-        $this->set(compact('Wanted_lists','Users','login_user'));
+        $this->set(compact('Wanted_lists','Users'));
 
 	}
 

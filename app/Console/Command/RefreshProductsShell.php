@@ -10,28 +10,36 @@ class RefreshProductsShell extends AppShell {
 
     public function main() {
 
-        /* 掲載終了(st_flg=1)の場合 */  
+        // 0:募集中、1:掲載終了、2:取引完了 //
 
-        $delete_day_finish = date("Y-m-d H i s");
+        
+        /* 掲載終了の場合（掲載終了日になった時点で商品削除） */  
+
+        //$delete_day_finish = date("Y-m-d H i s");
 
         //SellingList
-        $conditions_selling_finish = array('SellingList.deadline <=' => $delete_day_finish);
-        $this->SellingList->deleteAll($conditions_selling_finish, false);
+        //$conditions_selling_finish = array('Selling_list.deadline <=' => date("Y-m-d H i s"););
+        //$this->Selling_list->deleteAll($conditions_selling_finish, false);
+
+
+        $this->テーブル名->updateAll(
+       array ( '更新するカラム' => 変更の値 ),
+       array ( 'Selling_list.deadline <=' => date("Y-m-d H i s")));
 
         
 
 
-        /* 取引完了(st_flag=2)の場合 */ 
+        /* 取引完了(status=2)の場合（取引完了５日後に商品削除） */ 
 
-        $delete_day_trade_done = date("Y-m-d H i s", strtotime('-5 day'));
+        $delete_day = date("Y-m-d H i s", strtotime('-5 day'));
 
         //SellingList
-        $conditions_selling_trade_done = array('SellingList.trade_date <=' => $delete_day_trade_done, 'SellingList.st_flg' => 2);
-        $this->SellingList->deleteAll($conditions_selling_trade_done , false);
+        $conditions_selling_trade_done = array('Selling_list.tradedate <=' => $delete_day, 'Selling_list.status' => 2);
+        $this->Selling_list->deleteAll($conditions_selling_trade_done , false);
 
         //WantedList
-        $conditions_wanted_trade_done = array('WantedList.trade_date <=' => $delete_day_trade_done, 'WantedList.st_flg' => 2);
-        $this->WantedList->deleteAll($conditions_wanted_trade_done , false);
+        $conditions_wanted_trade_done = array('Wanted_list.tradedate <=' => $delete_day, 'Wanted_list.status' => 2);
+        $this->WantedL_list->deleteAll($conditions_wanted_trade_done , false);
 
         $this->out('Complete');
     }

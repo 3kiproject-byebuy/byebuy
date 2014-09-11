@@ -29,9 +29,97 @@ li{
 
 <?php echo $this->Element('header'); ?>
 
-<?php //$login_user_id = $login_user['id']; ?>
+<!-- 現在のログインID取得 -->
+<?php $self = $this->Session->read('Auth.User'); ?>
+<?php //$self['id'] = 2; //テスト用UserID指定（ログイン済み） ?>
 
-<?php $login_user_id = 1; ?>
+<!-- ナビゲーションバー -->
+<ul class="nav nav-tabs nav-justified" role="tablist" style="margin-top:20px;margin-bottom:20px;">
+  <br />
+    <li><?php echo $this->HTML->link('<b>出品中</b>', 
+                      array(
+                        'controller' => 'byebuys',
+                        'action'=>'index'),
+                      array(
+                        'escape'=>false)
+                          ); ?></li>
+
+    <li class="active"><?php echo $this->HTML->link('<b>ほしい</b>', 
+                          array(
+                            'controller' => 'wanted_lists',
+                            'action'=>'index'),
+                          array(
+                            'escape'=>false)
+                          ); ?></li>
+                          
+    <?php
+          //ユーザーが未ログインの場合
+          if (is_null($self)){ 
+            
+              //なにも表示させない
+
+          //ユーザーがログイン中の場合、ステータスを確認
+           }else{
+
+              //【ステータス１】＝ 【承認済みユーザー】 の場合
+              if($self['status']==1){
+
+               echo '<li>';
+
+               echo $this->HTML->link('<b>ウォッチリスト</b>',
+                    array(
+                      'controller'=>'sellingLists',
+                      'action'=>'index'),
+                    array(
+                        'escape'=>false)
+                      ); 
+
+               echo '</li>';
+
+              //【ステータス２】または【ステータス３】＝ 【未承認ユーザー】 の場合
+              }else{
+
+                  //なにも表示させない
+
+            }
+          }?>
+
+
+    <?php
+          //ユーザーが未ログインの場合
+          if (is_null($self)){ 
+
+            //なにも表示させない
+
+          //ユーザーがログイン中の場合、ステータスを確認
+           }else{
+
+              //【ステータス１】＝ 【承認済みユーザー】 の場合
+              if($self['status']==1){
+
+               echo '<li>';
+
+               echo $this->HTML->link('<b>投稿管理</b>',
+                    array(
+                      'controller'=>'postmanagements',
+                      'action'=>'index',
+                       $self['id']),
+                    array(
+                        'escape'=>false)
+                      ); 
+
+               echo '</li>';
+
+              //【ステータス２】または【ステータス３】＝ 【未承認ユーザー】 の場合
+              }else{
+
+                  //なにも表示させない
+                
+            }
+
+          }?>
+</ul>
+<!--ここまで　ナビゲーションバー　ここまで-->
 
 		
     <center>
@@ -40,22 +128,19 @@ li{
       
     	<!-- 欲しいもの投稿ボタン -->
 			<?php
+      if(is_null($self)){//未ログインの場合
+
+        //何も表示させない
+
+      }else{//ログイン済み
+      
 				echo $this->Form->create('Wanted_list',array('url' => 'addWantedList')); //'url'=> 'addWantedList'によりaddWantedListファンクションに飛ばす
-				echo $this->Form->input('user_id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$login_user_id));//user_id保存
-        echo $this->Form->input('wanteddetail',array('type'=>'textarea','rows' => '3','label'=>false,'class'=>'form-control', 'style'=>'width:80%;height:80px;'));//'required'=>false：required属性
-
-      //block,delete,承認待ちユーザーのいずれでも無い場合、投稿ボタンを機能させる
-      if($Users[$login_user_id-1]['User']['block_flg'] == 0 && $Users[$login_user_id-1]['User']['del_flg'] == 0 && $Users[$login_user_id-1]['User']['status'] == 1){
-
+				echo $this->Form->input('user_id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$self['id']));//user_id保存
+        echo $this->Form->input('wanteddetail',array('type'=>'textarea','rows' => '3','label'=>false,'class'=>'form-control', 'style'=>'width:80%;height:80px;','required'=>true));//'required'=>false：required属性
         echo $this->Form->button('投稿', array('type'=>'submit','class'=>'btn btn-default btn-mini','label'=>false,'escape'=>false, 'style'=>'width:150px;margin-bottom:40px;'));
-
-      //block,delete,承認待ちユーザーのいずれかの場合、投稿ボタンを押した際にAlertを出す
-      }else{
-
-        echo $this->Form->button('投稿', array('type'=>'button','class'=>'btn btn-default btn-mini','label'=>false,'escape'=>false, 'style'=>'width:150px;margin-bottom:40px;', 'onclick'=>"alert('ログインして下さい')"));
-
-      }
         echo $this->Form->end();
+
+      } 
       ?>
       <!-- 欲しいもの投稿ボタン -->
 
@@ -111,7 +196,7 @@ li{
                     <!-- //取引成立した場合、欲しいもの詳細の下にコメントを表示 -->
                     <?php
 
-                    if($wanted_list['User']['id'] == $login_user_id && $wanted_list['Wanted_list']['status'] == 2){
+                    if($wanted_list['User']['id'] == $self['id'] && $wanted_list['Wanted_list']['status'] == 2){
 
                       foreach($Users as $user){
 
@@ -173,7 +258,7 @@ li{
                           <!-- 'この人に決める'ボタン -->
                           <!-- (DBから取得したID==現在のログインID)かつ(status　!= 取引完了)かつ(ThreadListのUseID != 現在のログインID)の場合、ボタン表示 -->
                           <?php
-                           if($wanted_list['User']['id']== $login_user_id && $wanted_list['Wanted_list']['status'] != 2 && $wanted_thread['user_id'] != $login_user_id){
+                           if($wanted_list['User']['id']== $self['id'] && $wanted_list['Wanted_list']['status'] != 2 && $wanted_thread['user_id'] != $self['id']){
                             echo $this->Form->create('Wanted_list',array('url'=>'decide'),array('class'=>'form-inline','role'=>'form')); //'url'=> 'decide'によりdecideファンクションに飛ばす
                             echo $this->Form->input('id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$wanted_list['Wanted_list']['id']));//WantedListのidを送信
                             echo $this->Form->input('tradedate',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>date('Y-m-d H:i:s')));//tradedate（交渉成立日時）の保存
@@ -198,24 +283,20 @@ li{
           
        		<!-- コメントボタン -->
 					<?php
-          if($wanted_list['Wanted_list']['status'] != 2){//ステータスが2(取引完了）以外のときコメントボタンを表示
-						echo $this->Form->create('Wanted_thread_list',array('url' => 'addComment'),array('class'=>'form-inline','role'=>'form')); //'url'=> 'addComment'によりaddCommentファンクションに飛ばす
-						echo $this->Form->input('user_id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$login_user_id));//user_id保存
-						echo $this->Form->input('wantedlist_id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$wanted_list['Wanted_list']['id']));//wantedlist_id保存
-            echo $this->Form->input('thread',array('label'=>false,'class'=>'form-control','required'=>true));
+          if(is_null($self)){//未ログインの場合
 
-            //block,delete,承認待ちユーザーのいずれでも無い場合、投稿ボタンを機能させる
-            if($Users[$login_user_id-1]['User']['block_flg'] == 0 && $Users[$login_user_id-1]['User']['del_flg'] == 0 && $Users[$login_user_id-1]['User']['status'] == 1){
+              //何も表示させない
 
+            }else{//ログイン済み
+
+            if($wanted_list['Wanted_list']['status'] != 2){//ステータスが2(取引完了）以外のときコメントボタンを表示
+						  echo $this->Form->create('Wanted_thread_list',array('url' => 'addComment'),array('class'=>'form-inline','role'=>'form')); //'url'=> 'addComment'によりaddCommentファンクションに飛ばす
+						  echo $this->Form->input('user_id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$self['id']));//user_id保存
+						  echo $this->Form->input('wantedlist_id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$wanted_list['Wanted_list']['id']));//wantedlist_id保存
+              echo $this->Form->input('thread',array('label'=>false,'class'=>'form-control','required'=>true));
               echo $this->Form->button('コメント', array('type'=>'submit','class'=>'btn btn-default btn-xs','label'=>false,'escape'=>false));
-
-            //block,delete,承認待ちユーザーのいずれかの場合、投稿ボタンを押した際にAlertを出す
-            }else{
-
-              echo $this->Form->button('コメント', array('type'=>'button','class'=>'btn btn-default btn-xs','label'=>false,'escape'=>false, 'onclick'=>"alert('ログインして下さい')"));
-
+              echo $this->Form->end();
             }
-            echo $this->Form->end();
           }
         	?>
     			
