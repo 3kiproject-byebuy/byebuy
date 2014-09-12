@@ -16,7 +16,7 @@
                         'escape'=>false)
                           ); ?></li>
 
-    <li class="active"><?php echo $this->HTML->link('<b>ほしい</b>', 
+    <li><?php echo $this->HTML->link('<b>ほしい</b>', 
                           array(
                             'controller' => 'wanted_lists',
                             'action'=>'index'),
