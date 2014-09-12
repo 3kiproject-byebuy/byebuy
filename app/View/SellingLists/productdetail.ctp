@@ -790,7 +790,7 @@
 
 	<?php 
 	//もしtrade_person_use_idが0 and 締め切りを過ぎていない and ステータスが2でなく and ログインユーザーならコメント表示
-	if ($sellinglists[0]['Selling_list']['trade_person_use_id'] == 0 && strtotime($sellinglists[0]['Selling_list']['deadline']) > strtotime($current_date) && $sellinglists[0]['Selling_list']['status'] != 2) { ?>
+	if ($sellinglists[0]['Selling_list']['trade_person_use_id'] == 0 && strtotime($sellinglists[0]['Selling_list']['deadline']) > strtotime($current_date) && $sellinglists[0]['Selling_list']['status'] != 2 && !is_null($self)) { ?>
 
 		<div align = "center">
 			<h2>コメント</h2>
@@ -831,7 +831,7 @@
 				<?php echo $this->Form->end();  ?>
 			</div>
 
-	<?php } //もしtrade_person_use_idが0ではなかったらコメント入力を表示しない 終了 ?>
+	<?php } //もしtrade_person_use_idが0 and 締め切りを過ぎていない and ステータスが2でなく and ログインユーザーならコメント表示 終了 ?>
 
 
 
