@@ -160,7 +160,11 @@
 				//ログイン判定
 				if(is_null($self)){  
 
-					//debug('セルフがからっぽ');
+					if($finishFlag == 1){//取引終了の場合
+
+							echo '<span class="label label-danger">取引終了</span>';
+
+					}
 
 				//ユーザーがログイン中の場合、ステータスを確認
 				}else{
