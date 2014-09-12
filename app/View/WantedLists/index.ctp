@@ -124,7 +124,7 @@ li{
 		
     <center>
 
-    		<h1 style="font-size:150%; margin:20px;">欲しいものを投稿する</h1>
+    		<h1 style="font-size:150%; margin-top:60px; margin-bottom:40px;">欲しいものを投稿する</h1>
       
     	<!-- 欲しいもの投稿ボタン -->
 			<?php
@@ -137,7 +137,7 @@ li{
 				echo $this->Form->create('Wanted_list',array('url' => 'addWantedList')); //'url'=> 'addWantedList'によりaddWantedListファンクションに飛ばす
 				echo $this->Form->input('user_id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$self['id']));//user_id保存
         echo $this->Form->input('wanteddetail',array('type'=>'textarea','rows' => '3','label'=>false,'class'=>'form-control', 'style'=>'width:80%;height:80px;','required'=>true));//'required'=>false：required属性
-        echo $this->Form->button('投稿', array('type'=>'submit','class'=>'btn btn-default btn-mini','label'=>false,'escape'=>false, 'style'=>'width:150px;margin-bottom:40px;'));
+        echo $this->Form->button('投稿', array('type'=>'submit','class'=>'btn btn-default btn-mini','label'=>false,'escape'=>false, 'style'=>'width:150px; margin-top:20px; margin-bottom:40px;'));
         echo $this->Form->end();
 
       } 
@@ -147,7 +147,7 @@ li{
     </center>
     
         	
-        <table border="2" bordercolor="#cccccc" width="100%" align="center" style="width:100%;margin-bottom:40px;font-size:12pt;">
+        <table border="2" bordercolor="#cccccc" width="90%" align="center" style="margin-bottom:40px;font-size:12pt;">
         	<tr>
         		<td align="center">みんなの欲しいもの投稿一覧</td>
         	</tr>
@@ -157,6 +157,9 @@ li{
     <div class="pagination pagination-large">    
         <?php echo $this->Paginator->numbers(); ?>
     </div>
+    <p>
+      <?php echo "コメント部分をクリックすると今までのコメント一覧が出てきてコメント投稿も出来るよ！"; ?>
+    </p>
 </center>
 
 
@@ -226,7 +229,7 @@ li{
     </dt>
     <dd>
 
-  <div style="width:95%; height:3px; background-color:#cccccc; margin:40px;"></div>
+  <div style="width:95%; height:2px; background-color:#cccccc; margin:40px;"></div>
 
 
               <!-- Thread -->
