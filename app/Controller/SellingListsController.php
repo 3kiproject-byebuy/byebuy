@@ -9,13 +9,11 @@ class SellingListsController extends AppController {
     public $uses = array('Selling_list', 'Selling_thread_list', 'Category', 'User');
 
 
-    //ログインユーザーに関する宣言
-    // function beforeFilter() { 
-    //        parent::beforefilter();
-    //         $this->Auth->allow();
-    //         $this->set('user', $this->Auth->user()); //ctpで$userを使えるようにする
-
-    //      }
+  //未ログインユーザーも商品詳細が見れるようにする
+ function beforeFilter() { 
+   parent::beforefilter();
+   $this->Auth->allow('productdetail');
+}
 
 
 
@@ -98,41 +96,14 @@ class SellingListsController extends AppController {
 
           }
 
-
-            debug($this->request->data);
-
-
-            // $uploaddir = APP. 'webroot/img/';
-            // $uploadfile = $uploaddir.basename($tmp1); //webroot/img/ファイル名
-            // move_uploaded_file($file1, $uploadfile);
-
-            // $uploaddir = APP. 'webroot/img/';
-            // $uploadfile = $uploaddir.basename($tmp2);
-            // move_uploaded_file($file2, $uploadfile);
-
-            // $uploaddir = APP. 'webroot/img/';
-            // $uploadfile = $uploaddir.basename($tmp3);
-            // move_uploaded_file($file3, $uploadfile);
-
-            //debug($uploaddir);
-            //debug($uploadfile);
-
-            
-        //コードの説明
-            // $uploaddir = APP. 'アップロードしたいディレクトリ';
-            // $uploadfile = $uploaddir . basename('アップロードするときのファイル名');
-            // move_uploaded_file('一時保存されているアップロードしたいファイル名前', $uploadfile);
-
-            // $this->request->data['Selling_list']['img_file_name1'] = $tmp1;
-            // $this->request->data['Selling_list']['img_file_name2'] = $tmp2;
-            // $this->request->data['Selling_list']['img_file_name3'] = $tmp3;
+            //debug($this->request->data);
 
 
             if($this->Selling_list->save($this->request->data, array('validate' => false))) {
             $this->Session->setFlash(__('<div class="alert alert-success" role="alert">商品を投稿しました</div>'));
             return $this->redirect(array('controller' => 'byebuys','action' => 'index'));
 
-            debug($this->request->data);
+            //debug($this->request->data);
           }
           else{
             $this->Session->setFlash(__('<div class="alert alert-success" role="alert">商品の投稿に失敗しました</div>'));
@@ -162,7 +133,7 @@ class SellingListsController extends AppController {
         $self = $this->Auth->user();
         $this->set(compact('self'));
 
-        debug($self['id']);
+        //debug($self['id']);
 
         //カテゴリーデータの取得
         $categories = $this->Category->find('list', array('fields' => array('category_title')));
@@ -188,7 +159,7 @@ class SellingListsController extends AppController {
 
     	$this->set(compact('sellinglists'));
 
-        debug($sellinglists);
+        //debug($sellinglists);
 
         //コメント用のデータをviewにおくる
         $sellingthreadlists = $this->Selling_thread_list->find('all');
@@ -202,87 +173,6 @@ class SellingListsController extends AppController {
 		}
 
 }
-    	// //商品投稿内容編集用
-    	// if ($this->request->is(array('post', 'put'))) {
-     //        // $this->Selling_list->id = $id;
-
-     //        $this->Selling_list->create();
-
-
-     //    //場合分け
-     //    if(isset($this->request->data['Selling_list']['img_file_name1']))
-     //    {
-     //        //----------------------------------------------
-
-     //        $file1 = $this->request->data['Selling_list']['img_file_name1']['tmp_name'];
-     //        $file2 = $this->request->data['Selling_list']['img_file_name2']['tmp_name'];
-     //        $file3 = $this->request->data['Selling_list']['img_file_name3']['tmp_name'];
-     //        $tmp1 = $this->request->data['Selling_list']['img_file_name1']['name'];
-     //        $tmp2 = $this->request->data['Selling_list']['img_file_name2']['name'];
-     //        $tmp3 = $this->request->data['Selling_list']['img_file_name3']['name'];
-
-     //        $uploaddir = APP. 'webroot/img/';
-     //        $uploadfile = $uploaddir.basename($tmp1);
-     //        move_uploaded_file($file, $uploadfile);
-
-     //        $uploaddir = APP. 'webroot/img/';
-     //        $uploadfile = $uploaddir.basename($tmp2);
-     //        move_uploaded_file($file, $uploadfile);
-
-     //        $uploaddir = APP. 'webroot/img/';
-     //        $uploadfile = $uploaddir.basename($tmp3);
-     //        move_uploaded_file($file, $uploadfile);
-
-     //        debug($uploaddir);
-     //        debug($uploadfile);
-
-     //        $this->request->data['Selling_list']['img_file_name1'] = $tmp1;
-     //        $this->request->data['Selling_list']['img_file_name2'] = $tmp2;
-     //        $this->request->data['Selling_list']['img_file_name3'] = $tmp3;
-
-     //        if($this->Selling_list->save($this->request->data, array('validate' => false)))
-     //        {
-     //            $this->Session->setFlash(__('編集が完了しました'));
-     //            return $this->redirect($this->referer());
-     //        }
-            
-
-     //        //-----------------------------------------------
-
-    	//    }
-
-     //    }//場合分け終了
-
-     //        //投稿されてないときに、フォームの中にデータを表示している。
-     //        if (!$this->request->data) {
-     //            $this->request->data = $sellinglists;
-     //        }
-
-
-
-        // //場合分け（コメント投稿）
-        // if(isset($this->request->data['Selling_thread_list']['thread']
-        //   //,$this->request->data['Selling_thread_list']['user_id'],$this->request->data['Selling_thread_list']['sellinglist_id']
-        //   ))
-        // {
-
-        //     //コメント内容反映
-        //     // if ($this->request->is('post')) {
-        //       $this->Selling_thread_list->create();
-        //     if ($this->Selling_thread_list->save($this->data)) {
-        //         $this->Session->setFlash(__('<div class="alert alert-success" role="alert">コメントが投稿されました</div>'));
-        //         // return $this->redirect(array('action' => 'productdetail'));
-        //         //元のページへリダイレクト
-        //         return $this->redirect($this->referer());
-        //         }
-        //         $this->Session->setFlash(__('<div class="alert alert-danger" role="alert">コメント投稿に失敗しました。</div>'));
-        //     //}
-
-
-        // } //場合分け終了
-
-
-
 
 //---------------------------------------------------
 
@@ -293,7 +183,7 @@ class SellingListsController extends AppController {
         if (isset($this->request->data['Selling_list']['trade_person_use_id'])) {
         //if ($this->request->is('post') || $this->request->is('put')) {
 
-            debug($this->request->data);
+            //debug($this->request->data);
             //createメソッドの作成
             $this->Selling_list->create();
 
@@ -321,7 +211,7 @@ class SellingListsController extends AppController {
         // if (isset($this->request->data['Selling_thread_list']['id'])) {
      if ($this->request->is('post') || $this->request->is('put')) {
 
-            debug($this->request->data);
+            //debug($this->request->data);
             //createメソッドの作成
             $this->Selling_thread_list->create();
 
@@ -367,54 +257,88 @@ class SellingListsController extends AppController {
         {
             //----------------------------------------------
 
-        if(
-            //isset($this->request->data['Selling_list']['img_file_name1'])
-         //&& 
-         $this->request->data['Selling_list']['img_file_name1'] !== '')
+        if (
+        //  isset($this->request->data['Selling_list']['img_file_name1'])
+          !empty($this->request->data['Selling_list']['img_file_name1']) || $this->request->data['Selling_list']['img_file_name1'] != '' || $this->request->data['Selling_list']['img_file_name1'] != NULL
+          )
          
           {
+            // $file1 = $this->request->data['Selling_list']['img_file_name1']['tmp_name'];
+            // $tmp1 = $this->request->data['Selling_list']['img_file_name1']['name'];
+
+            // $uploaddir = APP. 'webroot/img/';
+            // $uploadfile = $uploaddir.basename($tmp1);
+            // move_uploaded_file($file1, $uploadfile);
+
+            // $this->request->data['Selling_list']['img_file_name1'] = $tmp1;
+
             $file1 = $this->request->data['Selling_list']['img_file_name1']['tmp_name'];
             $tmp1 = $this->request->data['Selling_list']['img_file_name1']['name'];
 
-            $uploaddir = APP. 'webroot/img/';
-            $uploadfile = $uploaddir.basename($tmp1);
-            move_uploaded_file($file1, $uploadfile);
 
-            $this->request->data['Selling_list']['img_file_name1'] = $tmp1;
+            $uploaddir = APP. 'webroot/img/';
+            list($file_name,$file_type) = explode(".",$tmp1);
+            $dateformat= date("Ymdhis");
+            $uploadfile1 = $uploaddir."01"."$dateformat.$file_type"; 
+            move_uploaded_file($file1, $uploadfile1);
+
+            $this->request->data['Selling_list']['img_file_name1'] = "01$dateformat.$file_type";
+
+
         }
 
-        debug($this->request->data['Selling_list']['img_file_name1']);
+        //debug($this->request->data['Selling_list']['img_file_name1']);
 
-        if(
-            //isset($this->request->data['Selling_list']['img_file_name2']))
-            $this->request->data['Selling_list']['img_file_name2'] !== '')
+        if(isset($this->request->data['Selling_list']['img_file_name2']) || !empty($this->request->data['Selling_list']['img_file_name2']) || $this->request->data['Selling_list']['img_file_name2'] != '' || $this->request->data['Selling_list']['img_file_name2'] != NULL)
           {
+            // $file2 = $this->request->data['Selling_list']['img_file_name2']['tmp_name'];
+            // $tmp2 = $this->request->data['Selling_list']['img_file_name2']['name'];
+
+            // $uploaddir = APP. 'webroot/img/';
+            // $uploadfile = $uploaddir.basename($tmp2);
+            // move_uploaded_file($file2, $uploadfile);
+
+            // $this->request->data['Selling_list']['img_file_name2'] = $tmp2;
+
             $file2 = $this->request->data['Selling_list']['img_file_name2']['tmp_name'];
             $tmp2 = $this->request->data['Selling_list']['img_file_name2']['name'];
 
             $uploaddir = APP. 'webroot/img/';
-            $uploadfile = $uploaddir.basename($tmp2);
-            move_uploaded_file($file2, $uploadfile);
+            // list($file_name,$file_type) = explode(".",$tmp2);
+            // $dateformat=date("Ymdhis");
+            $uploadfile2 = $uploaddir."02"."$dateformat.$file_type"; 
+            move_uploaded_file($file2, $uploadfile2);
 
-            $this->request->data['Selling_list']['img_file_name2'] = $tmp2;
+            $this->request->data['Selling_list']['img_file_name2'] = "02$dateformat.$file_type";
+
+
         }
 
-        if(
-            //isset($this->request->data['Selling_list']['img_file_name3']))
-            $this->request->data['Selling_list']['img_file_name3'] !== '')
-        {
+        if(!empty($this->request->data['Selling_list']['img_file_name3']) || $this->request->data['Selling_list']['img_file_name3'] != '' || $this->request->data['Selling_list']['img_file_name3'] != NULL)
+          {
+            // $file3 = $this->request->data['Selling_list']['img_file_name3']['tmp_name'];
+            // $tmp3 = $this->request->data['Selling_list']['img_file_name3']['name'];
+
+            // $uploaddir = APP. 'webroot/img/';
+            // $uploadfile = $uploaddir.basename($tmp3);
+            // move_uploaded_file($file3, $uploadfile);
+
+            // $this->request->data['Selling_list']['img_file_name3'] = $tmp3;
+
             $file3 = $this->request->data['Selling_list']['img_file_name3']['tmp_name'];
             $tmp3 = $this->request->data['Selling_list']['img_file_name3']['name'];
 
             $uploaddir = APP. 'webroot/img/';
-            $uploadfile = $uploaddir.basename($tmp3);
-            move_uploaded_file($file3, $uploadfile);
+            // list($file_name,$file_type) = explode(".",$tmp3);
+            // $dateformat=date("Ymdhis");
+            $uploadfile3 = $uploaddir."03"."$dateformat.$file_type"; 
+            move_uploaded_file($file3, $uploadfile3);
 
-            $this->request->data['Selling_list']['img_file_name3'] = $tmp3;
+            $this->request->data['Selling_list']['img_file_name3'] = "03$dateformat.$file_type";
         }
                     
-            debug($uploaddir);
-            debug($uploadfile);
+            //debug($uploaddir);
+            //debug($uploadfile);
 
             if ($this->Selling_list->save($this->data, array('validate' => false)))
             //if($this->Selling_list->save($this->request->data, array('validate' => false)))
