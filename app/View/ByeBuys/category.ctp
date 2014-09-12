@@ -45,15 +45,16 @@ echo $this->Element('nav');
 	<!--　検索　ソート　商品一覧 -->
 	<div class="col-md-9">
 		<!--検索・ソート機能-->
+
 		  <div class="row" align="right" style="height:30px;">
 		    <div class="col-md-7" style="padding-right:0px;padding-left:30px;"><!--ソート機能-->
-				<a href="/byebuy/byebuys/index/sort:Selling_list.id/direction:desc" 
+				<a href="/byebuy/byebuys/index/<?php echo $this->passedArgs[0];?>/sort:Selling_list.id/direction:desc" 
 				class="btn btn-default btn-sm col-md-2" role="button">新着</a>
-				<a href="/byebuy/byebuys/index/sort:Selling_list.deadline/direction:asc"
+				<a href="/byebuy/byebuys/index/<?php echo $this->passedArgs[0];?>/sort:Selling_list.deadline/direction:asc"
 				class="btn btn-default btn-sm col-md-2 col-md-offset-1" role="button">締め切り</a>
-				<a href="/byebuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:desc"
+				<a href="/byebuy/byebuys/index/<?php echo $this->passedArgs[0];?>/sort:Selling_list.sellingproduct_price/direction:desc"
 				class="btn btn-default btn-sm col-md-2 col-md-offset-1" role="button">価格が高い</a>
-				<a href="/byebuy/byebuys/index/sort:Selling_list.sellingproduct_price/direction:asc"
+				<a href="/byebuy/byebuys/index/<?php echo $this->passedArgs[0];?>/sort:Selling_list.sellingproduct_price/direction:asc"
 				class="btn btn-default btn-sm col-md-2 col-md-offset-1" role="button">価格が安い</a>
 			</div><!--ここまで　ソート機能　ここまで-->
 
@@ -96,7 +97,7 @@ echo $this->Element('nav');
 				  <div class="col-md-4 item" style="margin-bottom:15px;">
 				    <div class="thumbnail">
 				      
-				      <a href="/ByeBuy/seliinglists/productdetail/<?php echo $product['Selling_list']['id'];?>"><img src="/byebuy/img/<?php echo $product['Selling_list']['img_file_name1']; ?>" alt="表示できません"></a>
+				      <a href="/byebuy/seliinglists/productdetail/<?php echo $product['Selling_list']['id'];?>"><img src="/byebuy/img/<?php echo $product['Selling_list']['img_file_name1']; ?>" alt="表示できません"></a>
 
 				      <div class="caption">
 				        <h3><?php echo $product['Selling_list']['sellingproduct_name'];?></h3>
