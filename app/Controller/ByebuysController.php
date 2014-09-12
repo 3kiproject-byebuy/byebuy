@@ -34,8 +34,15 @@ class ByebuysController extends AppController {
     $products = $this->paginate('Selling_list',$conditions);
 
     //ログイン中のユーザーのウォッチリストを取得
-    $conditions3 = array('Watchlist.user_id' => $id);
-    $myListItems = $this->Watchlist->find('all',$conditions3);
+    $self = $this->Session->read('Auth.User');
+    if(is_null($self)){
+    
+    }else{
+
+    $conditions3 = array('Watchlist.user_id' => $self['id']);
+    $myListItems = $this->Watchlist->find('all',array('conditions' => $conditions3));
+
+    }
     //debug($myListItems);
     
 
@@ -86,7 +93,7 @@ class ByebuysController extends AppController {
 
         //ログイン中のユーザーのウォッチリストを取得
         $conditions3 = array('Watchlist.user_id' => $self['id']);
-        $myListItems = $this->Watchlist->find('all',$conditions3);
+        $myListItems = $this->Watchlist->find('all',array('conditions' => $conditions3));
 
         $this->set(compact('products','categories','self','myListItems'));
 
