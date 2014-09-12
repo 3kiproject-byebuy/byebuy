@@ -97,7 +97,7 @@ echo $this->Element('nav');
 				  <div class="col-md-4 item" style="margin-bottom:15px;">
 				    <div class="thumbnail">
 				      
-				      <a href="/byebuy/seliinglists/productdetail/<?php echo $product['Selling_list']['id'];?>"><img src="/byebuy/img/<?php echo $product['Selling_list']['img_file_name1']; ?>" alt="表示できません"></a>
+				      <a href="/byebuy/sellingLists/productdetail/<?php echo $product['Selling_list']['id'];?>"><img src="/byebuy/img/<?php echo $product['Selling_list']['img_file_name1']; ?>" alt="表示できません"></a>
 
 				      <div class="caption">
 				        <h3><?php echo $product['Selling_list']['sellingproduct_name'];?></h3>
@@ -162,7 +162,11 @@ echo $this->Element('nav');
 						
 						if(is_null($self)){  
 
-							//debug('セルフがからっぽ');
+							if($finishFlag == 1){//取引終了の場合
+
+							echo '<span class="label label-danger">取引終了</span>';
+
+							}
 
 						}else{
 
