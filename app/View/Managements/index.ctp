@@ -1,3 +1,5 @@
+<div id="result" class="col-xs-12 text-center"></div>
+
 <div class="col-xs-12 text-center jumbotron">
 	<h1>ByeBuy管理画面</h1>
 </div>
@@ -108,3 +110,91 @@
 	</div>
 
 </div>
+
+
+
+<?php $this->Html->scriptStart(array('inline' => false)); ?>
+
+var i = 0;
+
+window.onload = function(){
+window.document.onkeydown = function(evt){
+if (evt){
+var kc = evt.keyCode;
+}else{
+var kc = event.keyCode;
+}
+var chr = String.fromCharCode(kc);
+
+    switch (i){
+  case 0:
+    if(kc==38){
+    i++;
+    }else{
+    i=0
+    };
+    break;
+  case 1:
+    if(kc==38){
+    i++;
+    }else{
+    i=0
+    };
+    break;
+  case 2:
+    if(kc==40){
+    i++;
+    }else{
+    i=0
+    };
+    break;
+  case 3:
+    if(kc==40){
+    i++;
+    }else{
+    i=0
+    };
+    break;
+  case 4:
+    if(kc==37){
+    i++;
+    }else{
+    i=0
+    };
+    break;
+  case 5:
+    if(kc==39){
+    i++;
+    }else{
+    i=0
+    };
+    break;
+  case 6:
+    if(kc==37){
+    i++;
+    }else{
+    i=0
+    };
+    break;
+  case 7:
+    if(kc==39){
+    i++;
+    }else{
+    i=0
+    };
+    break;
+  default:
+    i=0;
+    break;
+}
+
+if(i==8){
+  document.getElementById("result").innerHTML += '<img src="/byebuy/img/irukappa.png" alt="表示できません">';
+  i=0;
+}
+
+}
+}
+
+<?php $this->Html->scriptEnd(); ?>
+
