@@ -1,7 +1,7 @@
 <?php
 //現在ログインしているユーザーを取得
 $self = $this->Session->read('Auth.User');
-debug($self);
+
 ?>
 
 <!--管理画面へ-->

@@ -1,6 +1,6 @@
 
 	  <?php 
-		echo $this->Element('header');
+		//echo $this->Element('header');
 		echo $this->Element('nav');
 
 		//現在ログインしているユーザーを取得

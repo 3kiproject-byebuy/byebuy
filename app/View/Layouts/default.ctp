@@ -121,21 +121,21 @@ h4 {
     </script>
 <!--facebookとの接続に必要なjavascriptのイニシャライズ-->
 
-	<div id="container">
+	<div id="container" style="background-color:#000000;">
 
         <div id="header">
         
-            <!--
-            <h1><?php //echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-         -->
+        <?php echo $this->Element('header');?>
 
         </div>
 		<div id="content">
 		
 			<?php echo $this->Session->flash(); ?>
 
-			<?php echo $this->fetch('content'); ?>
+        <div style="margin:0px;background-color:#ffffff;">
+			    <?php echo $this->fetch('content'); ?>
         </div>
+    </div>
 	
 		<div id="footer">
 			<?php echo $this->Html->link(
