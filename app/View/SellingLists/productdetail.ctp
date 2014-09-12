@@ -1,52 +1,107 @@
 <?php echo $this->Element('header'); ?>
 
 
-<?php 
-//タブ ?>
-	<ul class="nav nav-tabs nav-justified" role="tablist" style="margin-top:20px;margin-bottom:20px;">
-	  <br />
-	    <li class="active"><?php echo $this->HTML->link('<b>出品中</b>', 
-	                      array(
-	                        'controller' => 'byebuys',
-	                        'action'=>'index'),
-	                      array(
-	                        'escape'=>false)
-	                          ); ?></li>
+<!-- 現在のログインID取得 -->
+<?php $self = $this->Session->read('Auth.User'); ?>
+<?php //$self['id'] = 2; //テスト用UserID指定（ログイン済み） ?>
 
-	    <li><?php echo $this->HTML->link('<b>ほしい</b>', 
-	                          array(
-	                            'controller' => 'wanted_lists',
-	                            'action'=>'index'),
-	                          array(
-	                            'escape'=>false)
-	                          ); ?></li>
-	                          
-	    <li><?php echo $this->HTML->link('<b>ウォッチリスト</b>',
-	                        array(
-	                          'controller'=>'watchlists',
-	                          'action'=>'index'),
-	                        array(
-	                            'escape'=>false)
-	                          ); ?></li>
+<!-- ナビゲーションバー -->
+<ul class="nav nav-tabs nav-justified" role="tablist" style="margin-top:20px;margin-bottom:20px;">
+  <br />
+    <li><?php echo $this->HTML->link('<b>出品中</b>', 
+                      array(
+                        'controller' => 'byebuys',
+                        'action'=>'index'),
+                      array(
+                        'escape'=>false)
+                          ); ?></li>
+
+    <li><?php echo $this->HTML->link('<b>ほしい</b>', 
+                          array(
+                            'controller' => 'wanted_lists',
+                            'action'=>'index'),
+                          array(
+                            'escape'=>false)
+                          ); ?></li>
+                          
+    <?php
+          //ユーザーが未ログインの場合
+          if (is_null($self)){ 
+            
+              //なにも表示させない
+
+          //ユーザーがログイン中の場合、ステータスを確認
+           }else{
+
+              //【ステータス１】＝ 【承認済みユーザー】 の場合
+              if($self['status']==1){
+
+               echo '<li>';
+
+               echo $this->HTML->link('<b>ウォッチリスト</b>',
+                    array(
+                      'controller'=>'sellingLists',
+                      'action'=>'index'),
+                    array(
+                        'escape'=>false)
+                      ); 
+
+               echo '</li>';
+
+              //【ステータス２】または【ステータス３】＝ 【未承認ユーザー】 の場合
+              }else{
+
+                  //なにも表示させない
+
+            }
+          }?>
 
 
-	    <li><?php echo $this->HTML->link('<b>投稿管理</b>',
-	                        array(
-	                          'controller'=>'postmanagements',
-	                          'action'=>'index'),
-	                        array(
-	                            'escape'=>false)
-	                          ); ?></li>
-	</ul>
+    <?php
+          //ユーザーが未ログインの場合
+          if (is_null($self)){ 
 
-<?php //タブ 終了 ?>
+            //なにも表示させない
+
+          //ユーザーがログイン中の場合、ステータスを確認
+           }else{
+
+              //【ステータス１】＝ 【承認済みユーザー】 の場合
+              if($self['status']==1){
+
+               echo '<li>';
+
+               echo $this->HTML->link('<b>投稿管理</b>',
+                    array(
+                      'controller'=>'postmanagements',
+                      'action'=>'index',
+                       $self['id']),
+                    array(
+                        'escape'=>false)
+                      ); 
+
+               echo '</li>';
+
+              //【ステータス２】または【ステータス３】＝ 【未承認ユーザー】 の場合
+              }else{
+
+                  //なにも表示させない
+                
+            }
+
+          }?>
+</ul>
+<!--ここまで　ナビゲーションバー　ここまで-->
+
 
 
 <?php 
 //商品詳細 ?>
 	<br />
-	<h2>商品詳細</h2>
-	<br /><br /><br />
+	<center>
+		<h2>商品詳細</h2>
+	</center>
+	<br /><br />
 
 	<?php 
 	//①もしログインユーザーidが商品のuser_idと同一ではなかったら（ログインユーザーが出品者ではない場合） ?>
@@ -166,11 +221,14 @@
 
 	<?php
 	//②もしログインユーザーでなかったらコメントを表示しない
-	if (!is_null($self)){ ?>
+	if (!is_null($self))
+		{ ?>
 
 		<?php 
-		//③trade_person_use_idが0もしくはNULLもしくは空だったらコメント入力を表示
-		if ($sellinglists[0]['Selling_list']['trade_person_use_id'] == 0 || $sellinglists[0]['Selling_list']['trade_person_use_id'] == NULL || empty($sellinglists[0]['Selling_list']['trade_person_use_id'])) { ?>
+		$current_date = date('Y-m-d H:i:s');
+		//③trade_person_use_idが0、もしくは期限内だったらコメント入力を表示
+		if ($sellinglists[0]['Selling_list']['trade_person_use_id'] == 0 && strtotime($sellinglists[0]['Selling_list']['deadline']) > strtotime($current_date)) { ?>
+
 
 			<div align = "center">
 				<h2>コメント</h2>
@@ -210,15 +268,14 @@
 
 		<?php } //③trade_person_use_idが0もしくはNULLもしくは空だったらコメント入力を表示 　終了?>
 
-
 		<?php //以下入力されたコメントの表示---------------?>
 
 			<center>
 		    	<dl id="acMenu">
 		    	<dt>
 
-				<?php //もしtrade_person_use_idが0だったら（取引が成立していなかったら）
-				if ($sellinglists[0]['Selling_list']['trade_person_use_id'] == 0 || $sellinglists[0]['Selling_list']['trade_person_use_id'] == NULL || empty($sellinglists[0]['Selling_list']['trade_person_use_id'])) 
+				<?php //もしtrade_person_use_idが0だったら and　まだ締め切り日が残っていたら（取引が成立していなかったら）
+				if ($sellinglists[0]['Selling_list']['trade_person_use_id'] == 0 && strtotime($sellinglists[0]['Selling_list']['deadline']) > strtotime($current_date)) 
 					{ ?> 
 
 					<?php foreach($sellingthreadlists as $threadlist): ?>
@@ -287,7 +344,7 @@
 
 			<?php } //もしtrade_person_use_idが0だったら（取引が成立していなかったら） 終了
 
-			else { //もしtrade_person_use_idが0ではなかったら（取引が成立していたら） ?>
+			if($sellinglists[0]['Selling_list']['trade_person_use_id'] != 0 || strtotime($sellinglists[0]['Selling_list']['deadline']) < strtotime($current_date)) { //もしtrade_person_use_idが0ではなかったら（取引が成立していたら）or 取引期限が過ぎていたら ?>
 
 				<center>
 					<br />
@@ -397,7 +454,7 @@
 <?php //もしログインユーザーidが商品のuser_idと同一だったら（ログインユーザーが出品者だった場合） ?>
 <?php if($sellinglists[0]['Selling_list']['user_id'] == $self['id'] && $sellinglists[0]['Selling_list']['status'] != 2) { ?>
 
-	↓投稿者が見たとき↓
+<?php //↓投稿者が見たとき↓ ?>
 
 	<div class = "container well">
 
@@ -574,7 +631,7 @@
 	  <?php //締め切り日を過ぎている場合 ?>			
 	  <?php
 	  $current_date = date('Y-m-d H:i:s');
-	  if((strtotime($sellinglists[0]['Selling_list']['deadline']) < strtotime($current_date))) { ?>
+	  if((strtotime($sellinglists[0]['Selling_list']['deadline']) >= strtotime($current_date))) { ?>
 		<?php echo $this->Form->input('deadline',
 											array(
 												'label'=>'締め切り日&nbsp;&nbsp;',
@@ -598,7 +655,7 @@
 	      <?php //締め切り日を過ぎている場合 ?>			
 	      <?php
 	       $current_date = date('Y-m-d H:i:s');
-	       if((strtotime($sellinglists[0]['Selling_list']['deadline']) >= strtotime($current_date))) { ?>
+	       if((strtotime($sellinglists[0]['Selling_list']['deadline']) < strtotime($current_date))) { ?>
 
 	        				<p>締め切り: この取引は終了しました</p>
 	      <?php } ?>
@@ -632,7 +689,7 @@
 				$msg = __($sellinglists[0]['Selling_list']['sellingproduct_name'].'商品を編集します。よろしいですか？', true);
 			?>
 
-			<?php echo $this->Form->submit(__('編集', true), array('name'=>'hoge', 'onClick'=>"return confirm('$msg')"));?>
+			<?php echo $this->Form->submit(__('投稿記事内容を編集する', true), array('name'=>'hoge', 'onClick'=>"return confirm('$msg')"));?>
 			<?php echo $this->Form->end();  ?>
 
 
@@ -738,13 +795,13 @@
 	        				
 	        			<?php 
 	        			//もし締め切り日を過ぎていたら
-	        			} if((strtotime($sellinglists[0]['Selling_list']['deadline']) - strtotime($current_date)) < 0 || $sellinglists[0]['Selling_list']['status'] == 2) { ?>
+	        			} if((strtotime($sellinglists[0]['Selling_list']['deadline']) < strtotime($current_date)) || $sellinglists[0]['Selling_list']['status'] == 2) { ?>
 
 	        				<p>○&nbsp;締め切り: この取引は終了しました</p>
 
 						<?php }
-						//もし締め切り日が１日よりも多かったら
-						if((strtotime($sellinglists[0]['Selling_list']['deadline']) - strtotime($current_date)) > 86400) { ?>
+						//もし締め切り日が１日よりも多かったら and statusが2ではなかったら
+						if((strtotime($sellinglists[0]['Selling_list']['deadline']) - strtotime($current_date)) > 86400 && $sellinglists[0]['Selling_list']['status'] != 2) { ?>
 							<p>○&nbsp;締め切り日: <?php echo $sellinglists[0]['Selling_list']['deadline']; ?></p>
 						<?php } ?>
 
@@ -767,8 +824,9 @@
 
 				</div>
 
+		<?php } ////もしログインユーザーidが商品のuser_idと同一（ログインユーザーが出品者だった場合）かつ、取引が完了している場合 終了?>
 
-		<?php } //もしログインユーザーidが商品のuser_idと同一（ログインユーザーが出品者だった場合）かつ、取引が完了している場合 ?>
+
 
 	<?php //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ここまで出品者がみたときの画面(取引が完了している場合)↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑?>
 
@@ -784,8 +842,8 @@
 	<?php //-------------------------------------------- ?>
 
 	<?php 
-	//もしtrade_person_use_idが0ではなかったらコメント入力を表示しない
-	if ($sellinglists[0]['Selling_list']['trade_person_use_id'] == 0) { ?>
+	//もしtrade_person_use_idが0 and 締め切りを過ぎていない and ステータスが2でなく and ログインユーザーならコメント表示
+	if ($sellinglists[0]['Selling_list']['trade_person_use_id'] == 0 && strtotime($sellinglists[0]['Selling_list']['deadline']) > strtotime($current_date) && $sellinglists[0]['Selling_list']['status'] != 2 && !is_null($self)) { ?>
 
 		<div align = "center">
 			<h2>コメント</h2>
@@ -826,7 +884,7 @@
 				<?php echo $this->Form->end();  ?>
 			</div>
 
-	<?php } //もしtrade_person_use_idが0ではなかったらコメント入力を表示しない 終了 ?>
+	<?php } //もしtrade_person_use_idが0 and 締め切りを過ぎていない and ステータスが2でなく and ログインユーザーならコメント表示 終了 ?>
 
 
 
@@ -836,8 +894,8 @@
 	    <dl id="acMenu">
 	    <dt>
 
-		<?php //もしtrade_person_use_idが0だったら
-		if ($sellinglists[0]['Selling_list']['trade_person_use_id'] == 0) { ?>
+		<?php //もしtrade_person_use_idが0で、商品出品者=ログインユーザーだったら
+		if ($sellinglists[0]['Selling_list']['trade_person_use_id'] == 0 && $sellinglists[0]['Selling_list']['user_id'] == $self['id']) { ?>
 
 			<?php foreach($sellingthreadlists as $threadlist): ?>
 
@@ -861,10 +919,13 @@
 
 	    			
 					<?php //スレッド内容の呼び出し ?>
+
 								<tr>
 									<td style="border: 2px solid #cccccc" align="left">
 	    							 	<?php echo $threadlist['Selling_thread_list']['thread']; ?>
 									</td>
+							<?php //もしコメントしたユーザーが自分(出品者)でなかったら「この人に決定ボタン」を表示
+							if ($threadlist['Selling_thread_list']['user_id'] != $self['id']){ ?>
 									<td>
 										<?php //この人に決定ボタン ?>
 										<?php echo $this->Form->create('Selling_list',array('url'=>'decide')); ?>
@@ -889,7 +950,9 @@
 										&nbsp;&nbsp;<?php echo $this->Form->button('この人に決定', array('type' => 'submit', 'class'=>'btn btn-primary', 'label' => false, 'escape' => false)); ?>
 										<?php echo $this->Form->end();  ?>
 									</td>
+								  <?php } //もしコメントしたユーザーが自分(出品者)でなかったら「この人に決定ボタン」を表示 終了 ?>
 								</tr>
+							  
 							</table>
 					</h4>
 				</div>
@@ -909,7 +972,7 @@
 
 	//if ($sellinglists[0]['Selling_list']['trade_person_use_id'] !== 0) 
 
-	else { //もしtrade_person_use_idが0ではなかったら ?>
+	if($sellinglists[0]['Selling_list']['trade_person_use_id'] != 0 || strtotime($sellinglists[0]['Selling_list']['deadline']) < strtotime($current_date)) { //もしtrade_person_use_idが0ではなかったら（取引が成立していたら）or 取引期限が過ぎていたら ?>
 
 	<center>
 	<br />
@@ -920,8 +983,8 @@
 
 		 foreach($sellingthreadlists as $threadlist): 
 
-				//もし商品出品者のid = ログインユーザのidだったら ※とりあえずコメントアウト
-				//if($sellinglists[0]['Selling_list']['user_id'] == $user['User']['id']){
+				//もし商品出品者のid = ログインユーザのidで、とりひきが成立していたら
+				if($sellinglists[0]['Selling_list']['user_id'] == $self['id'] || $sellinglists[0]['Selling_list']['trade_person_use_id'] == 2){
 
 					//Selling_listのtrade_person_use_idの名前と写真を表示する
 					if($sellinglists[0]['Selling_list']['trade_person_use_id'] == $threadlist['User']['id']) {
@@ -936,7 +999,7 @@
 	                    break;
 
 					} //Selling_listのtrade_person_use_idの名前と写真を表示する 終了
-				//} /もし商品出品者のid = ログインユーザのidだったら 終了 ※とりあえずコメントアウト
+				} //もし商品出品者のid = ログインユーザのidだったら 終了 ※とりあえずコメントアウト
 		endforeach;
 
 	?>

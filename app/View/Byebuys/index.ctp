@@ -160,7 +160,11 @@
 				//ログイン判定
 				if(is_null($self)){  
 
-					//debug('セルフがからっぽ');
+					if($finishFlag == 1){//取引終了の場合
+
+							echo '<span class="label label-danger">取引終了</span>';
+
+					}
 
 				//ユーザーがログイン中の場合、ステータスを確認
 				}else{
@@ -175,6 +179,9 @@
 						//echo $this->Html->Html('<p align="right"><button class="btn btn-mini btn-default" type="submit">ウォッチリスト</button></p>',array('escape' => false,'label'=>false));
 					
 						$flag = 0;
+						if(is_null($self)){
+							$flag = 0;
+						}else{
 						foreach ($myListItems as $myListItem) {
 
 							if($myListItem['Watchlist']['sellinglist_id']==$product['Selling_list']['id']){
@@ -185,6 +192,7 @@
 							}
 							
 						}
+					}
 
 						//ウォッチリスト登録ボタン、登録済みバッチ、取引終了バッチ表示
 						//ウォッチリストに未登録かつ、取引終了前だったら
