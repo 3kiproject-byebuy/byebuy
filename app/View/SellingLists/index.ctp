@@ -94,11 +94,6 @@
 <!--ここまで　ナビゲーションバー　ここまで-->
 
 
-
-<br />
-
-
-
 <?php
 if(is_null($self)){ ?>
 <center>
@@ -108,8 +103,9 @@ if(is_null($self)){ ?>
 </center>
 
 <?php }else { ?>
-
-<h2>商品を投稿する</h2>
+<center>
+  <h2>商品を投稿する</h2>
+</center>
 
 <div class = "container well">
 <br />
