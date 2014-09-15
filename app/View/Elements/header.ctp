@@ -28,7 +28,7 @@ if(is_null($self)){
 <div class="row">
 
     <!--いいね、シェア-->
-    <div class="col-md-3 col-md-offset-9" align="right" style="bottom:0px;">
+    <div class="col-md-2 col-md-offset-10" align="right" style="bottom:0px;">
     <script language="javascript" type="text/javascript">
      
              function invite(){
@@ -42,12 +42,14 @@ if(is_null($self)){
           }
     </script>
 
+
     <input class="btn btn-default btn-xs" type="button" value="友達に教える" onclick="invite();"/>
     <div id="output"></div>
-   
+    </div>
     <!--ここまで　いいね、シェア　ここまで-->
 
     <!--友達招待-->
+    <div class="col-md-3 col-md-offset-9" align="right" style="bottom:0px;">
     <div class="fb-like" data-href="https://geechscamp.lovepop.jp/byebuy" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
      </div>
 
@@ -59,7 +61,7 @@ if(is_null($self)){
 //echo '<button class="btn btn-mini btn-default" type="button">login</button>';
 if (is_null($self)){ 
   
-    echo '<div class="col-md-2" style="margin-top:15px;padding-left:30px;">';
+    echo '<div class="col-md-3 col-md-offset-9" align="right" style="margin-top:15px;padding-left:30px;">';
     echo $this->Html->link($this->Html->image('active200.png'),array('controller' => 'fbconnects','action' => 'facebook'),array('escape' => false));
     echo '</div>';
     echo '</div>';

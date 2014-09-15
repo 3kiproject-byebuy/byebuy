@@ -27,16 +27,17 @@ li{
     });
 </script>
 
-<?php echo $this->Element('header'); ?>
 
 <!-- 現在のログインID取得 -->
 <?php $self = $this->Session->read('Auth.User'); ?>
 <?php //$self['id'] = 2; //テスト用UserID指定（ログイン済み） ?>
 
+
 <!-- ナビゲーションバー -->
-<ul class="nav nav-tabs nav-justified" role="tablist" style="margin-top:20px;margin-bottom:20px;">
+
+<ul class="nav nav-tabs nav-justified" role="tablist" style="margin-bottom:20px;">
   <br />
-    <li><?php echo $this->HTML->link('<b>出品中</b>', 
+    <li><?php echo $this->HTML->link('<font color="#ffffff"><b>出品中</b></font>', 
                       array(
                         'controller' => 'byebuys',
                         'action'=>'index'),
@@ -66,10 +67,11 @@ li{
 
                echo '<li>';
 
-               echo $this->HTML->link('<b>ウォッチリスト</b>',
+               echo $this->Form->postLink('<font color="#ffffff"><b>ウォッチリスト</b></font>',
                     array(
-                      'controller'=>'sellingLists',
-                      'action'=>'index'),
+                      'controller'=>'watchlists',
+                      'action'=>'index',
+                      $self['id']),
                     array(
                         'escape'=>false)
                       ); 
@@ -99,7 +101,7 @@ li{
 
                echo '<li>';
 
-               echo $this->HTML->link('<b>投稿管理</b>',
+               echo $this->Form->postLink('<font color="#ffffff"><b>投稿管理</b></font>',
                     array(
                       'controller'=>'postmanagements',
                       'action'=>'index',
@@ -119,6 +121,7 @@ li{
 
           }?>
 </ul>
+
 <!--ここまで　ナビゲーションバー　ここまで-->
 
 		

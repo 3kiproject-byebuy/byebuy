@@ -1,4 +1,4 @@
-<?php echo $this->Element('header'); ?>
+
 
 
 <!-- 現在のログインID取得 -->
@@ -6,9 +6,10 @@
 <?php //$self['id'] = 2; //テスト用UserID指定（ログイン済み） ?>
 
 <!-- ナビゲーションバー -->
-<ul class="nav nav-tabs nav-justified" role="tablist" style="margin-top:20px;margin-bottom:20px;">
+
+<ul class="nav nav-tabs nav-justified" role="tablist" style="margin-bottom:20px;">
   <br />
-    <li><?php echo $this->HTML->link('<b>出品中</b>', 
+    <li class="active"><?php echo $this->HTML->link('<b>出品中</b>', 
                       array(
                         'controller' => 'byebuys',
                         'action'=>'index'),
@@ -16,7 +17,7 @@
                         'escape'=>false)
                           ); ?></li>
 
-    <li><?php echo $this->HTML->link('<b>ほしい</b>', 
+    <li><?php echo $this->HTML->link('<font color="#ffffff"><b>ほしい</b></font>', 
                           array(
                             'controller' => 'wanted_lists',
                             'action'=>'index'),
@@ -38,10 +39,11 @@
 
                echo '<li>';
 
-               echo $this->HTML->link('<b>ウォッチリスト</b>',
+               echo $this->Form->postLink('<font color="#ffffff"><b>ウォッチリスト</b></font>',
                     array(
-                      'controller'=>'sellingLists',
-                      'action'=>'index'),
+                      'controller'=>'watchlists',
+                      'action'=>'index',
+                      $self['id']),
                     array(
                         'escape'=>false)
                       ); 
@@ -71,7 +73,7 @@
 
                echo '<li>';
 
-               echo $this->HTML->link('<b>投稿管理</b>',
+               echo $this->Form->postLink('<font color="#ffffff"><b>投稿管理</b></font>',
                     array(
                       'controller'=>'postmanagements',
                       'action'=>'index',
@@ -91,6 +93,7 @@
 
           }?>
 </ul>
+
 <!--ここまで　ナビゲーションバー　ここまで-->
 
 

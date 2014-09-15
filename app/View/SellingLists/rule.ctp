@@ -1,4 +1,4 @@
-<?php echo $this->Element('header'); ?>
+
 
 
 <!-- 現在のログインID取得 -->
@@ -6,9 +6,10 @@
 <?php //$self['id'] = 2; //テスト用UserID指定（ログイン済み） ?>
 
 <!-- ナビゲーションバー -->
-<ul class="nav nav-tabs nav-justified" role="tablist" style="margin-top:20px;margin-bottom:20px;">
+
+<ul class="nav nav-tabs nav-justified" role="tablist" style="margin-bottom:20px;">
   <br />
-    <li><?php echo $this->HTML->link('<b>出品中</b>', 
+    <li><?php echo $this->HTML->link('<font color="#ffffff"><b>出品中</b></font>', 
                       array(
                         'controller' => 'byebuys',
                         'action'=>'index'),
@@ -16,7 +17,7 @@
                         'escape'=>false)
                           ); ?></li>
 
-    <li><?php echo $this->HTML->link('<b>ほしい</b>', 
+    <li><?php echo $this->HTML->link('<font color="#ffffff"><b>ほしい</b></font>', 
                           array(
                             'controller' => 'wanted_lists',
                             'action'=>'index'),
@@ -38,10 +39,11 @@
 
                echo '<li>';
 
-               echo $this->HTML->link('<b>ウォッチリスト</b>',
+               echo $this->Form->postLink('<font color="#ffffff"><b>ウォッチリスト</b></font>',
                     array(
-                      'controller'=>'sellingLists',
-                      'action'=>'index'),
+                      'controller'=>'watchlists',
+                      'action'=>'index',
+                      $self['id']),
                     array(
                         'escape'=>false)
                       ); 
@@ -71,7 +73,7 @@
 
                echo '<li>';
 
-               echo $this->HTML->link('<b>投稿管理</b>',
+               echo $this->Form->postLink('<font color="#ffffff"><b>投稿管理</b></font>',
                     array(
                       'controller'=>'postmanagements',
                       'action'=>'index',
@@ -91,6 +93,7 @@
 
           }?>
 </ul>
+
 <!--ここまで　ナビゲーションバー　ここまで-->
 
 
@@ -128,49 +131,6 @@
 <!-- ●利用料金について<br />
 すべて無料でご利用いただけます。<br />
 <br /><br /> -->
-
-
-<?php //↓-------------------利用規約とQ&Aとcopyrightの記述----------------------↓ ?>
-
-<center>
-<table>
-  <tr>
-    <td>
-      <div>
-        <?php echo $this->HTML->link('利用規約', 
-                                      array(
-                                        'controller' => 'sellingLists',
-                                        'action'=>'rule'),
-                                    array(
-                                          'escape'=>false)
-                                        
-                                      );
-        ?>
-      </div>
-    </td>
-    <td>
-      &nbsp;&nbsp;&nbsp;
-    </td>
-    <td>
-      <div>
-        <?php echo $this->HTML->link('Q&A', 
-                                   array(
-                                        'controller' => 'sellingLists',
-                                        'action'=>'qa'),
-                                    array(
-                                          'escape'=>false)
-                                            
-                                   );
-        ?>
-      </div>
-    </td>
-  </tr>
-</table>  
-      <p>copyright(c)2014 geechsasia. All rights reserved.</p>
-
-</center>
-<?php //↑-------------------利用規約とQ&Aとcopyrightの記述----------------------↑ ?>
-
 
 
 

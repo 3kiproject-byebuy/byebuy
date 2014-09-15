@@ -1,6 +1,4 @@
-<?php
-    echo $this->element('header');
-?>
+
 
 <?php
 //現在ログインしているユーザーを取得
@@ -9,9 +7,10 @@ debug($self);
 ?>
 <!-- ナビゲーションバー -->
 
-<ul class="nav nav-tabs nav-justified" role="tablist" style="margin-top:20px;margin-bottom:20px;">
+
+<ul class="nav nav-tabs nav-justified" role="tablist" style="margin-bottom:20px;">
   <br />
-    <li><?php echo $this->HTML->link('<b>出品中</b>', 
+    <li><?php echo $this->HTML->link('<font color="#ffffff"><b>出品中</b></font>', 
                       array(
                         'controller' => 'byebuys',
                         'action'=>'index'),
@@ -19,7 +18,7 @@ debug($self);
                         'escape'=>false)
                           ); ?></li>
 
-    <li><?php echo $this->HTML->link('<b>ほしい</b>', 
+    <li ><?php echo $this->HTML->link('<font color="#ffffff"><b>ほしい</b></font>', 
                           array(
                             'controller' => 'wanted_lists',
                             'action'=>'index'),
@@ -41,7 +40,7 @@ debug($self);
 
                echo '<li>';
 
-               echo $this->Form->postLink('<b>ウォッチリスト</b>',
+               echo $this->Form->postLink('<font color="#ffffff"><b>ウォッチリスト</b></font>',
                     array(
                       'controller'=>'watchlists',
                       'action'=>'index',
@@ -95,6 +94,8 @@ debug($self);
 
           }?>
 </ul>
+
+<!--ここまで　ナビゲーションバー　ここまで-->
 
 
     <li><?php

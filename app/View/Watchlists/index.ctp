@@ -8,7 +8,7 @@ $self = $this->Session->read('Auth.User');?>
 
 <ul class="nav nav-tabs nav-justified" role="tablist" style="margin-bottom:20px;">
   <br />
-    <li><?php echo $this->HTML->link('<b>出品中</b>', 
+    <li><?php echo $this->HTML->link('<font color="#ffffff"><b>出品中</b></font>', 
                       array(
                         'controller' => 'byebuys',
                         'action'=>'index'),
@@ -16,7 +16,7 @@ $self = $this->Session->read('Auth.User');?>
                         'escape'=>false)
                           ); ?></li>
 
-    <li><?php echo $this->HTML->link('<b>ほしい</b>', 
+    <li><?php echo $this->HTML->link('<font color="#ffffff"><b>ほしい</b></font>', 
                           array(
                             'controller' => 'wanted_lists',
                             'action'=>'index'),
@@ -72,7 +72,7 @@ $self = $this->Session->read('Auth.User');?>
 
                echo '<li>';
 
-               echo $this->Form->postLink('<b>投稿管理</b>',
+               echo $this->Form->postLink('<font color="#ffffff"><b>投稿管理</b></font>',
                     array(
                       'controller'=>'postmanagements',
                       'action'=>'index',

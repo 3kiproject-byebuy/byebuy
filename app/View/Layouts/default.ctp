@@ -152,6 +152,48 @@ h4 {
 					array('target' => '_blank','escape' => false)
 				);
 			?>
+
+
+      <?php //↓-------------------利用規約とQ&Aとcopyrightの記述----------------------↓ ?>
+
+              <center>
+              <table>
+                <tr>
+                  <td>
+                    <div>
+                      <?php echo $this->HTML->link('利用規約', 
+                                                    array(
+                                                      'controller' => 'sellingLists',
+                                                      'action'=>'rule'),
+                                                  array(
+                                                        'escape'=>false)
+                                                      
+                                                    );
+                      ?>
+                    </div>
+                  </td>
+                  <td>
+                    &nbsp;&nbsp;&nbsp;
+                  </td>
+                  <td>
+                    <div>
+                      <?php echo $this->HTML->link('Q&A', 
+                                                 array(
+                                                      'controller' => 'sellingLists',
+                                                      'action'=>'qa'),
+                                                  array(
+                                                        'escape'=>false)
+                                                          
+                                                 );
+                      ?>
+                    </div>
+                  </td>
+                </tr>
+              </table>  
+                    <p>copyright(c)2014 geechsasia. All rights reserved.</p>
+
+              </center>
+<?php //↑-------------------利用規約とQ&Aとcopyrightの記述----------------------↑ ?>
 		</div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>

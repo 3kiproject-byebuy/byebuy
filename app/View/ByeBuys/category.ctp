@@ -1,6 +1,5 @@
 
 <?php 
-echo $this->Element('header');
 echo $this->Element('nav');
 
 ?>
