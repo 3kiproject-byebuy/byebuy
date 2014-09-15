@@ -206,7 +206,7 @@ li{
 
                       foreach($Users as $user){
 
-                        if($wanted_list['Wanted_list']['trade_person_user_id'] == $user['User']['id']){
+                        if($wanted_list['Wanted_list']['trade_person_use_id'] == $user['User']['id']){
 
                           $trade_user_name = $user['User']['name'];
                           $trade_user_url = "https://www.facebook.com/".$user['User']['facebook_id'];
@@ -268,7 +268,7 @@ li{
                             echo $this->Form->create('Wanted_list',array('url'=>'decide'),array('class'=>'form-inline','role'=>'form')); //'url'=> 'decide'によりdecideファンクションに飛ばす
                             echo $this->Form->input('id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$wanted_list['Wanted_list']['id']));//WantedListのidを送信
                             echo $this->Form->input('tradedate',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>date('Y-m-d H:i:s')));//tradedate（交渉成立日時）の保存
-                            echo $this->Form->input('trade_person_user_id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$wanted_thread['User']['id']));//trade_person_user_id（交渉成立相手）の保存
+                            echo $this->Form->input('trade_person_use_id',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>$wanted_thread['User']['id']));//trade_person_use_id（交渉成立相手）の保存
                             echo $this->Form->input('status',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>'2'));//ステータスの保存
                             echo $this->Form->button('この人に決める',array('type'=>'submit','class'=>'btn btn-default btn-xs','label'=>false,'escape'=>false));
                             echo $this->Form->end();
