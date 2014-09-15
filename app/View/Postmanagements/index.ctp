@@ -1,16 +1,13 @@
-
-
 <?php
 //現在ログインしているユーザーを取得
 $self = $this->Session->read('Auth.User');
-debug($self);
+
 ?>
 <!-- ナビゲーションバー -->
 
-
 <ul class="nav nav-tabs nav-justified" role="tablist" style="margin-bottom:20px;">
   <br />
-    <li><?php echo $this->HTML->link('<font color="#ffffff"><b>出品中</b></font>', 
+    <li><?php echo $this->HTML->link('<b>出品中</b>', 
                       array(
                         'controller' => 'byebuys',
                         'action'=>'index'),
@@ -18,7 +15,7 @@ debug($self);
                         'escape'=>false)
                           ); ?></li>
 
-    <li ><?php echo $this->HTML->link('<font color="#ffffff"><b>ほしい</b></font>', 
+    <li><?php echo $this->HTML->link('<font color="#ffffff"><b>ほしい</b></font>', 
                           array(
                             'controller' => 'wanted_lists',
                             'action'=>'index'),
@@ -95,52 +92,6 @@ debug($self);
           }?>
 </ul>
 
-<!--ここまで　ナビゲーションバー　ここまで-->
-
-
-    <li><?php
-          //ユーザーが未ログインの場合
-          if (is_null($self)){ 
-            
-          
-               echo $this->Form->postlink('<b>投稿管理</b>',
-                    array(
-                      'controller'=>'postmanagements',
-                      'action'=>'index','1'),
-                    array(
-                        'escape'=>false)
-                      ); 
-            
-
-          //ユーザーがログイン中の場合、ステータスを確認
-           }else{
-
-              //【ステータス１】＝ 【承認済みユーザー】 の場合
-              if($self['status']==1){
-                
-               echo $this->Form->postlink('<b>投稿管理</b>',
-                    array(
-                      'controller'=>'postmanagements',
-                      'action'=>'index','1'),
-                    array(
-                        'escape'=>false)
-                      ); 
-
-              //【ステータス２】または【ステータス３】＝ 【未承認ユーザー】 の場合
-              }else{
-
-               echo $this->Form->postlink('<b>投稿管理</b>',
-                    array(
-                      'controller'=>'postmanagements',
-                      'action'=>'index','1'),
-                    array(
-                        'escape'=>false)
-                      ); 
-                
-            }
-
-          }?></li>
-</ul>
 
 <?php
 
@@ -176,6 +127,7 @@ array_multisort($foo,SORT_DESC,$post_lists);
       <div class="col-xs-8 col-xs-offset-2">
         <div>
           <?php
+          if(isset($post_list['status'])){
             switch ($post_list['status']) {
               case '0': ?>
                 <span class="label label-primary">
@@ -188,13 +140,20 @@ array_multisort($foo,SORT_DESC,$post_lists);
                 echo "取引完了";
                 break;
               case '2': ?>
-                <span class="label label-defaut">
+                <span class="label label-default">
                 <?php
                 echo "掲載終了";
                 break;
               default:
                 break;
             } 
+          }else{
+            ?>
+            <span class="label label-default">
+                <?php
+                echo "コメント";
+
+          }
           ?>
         </span>
         </div>
