@@ -25,10 +25,10 @@ if(is_null($self)){
 
 
 <!-- facebook 関連 -->
-<div class="row" style="margin:20px;">
+<div class="row">
 
     <!--いいね、シェア-->
-    <div class="col-md-2 col-md-offset-8" align="right" style="bottom:0px;">
+    <div class="col-md-3 col-md-offset-9" align="right" style="bottom:0px;">
     <script language="javascript" type="text/javascript">
      
              function invite(){
@@ -42,15 +42,14 @@ if(is_null($self)){
           }
     </script>
 
-    <input class="btn btn-default btn-xs" type="button" value="友達に知らせよう" onclick="invite();"/>
+    <input class="btn btn-default btn-xs" type="button" value="友達に教える" onclick="invite();"/>
     <div id="output"></div>
-    </div>
+   
     <!--ここまで　いいね、シェア　ここまで-->
 
     <!--友達招待-->
-    <div class="col-md-2" style="bottom:0px;">
     <div class="fb-like" data-href="https://geechscamp.lovepop.jp/byebuy" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
-    </div>
+     </div>
 
     <!--ここまで　友達招待　ここまで-->
 
@@ -72,14 +71,14 @@ if (is_null($self)){
     //【ステータス１】＝ 【承認済みユーザー】 の場合
     if($self['status']==1){?>
       </div> 
-      <div class="row" style="margin:20px;">
+      <div class="row">
 
         <div class="media col-md-3 col-md-offset-9" style="margin-top:10px;">
           <img src="https://graph.facebook.com/<?php echo $self['facebook_id']; ?>/picture?type=square" 
           align="left" style="margin-left:10px;" class="img-circle">
             <div class="media-body">
               <h4 class="media-heading" style="height:50px;line-height:50px;margin-left:10px;">
-               <?php echo $self['name'];?>
+               <font color="#ffffff"><?php echo $self['name'];?></font>
                <?php echo $this->Html->link('<button class="btn btn-sm btn-default" type="button">logout</button>',array(
                 'controller' => 'fbconnects','action' => 'logout'),array('escape' => false));?></h4>
             </div>
