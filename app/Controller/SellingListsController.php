@@ -19,6 +19,7 @@ class SellingListsController extends AppController {
 
 //index----------------------------------------------------------------------------------------------------------
     public function index(){
+
     
         //ログインユーザー情報を送る
         $self = $this->Auth->user();
@@ -33,6 +34,8 @@ class SellingListsController extends AppController {
         //debug($categories);
 
         if ($this->request->is('post') || $this->request->is('put')) {
+
+        debug($this->request->data['Selling_list']['img_file_name2']);
 
         $this->Selling_list->create();
 
@@ -56,11 +59,11 @@ class SellingListsController extends AppController {
 
           }
 
-
-        if ($this->request->data['Selling_list']['img_file_name2'] != NULL
-         // isset($this->request->data['Selling_list']['img_file_name2'])
-         //|| !empty($this->request->data['Selling_list']['img_file_name2']) || $this->request->data['Selling_list']['img_file_name2'] != '' || $this->request->data['Selling_list']['img_file_name2'] != NULL
-          )
+        if ($this->request->data['Selling_list']['img_file_name2']['tmp_name'] == "")
+        {
+             $this->request->data['Selling_list']['img_file_name2'] = "NULL";
+        }
+        else
         {
 
             $file2 = $this->request->data['Selling_list']['img_file_name2']['tmp_name'];
@@ -77,10 +80,12 @@ class SellingListsController extends AppController {
           }
 
 
-        if ($this->request->data['Selling_list']['img_file_name3'] != NULL
-         // isset($this->request->data['Selling_list']['img_file_name3'])
-         //|| !empty($this->request->data['Selling_list']['img_file_name3']) || $this->request->data['Selling_list']['img_file_name3'] != '' || $this->request->data['Selling_list']['img_file_name3'] != NULL
-         )
+        //if($this->Selling_list->save($this->request->data['Selling_list']['img_file_name3'])
+        if ($this->request->data['Selling_list']['img_file_name3']['tmp_name'] == "")
+        {
+             $this->request->data['Selling_list']['img_file_name3'] = "NULL";
+        }
+        else
         {
 
             $file3 = $this->request->data['Selling_list']['img_file_name3']['tmp_name'];
@@ -96,8 +101,6 @@ class SellingListsController extends AppController {
 
           }
 
-            //debug($this->request->data);
-
 
             if($this->Selling_list->save($this->request->data, array('validate' => false))) {
             $this->Session->setFlash(__('<div class="alert alert-success" role="alert">商品を投稿しました</div>'));
@@ -105,10 +108,7 @@ class SellingListsController extends AppController {
 
             //debug($this->request->data);
           }
-          else{
-            $this->Session->setFlash(__('<div class="alert alert-success" role="alert">商品の投稿に失敗しました</div>'));
 
-          }
 
             //画像の保存
             if($this->Selling_list->save($this->request->data)){
@@ -238,31 +238,37 @@ class SellingListsController extends AppController {
 
 
 
-
-
-
-
     public function edit(){
 
+        
 
-            //商品投稿内容編集用
+        //商品投稿内容編集用
         if ($this->request->is(array('post', 'put'))) {
             // $this->Selling_list->id = $id;
 
-        $this->Selling_list->create();
 
+            //debug($this->request->data['Selling_list']['img_file_name11']);
+
+
+        $this->Selling_list->create();
 
         //場合分け
         if(isset($this->request->data['Selling_list']))
         {
-            //----------------------------------------------
+            
+            //unset($this->Selling_list->validates['img_file_name1']['upload-file']);
+            //unset($this->Account->validate['crosslink_url']
 
-        if (
-        //  isset($this->request->data['Selling_list']['img_file_name1'])
-          !empty($this->request->data['Selling_list']['img_file_name1']) || $this->request->data['Selling_list']['img_file_name1'] != '' || $this->request->data['Selling_list']['img_file_name1'] != NULL
-          )
-         
+
+         if($this->request->data['Selling_list']['img_file_name1']['tmp_name'] == "")
+            //  isset($this->request->data['Selling_list']['img_file_name1'])
+          //!empty($this->request->data['Selling_list']['img_file_name1']) || $this->request->data['Selling_list']['img_file_name1'] != '' || $this->request->data['Selling_list']['img_file_name1'] != NULL
           {
+            $this->request->data['Selling_list']['img_file_name1'] = $this->request->data['Selling_list']['img_file_name11'];
+          }
+          else
+          {
+
             // $file1 = $this->request->data['Selling_list']['img_file_name1']['tmp_name'];
             // $tmp1 = $this->request->data['Selling_list']['img_file_name1']['name'];
 
@@ -284,13 +290,17 @@ class SellingListsController extends AppController {
 
             $this->request->data['Selling_list']['img_file_name1'] = "01$dateformat.$file_type";
 
-
         }
 
         //debug($this->request->data['Selling_list']['img_file_name1']);
 
-        if(isset($this->request->data['Selling_list']['img_file_name2']) || !empty($this->request->data['Selling_list']['img_file_name2']) || $this->request->data['Selling_list']['img_file_name2'] != '' || $this->request->data['Selling_list']['img_file_name2'] != NULL)
+        if($this->request->data['Selling_list']['img_file_name2']['tmp_name'] == "")
           {
+            $this->request->data['Selling_list']['img_file_name2'] = $this->request->data['Selling_list']['img_file_name22'];
+          }
+          else
+          {
+
             // $file2 = $this->request->data['Selling_list']['img_file_name2']['tmp_name'];
             // $tmp2 = $this->request->data['Selling_list']['img_file_name2']['name'];
 
@@ -314,8 +324,14 @@ class SellingListsController extends AppController {
 
         }
 
-        if(!empty($this->request->data['Selling_list']['img_file_name3']) || $this->request->data['Selling_list']['img_file_name3'] != '' || $this->request->data['Selling_list']['img_file_name3'] != NULL)
+         if($this->request->data['Selling_list']['img_file_name3']['tmp_name'] == "")
+            //!empty($this->request->data['Selling_list']['img_file_name3']) || $this->request->data['Selling_list']['img_file_name3'] != '' || $this->request->data['Selling_list']['img_file_name3'] != NULL)
           {
+            $this->request->data['Selling_list']['img_file_name3'] = $this->request->data['Selling_list']['img_file_name33'];
+          }
+          else
+          {
+
             // $file3 = $this->request->data['Selling_list']['img_file_name3']['tmp_name'];
             // $tmp3 = $this->request->data['Selling_list']['img_file_name3']['name'];
 
@@ -335,13 +351,15 @@ class SellingListsController extends AppController {
             move_uploaded_file($file3, $uploadfile3);
 
             $this->request->data['Selling_list']['img_file_name3'] = "03$dateformat.$file_type";
+
+            
         }
                     
             //debug($uploaddir);
             //debug($uploadfile);
 
-            if ($this->Selling_list->save($this->data, array('validate' => false)))
-            //if($this->Selling_list->save($this->request->data, array('validate' => false)))
+
+            if($this->Selling_list->save($this->request->data, array('validate' => false)))
             {
                 $this->Session->setFlash(__('編集が完了しました'));
                 return $this->redirect($this->referer());
@@ -364,14 +382,13 @@ class SellingListsController extends AppController {
 
 
 
+    public function qa(){
 
+    }
 
+    public function rule(){
 
-
-
-
-
-
+    }
 
 
 

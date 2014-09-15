@@ -511,7 +511,8 @@
 								array(
 									'url'=>'edit',
 									'type'=>'file',
-									'enctype' => 'multipart/form-data'));
+									'enctype' => 'multipart/form-data',
+									 'novalidate' => true));
 	 	?>
 
 	 	<?php echo $this->Form->input('id', 
@@ -525,6 +526,7 @@
 
 		<?php
 			//写真①を編集
+
 	    	echo $this->Form->input('img_file_name1', 
 	    								array(
 	    									'type' => 'file', 'multiple',
@@ -532,7 +534,27 @@
 	    									)
 	    	);
 
+
+	    	echo $this->Form->input('img_file_name11',
+	    								array(
+											'type' => 'hidden',
+											'value' => $sellinglists[0]['Selling_list']['img_file_name1']
+											)
+	    								);
+
+
+
+
+
 	    	//写真②を編集
+	    	echo $this->Form->input('img_file_name22',
+	    								array(
+											'type' => 'hidden',
+											'value' => $sellinglists[0]['Selling_list']['img_file_name2']
+											)
+	    								);
+
+
 	    	echo $this->Form->input('img_file_name2', 
 	    								array(
 	    									'type' => 'file', 'multiple',
@@ -541,6 +563,13 @@
 	    	);
 
 	    	//写真③を編集
+	    	echo $this->Form->input('img_file_name33',
+	    								array(
+											'type' => 'hidden',
+											'value' => $sellinglists[0]['Selling_list']['img_file_name3']
+											)
+	    								);
+
 	  		echo $this->Form->input('img_file_name3', 
 	    								array(
 	    									'type' => 'file', 'multiple',
