@@ -76,6 +76,10 @@ class ByebuysController extends AppController {
 
     public function category($category_id=null){
 
+
+        //サーチプラグイン
+        $this->Prg->commonProcess();
+        
         //カテゴリーを取得
         $categories = $this->Category->find('all');
 
