@@ -82,6 +82,14 @@ h4 {
     /*font-size: 190%;*/
 }
 
+.nav{margin-bottom:0;padding-left:0;list-style:none;background-color:#25B5F3;}
+.nav>li{position:relative;display:block}
+.nav>li>a{position:relative;display:block;padding:10px 15px}
+.nav>li>a:hover,
+.nav>li>a:focus{text-decoration:none;background-color:#23ADE8}
+
+
+
 </style>
 
  
@@ -121,9 +129,9 @@ h4 {
     </script>
 <!--facebookとの接続に必要なjavascriptのイニシャライズ-->
 
-	<div id="container" style="background-color:#000000;">
+	<div id="container">
 
-        <div id="header">
+        <div id="header" class="jumbotron" style="background-color:#25B5F3;margin:0px;padding-top:1px;">
         
         <?php echo $this->Element('header');?>
 

@@ -1,13 +1,12 @@
 
 <?php //headerのよみこみ
-	echo $this->Element('header'); 
   
 //現在ログインしているユーザーを取得
 $self = $this->Session->read('Auth.User');?>
 
 <!-- ナビゲーションバー -->
 
-<ul class="nav nav-tabs nav-justified" role="tablist" style="margin-top:20px;margin-bottom:20px;">
+<ul class="nav nav-tabs nav-justified" role="tablist" style="margin-bottom:20px;">
   <br />
     <li><?php echo $this->HTML->link('<b>出品中</b>', 
                       array(
