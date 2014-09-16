@@ -183,9 +183,9 @@
 
 							<?php //締め切り ?>
 								<?php 
-								//もし締め切り-現在の日付が１日よりすくなかったら
+								//もし締め切り-現在の日付が１日よりすくなく、取引が成立していなかったら
 								$current_date = date('Y-m-d H:i:s');
-									if((strtotime($sellinglists[0]['Selling_list']['deadline']) - strtotime($current_date)) < 86400 && (strtotime($sellinglists[0]['Selling_list']['deadline']) - strtotime($current_date)) > 0) { ?>
+									if((strtotime($sellinglists[0]['Selling_list']['deadline']) - strtotime($current_date)) < 86400 && (strtotime($sellinglists[0]['Selling_list']['deadline']) - strtotime($current_date)) > 0 && $sellinglists[0]['Selling_list']['status'] != 2) { ?>
 										
 				        				<p>○&nbsp;締め切り日: 
 				        					<font color="#ff0000"> 
@@ -200,8 +200,8 @@
 				        				<p>○&nbsp;締め切り: この取引は終了しました</p>
 
 									<?php }
-									//もし締め切り日が１日よりも多かったら
-									if((strtotime($sellinglists[0]['Selling_list']['deadline']) - strtotime($current_date)) > 86400) { ?>
+									//もし締め切り日が１日よりも多くて、取引が成立していなかったら
+									if((strtotime($sellinglists[0]['Selling_list']['deadline']) - strtotime($current_date)) > 86400 && $sellinglists[0]['Selling_list']['status'] != 2) { ?>
 										<p>○&nbsp;締め切り日: <?php echo $sellinglists[0]['Selling_list']['deadline']; ?></p>
 									<?php } ?>
 
@@ -809,9 +809,9 @@
 
 						<?php //締め切り ?>
 							<?php 
-							//もし締め切り-現在の日付が１日よりすくなかったら
+							//もし締め切り-現在の日付が１日よりすくなく、取引が成立していなかったら
 							$current_date = date('Y-m-d H:i:s');
-								if((strtotime($sellinglists[0]['Selling_list']['deadline']) - strtotime($current_date)) < 86400 && (strtotime($sellinglists[0]['Selling_list']['deadline']) - strtotime($current_date)) > 0) { ?>
+								if((strtotime($sellinglists[0]['Selling_list']['deadline']) - strtotime($current_date)) < 86400 && (strtotime($sellinglists[0]['Selling_list']['deadline']) - strtotime($current_date)) > 0 && $sellinglists[0]['Selling_list']['status'] != 2) { ?>
 									
 			        				<p>○&nbsp;締め切り日: 
 			        					<font color="#ff0000"> 
@@ -820,7 +820,7 @@
 			        				</p>
 			        				
 			        			<?php 
-			        			//もし締め切り日を過ぎていたら
+			        			//もし締め切り日を過ぎていたら、もしくは取引が成立していたら
 			        			} if((strtotime($sellinglists[0]['Selling_list']['deadline']) < strtotime($current_date)) || $sellinglists[0]['Selling_list']['status'] == 2) { ?>
 
 			        				<p>○&nbsp;締め切り: この取引は終了しました</p>
