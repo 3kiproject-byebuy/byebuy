@@ -962,6 +962,11 @@
 																					'type' => 'hidden',
 																					'value' => $sellinglists[0]['Selling_list']['id'])
 																				); ?>
+
+											<?php //tradedate（交渉成立日時）の保存 ?>
+											<?php echo $this->Form->input('tradedate',array('type'=>'hidden','label'=>false,'class'=>'form-control','value'=>date('Y-m-d H:i:s'))
+												);
+											?>
 											
 											<?php echo $this->Form->input('trade_person_use_id',
 																				array(
