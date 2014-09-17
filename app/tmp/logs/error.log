@@ -12023,3 +12023,1247 @@ Stack Trace:
 #3 /home/users/0/lovepop.jp-geechscamp/web/wannadoList/lib/Cake/Core/App.php(902): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2014-09-04 17:42:23 Error: [MissingConnectionException] Database connection "Mysql" is missing, or could not be created.
+Exception Attributes: array (
+  'class' => 'Mysql',
+  'message' => 'SQLSTATE[HY000] [2002] Can\'t connect to local MySQL server through socket \'/var/lib/mysql/mysql.sock\' (2)',
+  'enabled' => true,
+)
+Request URL: /byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Datasource/DboSource.php(260): Mysql->connect()
+#1 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/ConnectionManager.php(105): DboSource->__construct(Array)
+#2 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Model.php(3477): ConnectionManager::getDataSource('default')
+#3 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Model.php(1126): Model->setDataSource('default')
+#4 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Model.php(3499): Model->setSource('selling_lists')
+#5 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Model.php(1355): Model->getDataSource()
+#6 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Model.php(1447): Model->schema()
+#7 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Controller/Component/PaginatorComponent.php(397): Model->hasField('id')
+#8 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Controller/Component/PaginatorComponent.php(142): PaginatorComponent->validateSort(Object(Selling_list), Array, Array)
+#9 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Controller/Controller.php(1080): PaginatorComponent->paginate('Selling_list', Array, Array)
+#10 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/Controller/ByebuysController.php(34): Controller->paginate('Selling_list', Array)
+#11 [internal function]: ByebuysController->index()
+#12 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(ByebuysController), Array)
+#13 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#14 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(ByebuysController), Object(CakeRequest), Object(CakeResponse))
+#15 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#16 {main}
+2014-09-04 17:44:23 Error: [MissingConnectionException] Database connection "Mysql" is missing, or could not be created.
+Exception Attributes: array (
+  'class' => 'Mysql',
+  'message' => 'SQLSTATE[HY000] [2002] Can\'t connect to local MySQL server through socket \'/var/lib/mysql/mysql.sock\' (2)',
+  'enabled' => true,
+)
+Request URL: /byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Datasource/DboSource.php(260): Mysql->connect()
+#1 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/ConnectionManager.php(105): DboSource->__construct(Array)
+#2 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Model.php(3477): ConnectionManager::getDataSource('default')
+#3 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Model.php(1126): Model->setDataSource('default')
+#4 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Model.php(3499): Model->setSource('selling_lists')
+#5 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Model.php(1355): Model->getDataSource()
+#6 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Model.php(1447): Model->schema()
+#7 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Controller/Component/PaginatorComponent.php(397): Model->hasField('id')
+#8 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Controller/Component/PaginatorComponent.php(142): PaginatorComponent->validateSort(Object(Selling_list), Array, Array)
+#9 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Controller/Controller.php(1080): PaginatorComponent->paginate('Selling_list', Array, Array)
+#10 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/Controller/ByebuysController.php(34): Controller->paginate('Selling_list', Array)
+#11 [internal function]: ByebuysController->index()
+#12 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(ByebuysController), Array)
+#13 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#14 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(ByebuysController), Object(CakeRequest), Object(CakeResponse))
+#15 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#16 {main}
+2014-09-04 17:45:31 Error: [MissingDatasourceConfigException] The datasource configuration "default" was not found in database.php
+Exception Attributes: array (
+  'config' => 'default',
+)
+Request URL: /byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/ConnectionManager.php(91): ConnectionManager::_getConnectionObject('default')
+#1 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Model.php(3477): ConnectionManager::getDataSource('default')
+#2 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Model.php(1126): Model->setDataSource('default')
+#3 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Model.php(3499): Model->setSource('selling_lists')
+#4 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Model.php(1355): Model->getDataSource()
+#5 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Model.php(1447): Model->schema()
+#6 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Controller/Component/PaginatorComponent.php(397): Model->hasField('id')
+#7 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Controller/Component/PaginatorComponent.php(142): PaginatorComponent->validateSort(Object(Selling_list), Array, Array)
+#8 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Controller/Controller.php(1080): PaginatorComponent->paginate('Selling_list', Array, Array)
+#9 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/Controller/ByebuysController.php(34): Controller->paginate('Selling_list', Array)
+#10 [internal function]: ByebuysController->index()
+#11 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(ByebuysController), Array)
+#12 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#13 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(ByebuysController), Object(CakeRequest), Object(CakeResponse))
+#14 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#15 {main}
+2014-09-04 17:53:07 Error: [MissingConnectionException] Database connection "Mysql" is missing, or could not be created.
+Exception Attributes: array (
+  'class' => 'Mysql',
+  'message' => 'SQLSTATE[42000] [1044] Access denied for user \'LAA0492298\'@\'172.17.0.128\' to database \'byebuydev\'',
+  'enabled' => true,
+)
+Request URL: /byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Datasource/DboSource.php(260): Mysql->connect()
+#1 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/ConnectionManager.php(105): DboSource->__construct(Array)
+#2 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Model.php(3477): ConnectionManager::getDataSource('default')
+#3 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Model.php(1126): Model->setDataSource('default')
+#4 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Model.php(3499): Model->setSource('selling_lists')
+#5 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Model.php(1355): Model->getDataSource()
+#6 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Model/Model.php(1447): Model->schema()
+#7 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Controller/Component/PaginatorComponent.php(397): Model->hasField('id')
+#8 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Controller/Component/PaginatorComponent.php(142): PaginatorComponent->validateSort(Object(Selling_list), Array, Array)
+#9 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Controller/Controller.php(1080): PaginatorComponent->paginate('Selling_list', Array, Array)
+#10 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/Controller/ByebuysController.php(34): Controller->paginate('Selling_list', Array)
+#11 [internal function]: ByebuysController->index()
+#12 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(ByebuysController), Array)
+#13 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#14 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(ByebuysController), Object(CakeRequest), Object(CakeResponse))
+#15 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#16 {main}
+2014-09-05 14:30:04 Error: [MissingControllerException] Controller class SeliinglistsController could not be found.
+Exception Attributes: array (
+  'class' => 'SeliinglistsController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/seliinglists/productdetail/11
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-05 15:20:39 Error: [MissingActionException] Action FbconnectsController::showdata() could not be found.
+Exception Attributes: array (
+  'controller' => 'FbconnectsController',
+  'action' => 'showdata',
+)
+Request URL: /byebuy/fbconnects/showdata
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(FbconnectsController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2014-09-05 16:39:16 Error: [MissingActionException] Action PostmanagementsController::inedex() could not be found.
+Exception Attributes: array (
+  'controller' => 'PostmanagementsController',
+  'action' => 'inedex',
+)
+Request URL: /byebuy/postmanagements/inedex/5
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 /home/users/0/lovepop.jp-geechscamp/web/byebuy/lib/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(PostmanagementsController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2014-09-05 16:56:00 Error: [MissingControllerException] Controller class ProductdetailController could not be found.
+Exception Attributes: array (
+  'class' => 'ProductdetailController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/productdetail
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-05 16:56:14 Error: [MissingControllerException] Controller class ProductdetailController could not be found.
+Exception Attributes: array (
+  'class' => 'ProductdetailController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/productdetail/1
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-05 17:18:27 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/%E5%8B%87%E8%80%85%E3%81%AE%E5%89%A3.jpg
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-05 17:18:28 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/%E5%8B%87%E8%80%85%E3%81%AE%E5%89%A3.jpg
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-05 17:18:37 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/%E5%8B%87%E8%80%85%E3%81%AE%E5%89%A3.jpg
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-05 17:18:44 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/%E5%8B%87%E8%80%85%E3%81%AE%E5%89%A3.jpg
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-05 17:18:49 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/%E5%8B%87%E8%80%85%E3%81%AE%E5%89%A3.jpg
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-05 17:19:15 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/%E5%8B%87%E8%80%85%E3%81%AE%E5%89%A3.jpg
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-05 17:19:27 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/%E5%8B%87%E8%80%85%E3%81%AE%E5%89%A3.jpg
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-05 17:19:47 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/%E5%8B%87%E8%80%85%E3%81%AE%E5%89%A3.jpg
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-05 17:19:47 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/%E5%8B%87%E8%80%85%E3%81%AE%E5%89%A3.jpg
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-05 17:19:52 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/%E5%8B%87%E8%80%85%E3%81%AE%E5%89%A3.jpg
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-05 17:19:53 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/%E5%8B%87%E8%80%85%E3%81%AE%E5%89%A3.jpg
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:06:35 Error: [MissingControllerException] Controller class ByebuysController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuysController',
+  'plugin' => 'Acl',
+)
+Request URL: /byebuy/admin/acl/byebuys
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:06:50 Error: [MissingControllerException] Controller class ByebuysController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuysController',
+  'plugin' => 'Acl',
+)
+Request URL: /byebuy/admin/acl/byebuys
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:07:01 Error: [MissingControllerException] Controller class ByebuysController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuysController',
+  'plugin' => 'Acl',
+)
+Request URL: /byebuy/acl/byebuys
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:07:28 Error: [MissingControllerException] Controller class ByebuysController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuysController',
+  'plugin' => 'Acl',
+)
+Request URL: /byebuy/acl/byebuys
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:08:10 Error: [MissingControllerException] Controller class ByebuysController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuysController',
+  'plugin' => 'Acl',
+)
+Request URL: /byebuy/acl/byebuys
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:42:06 Error: [MissingControllerException] Controller class ByebuyController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuyController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:42:19 Error: [MissingControllerException] Controller class ByebuyController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuyController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:42:48 Error: [MissingControllerException] Controller class ByebuyController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuyController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:44:02 Error: [MissingControllerException] Controller class ByebuyController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuyController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:44:20 Error: [MissingControllerException] Controller class ByebuyController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuyController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:46:30 Error: [MissingControllerException] Controller class ByebuyController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuyController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:46:33 Error: [MissingControllerException] Controller class ByebuyController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuyController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:46:45 Error: [MissingControllerException] Controller class ByebuyController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuyController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:47:18 Error: [MissingControllerException] Controller class ByebuyController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuyController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:53:08 Error: [MissingControllerException] Controller class ByebuyController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuyController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:53:10 Error: [MissingControllerException] Controller class ByebuyController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuyController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:54:06 Error: [MissingControllerException] Controller class ByebuyController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuyController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:54:18 Error: [MissingControllerException] Controller class ByebuyController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuyController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:55:19 Error: [MissingControllerException] Controller class ByebuyController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuyController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:58:19 Error: [MissingControllerException] Controller class ByebuyController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuyController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:58:24 Error: [MissingControllerException] Controller class ByebuyController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuyController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 15:59:47 Error: [MissingControllerException] Controller class ByebuyController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuyController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 16:08:22 Error: [MissingControllerException] Controller class ByebuyController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuyController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 16:10:28 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140911040930.JPG
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 16:10:31 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140911040930.JPG
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 16:12:12 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140911040930.JPG
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 16:12:12 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140911040930.JPG
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 16:31:53 Error: [MissingControllerException] Controller class ByebuyController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuyController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 16:34:00 Error: [MissingControllerException] Controller class ByebuyController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuyController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/byebuy/
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 16:42:12 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140911040930.JPG
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 16:42:12 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140911040930.JPG
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 16:42:58 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140911040930.JPG
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 16:42:58 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140911040930.JPG
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 16:43:20 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140911040930.JPG
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 16:43:20 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140911040930.JPG
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 17:44:40 Error: [MissingControllerException] Controller class ByebuysController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuysController',
+  'plugin' => 'Acl',
+)
+Request URL: /byebuy/acl/byebuys
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-11 17:44:43 Error: [MissingControllerException] Controller class ByebuysController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuysController',
+  'plugin' => 'Acl',
+)
+Request URL: /byebuy/acl/byebuys
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 00:15:07 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140911040930.JPG
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 00:15:07 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140911040930.JPG
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 03:27:36 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140911030603.jpg
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 03:27:36 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140911030603.jpg
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 03:28:03 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140911030603.jpg
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 03:28:03 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140911030603.jpg
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 03:33:18 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140911040930.JPG
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 03:33:18 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140911040930.JPG
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:13:59 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:13:59 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:14:12 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:14:12 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:14:18 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:14:19 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:14:47 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:14:47 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:16:31 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:16:31 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:16:44 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:16:44 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:19:00 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:19:00 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:27:53 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140911040930.JPG
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:27:53 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140911040930.JPG
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:35:21 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:35:22 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:35:53 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140911030603.jpg
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:35:53 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140911030603.jpg
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:37:27 Error: [MissingControllerException] Controller class SeliinglistsController could not be found.
+Exception Attributes: array (
+  'class' => 'SeliinglistsController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/seliinglists/productdetail/5
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:37:40 Error: [MissingControllerException] Controller class SeliinglistsController could not be found.
+Exception Attributes: array (
+  'class' => 'SeliinglistsController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/seliinglists/productdetail/4
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:37:59 Error: [MissingControllerException] Controller class SeliinglistsController could not be found.
+Exception Attributes: array (
+  'class' => 'SeliinglistsController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/seliinglists/productdetail/5
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:38:14 Error: [MissingControllerException] Controller class SeliinglistsController could not be found.
+Exception Attributes: array (
+  'class' => 'SeliinglistsController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/seliinglists/productdetail/5
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:38:30 Error: [MissingControllerException] Controller class SeliinglistsController could not be found.
+Exception Attributes: array (
+  'class' => 'SeliinglistsController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/seliinglists/productdetail/6
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:38:54 Error: [MissingControllerException] Controller class SeliinglistsController could not be found.
+Exception Attributes: array (
+  'class' => 'SeliinglistsController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/seliinglists/productdetail/14
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:39:00 Error: [MissingControllerException] Controller class SeliinglistsController could not be found.
+Exception Attributes: array (
+  'class' => 'SeliinglistsController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/seliinglists/productdetail/7
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:39:14 Error: [MissingControllerException] Controller class SeliinglistsController could not be found.
+Exception Attributes: array (
+  'class' => 'SeliinglistsController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/seliinglists/productdetail/16
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:39:20 Error: [MissingControllerException] Controller class SeliinglistsController could not be found.
+Exception Attributes: array (
+  'class' => 'SeliinglistsController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/seliinglists/productdetail/16
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 15:40:06 Error: [MissingControllerException] Controller class SeliinglistsController could not be found.
+Exception Attributes: array (
+  'class' => 'SeliinglistsController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/seliinglists/productdetail/16
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 16:00:11 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 16:00:11 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 16:00:41 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140911040930.JPG
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 16:00:41 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140911040930.JPG
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 18:11:58 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 18:11:58 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 18:12:07 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140911040930.JPG
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 18:12:07 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140911040930.JPG
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 18:12:51 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-12 18:12:51 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-15 16:40:02 Error: [MissingControllerException] Controller class ByebuysController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuysController',
+  'plugin' => 'Acl',
+)
+Request URL: /byebuy/admin/acl/byebuys
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-15 16:40:25 Error: [MissingControllerException] Controller class ByebuysController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuysController',
+  'plugin' => 'Acl',
+)
+Request URL: /byebuy/admin/acl/byebuys
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-15 16:40:35 Error: [MissingControllerException] Controller class ByebuysController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuysController',
+  'plugin' => 'Acl',
+)
+Request URL: /byebuy/admin/acl/byebuys
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-15 16:40:43 Error: [MissingControllerException] Controller class ByebuysController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuysController',
+  'plugin' => 'Acl',
+)
+Request URL: /byebuy/admin/acl/byebuys
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-15 16:41:00 Error: [MissingControllerException] Controller class ByebuysController could not be found.
+Exception Attributes: array (
+  'class' => 'ByebuysController',
+  'plugin' => 'Acl',
+)
+Request URL: /byebuy/acl/byebuys
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-15 16:51:47 Error: [MissingControllerException] Controller class FbconnectsController could not be found.
+Exception Attributes: array (
+  'class' => 'FbconnectsController',
+  'plugin' => 'Acl',
+)
+Request URL: /byebuy/admin/acl/fbconnects/facebook
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-15 16:56:53 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-15 16:56:53 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-15 18:08:50 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-15 18:08:50 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-16 01:32:29 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-16 01:32:29 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-16 14:19:51 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-16 14:19:51 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-16 14:20:04 Error: [MissingControllerException] Controller class FbconnectsController could not be found.
+Exception Attributes: array (
+  'class' => 'FbconnectsController',
+  'plugin' => 'Acl',
+)
+Request URL: /byebuy/admin/acl/fbconnects/facebook
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-16 14:21:21 Error: [MissingControllerException] Controller class FbconnectsController could not be found.
+Exception Attributes: array (
+  'class' => 'FbconnectsController',
+  'plugin' => 'Acl',
+)
+Request URL: /byebuy/admin/acl/fbconnects/facebook
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-16 14:24:43 Error: [MissingControllerException] Controller class FbconnectsController could not be found.
+Exception Attributes: array (
+  'class' => 'FbconnectsController',
+  'plugin' => 'Acl',
+)
+Request URL: /byebuy/admin/acl/fbconnects/facebook
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-16 14:25:07 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-16 14:25:07 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-16 14:40:19 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-16 14:40:19 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-16 14:40:22 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-16 15:24:09 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-16 15:24:09 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-16 15:24:17 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0220140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-09-16 15:24:17 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /byebuy/img/0320140912030723.png
+Stack Trace:
+#0 /home/users/0/lovepop.jp-geechscamp/web/byebuy/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

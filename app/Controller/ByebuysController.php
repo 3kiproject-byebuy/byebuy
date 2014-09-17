@@ -24,6 +24,8 @@ class ByebuysController extends AppController {
 
     public function index($id=null){
 
+    //$this->log('君のためだけのログ', LOG_FOR_YOU);
+
     //サーチプラグイン
     $this->Prg->commonProcess();
 
@@ -76,10 +78,6 @@ class ByebuysController extends AppController {
 
     public function category($category_id=null){
 
-
-        //サーチプラグイン
-        $this->Prg->commonProcess();
-        
         //カテゴリーを取得
         $categories = $this->Category->find('all');
 
@@ -117,8 +115,13 @@ class ByebuysController extends AppController {
 
 
         //現在ログインしているユーザー
-        $self = $this->Auth->user();
+        //$self = $this->Auth->user();
+        $self = $this->Session->read('Auth.User');
 
+        // $this->log('selfはなんだ。', LOG_FOR_YOU);
+        // $this->log($self,LOG_FOR_YOU);
+        // $this->log('id', LOG_FOR_YOU);
+        // $this->log($id,LOG_FOR_YOU);
 
         //ログインしていないユーザーの場合
         if(is_null($self)){
