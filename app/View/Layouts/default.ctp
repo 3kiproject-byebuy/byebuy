@@ -196,6 +196,6 @@ h4 {
 <?php //↑-------------------利用規約とQ&Aとcopyrightの記述----------------------↑ ?>
 		</div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
+	<?php //echo $this->element('sql_dump'); ?>
 </body>
 </html>

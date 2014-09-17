@@ -951,7 +951,7 @@
 		    							 	<?php echo $threadlist['Selling_thread_list']['thread']; ?>
 										</td>
 								<?php //もしコメントしたユーザーが自分(出品者)でなかったら「この人に決定ボタン」を表示
-								if ($threadlist['Selling_thread_list']['user_id'] != $self['id']){ ?>
+								if ($threadlist['Selling_thread_list']['user_id'] != $self['id'] && $sellinglists[0]['Selling_list']['status'] != 2 ){ ?>
 										<td>
 											<?php //この人に決定ボタン ?>
 											<?php echo $this->Form->create('Selling_list',array('url'=>'decide')); ?>

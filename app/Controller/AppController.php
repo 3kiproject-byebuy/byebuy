@@ -61,6 +61,10 @@ class AppController extends Controller {
                                                             )
                                             )
                                     );
+
+
+
+
         /*
 	    public $components = array('DebugKit.Toolbar','Session','Acl',
         'Auth' => array(
@@ -78,6 +82,9 @@ class AppController extends Controller {
 
 
     public function beforeFilter() {
+
+        //debugモードを0にしてる時に、Sessionをスタートする記述
+        CakeSession::start();
 
     	//ログインしないとアクセスできないという機能を外している。
     	parent::beforeFilter();

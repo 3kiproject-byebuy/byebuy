@@ -132,15 +132,14 @@ if (Configure::read('debug') == 0) {
 }
 */
 
-// CakePlugin::loadAll(
-//     array('FaceBook' => array('bootstrap' => true))
-//     );
+CakePlugin::loadAll(array('FaceBook' => array('bootstrap' => true))
+    );
 
 //debug kit以外を個別にロード
-CakePlugin::load('Acl', array('bootstrap' => true));
-CakePlugin::load('BoostCake', array('bootstrap' => true));
-CakePlugin::load('Search', array('bootstrap' => true));
-CakePlugin::load('Facebook', array('bootstrap' => true));
+// CakePlugin::load('Acl', array('bootstrap' => true));
+// CakePlugin::load('BoostCake', array('bootstrap' => true));
+// CakePlugin::load('Search', array('bootstrap' => true));
+// CakePlugin::load('Facebook', array('bootstrap' => true));
 
 
 App::uses('AclRouter', 'Acl.Lib');

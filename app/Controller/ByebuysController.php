@@ -118,8 +118,8 @@ class ByebuysController extends AppController {
 
 
         //現在ログインしているユーザー
-        $self = $this->Auth->user();
-        //$self = $this->Session->read('Auth.User');
+        //$self = $this->Auth->user();
+        $self = $this->Session->read('Auth.User');
 
         // $this->log('selfはなんだ。', LOG_FOR_YOU);
         // $this->log($self,LOG_FOR_YOU);
