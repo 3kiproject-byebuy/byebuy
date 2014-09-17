@@ -29,7 +29,7 @@ class FbconnectsController extends AppController {
         $this->autoRender = false;
         $this->facebook = $this->createFacebook();
         $user = $this->facebook->getUser();       //【4】ユーザ情報取得
-        debug($user);
+        //debug($user);
 
         if($user){  //ログインしてたら 
             
@@ -38,7 +38,12 @@ class FbconnectsController extends AppController {
 
             //debug($self);
             
-            
+            /*独自のログファイルにログを出力
+            $this->log('facebookファンクション------>', LOG_FOR_YOU);
+            $this->log($self, LOG_FOR_YOU);
+            $this->log('End------>', LOG_FOR_YOU);
+            */
+
             if(isset($self['User'])){//DBにfacebook_idがあったら
                 //debug('データベースにfacebook_idがある！');
                 //debug($self);
@@ -55,19 +60,19 @@ class FbconnectsController extends AppController {
 
                 }else{
 
-                    debug('$User>fbidあり>オースログイン不可');
+                    //debug('$User>fbidあり>オースログイン不可');
                     //$this->redirect(array('controller'=>'Byebuys','action'=>'index'));
 
                 }
 
             }else{//DBにデータがなかったら
-                debug('データベースにfacebook_idがない！');
+                //debug('データベースにfacebook_idがない！');
                 //-------------ログインしたユーザーのデータをUserに保存。------------------------//
                 
                 $me = $this->facebook->api('/me','GET',array('locale'=>'ja_JP'));  //【5】ユーザ情報を日本語で取得
                 $this->Session->write('mydata',$me);      //【6】ユーザ情報をセッションに保存
                 $myFbData = $this->Session->read('mydata');       //【3】facebookのデータ
-                debug($myFbData);
+                //debug($myFbData);
 
                 //$myFbDataをsaveファンクションに適した形にする。親配列にモデル名をつけてネスト。
                 $self['User'] = $myFbData;
@@ -76,10 +81,7 @@ class FbconnectsController extends AppController {
                 $self['User']['password'] = $myFbData['id'];
                 $self['User']['group_id'] = 2;
                 $self['User']['status'] = 3;
-
-                $this->Session->write('self',$self);      //【6】ユーザ情報をセッションに保存
                 
-                //$this->set('fbData', $fbData); 
 
                 //データーベースに保存
                 $this->User->create(); 

@@ -1,0 +1,77 @@
+2014-09-15 17:50:39 Notice: Notice (8): Undefined index: count in [/home/users/0/lovepop.jp-geechscamp/web/byebuy/app/View/Watchlists/index.ctp, line 163]
+Trace:
+include - APP/View/Watchlists/index.ctp, line 163
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - APP/webroot/index.php, line 109
+
+2014-09-15 17:50:39 Notice: Notice (8): Undefined index: count in [/home/users/0/lovepop.jp-geechscamp/web/byebuy/app/View/Watchlists/index.ctp, line 163]
+Trace:
+include - APP/View/Watchlists/index.ctp, line 163
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - APP/webroot/index.php, line 109
+
+2014-09-15 17:50:39 Notice: Notice (8): Undefined index: count in [/home/users/0/lovepop.jp-geechscamp/web/byebuy/app/View/Watchlists/index.ctp, line 163]
+Trace:
+include - APP/View/Watchlists/index.ctp, line 163
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - APP/webroot/index.php, line 109
+
+2014-09-15 17:50:39 Notice: Notice (8): Undefined index: count in [/home/users/0/lovepop.jp-geechscamp/web/byebuy/app/View/Watchlists/index.ctp, line 163]
+Trace:
+include - APP/View/Watchlists/index.ctp, line 163
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - APP/webroot/index.php, line 109
+
+2014-09-15 17:50:39 Notice: Notice (8): Undefined index: count in [/home/users/0/lovepop.jp-geechscamp/web/byebuy/app/View/Watchlists/index.ctp, line 163]
+Trace:
+include - APP/View/Watchlists/index.ctp, line 163
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - APP/webroot/index.php, line 109
+
+2014-09-15 17:50:39 Notice: Notice (8): Undefined index: count in [/home/users/0/lovepop.jp-geechscamp/web/byebuy/app/View/Watchlists/index.ctp, line 163]
+Trace:
+include - APP/View/Watchlists/index.ctp, line 163
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - APP/webroot/index.php, line 109
+
+2014-09-15 17:50:39 Notice: Notice (8): Undefined index: count in [/home/users/0/lovepop.jp-geechscamp/web/byebuy/app/View/Watchlists/index.ctp, line 163]
+Trace:
+include - APP/View/Watchlists/index.ctp, line 163
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - APP/webroot/index.php, line 109
+

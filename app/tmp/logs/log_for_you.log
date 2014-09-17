@@ -1,0 +1,490 @@
+2014-09-16 18:34:19 Log_for_you: 君のためだけのログ
+2014-09-16 18:37:57 Log_for_you: 君のためだけのログ
+2014-09-16 18:38:02 Log_for_you: selfはなんだ。
+2014-09-16 18:38:02 Log_for_you: 
+2014-09-16 18:38:02 Log_for_you: 君のためだけのログ
+2014-09-16 18:41:35 Log_for_you: 君のためだけのログ
+2014-09-16 18:41:39 Log_for_you: facebookファンクション------>
+2014-09-16 18:41:39 Log_for_you: Array
+(
+    [User] => Array
+        (
+            [id] => 10
+            [group_id] => 2
+            [facebook_id] => 10202579973568319
+            [password] => 1973611b5274798494716efc7b031f7abd946d61
+            [name] => Eriko Ichinohe
+            [block_flg] => 0
+            [del_flg] => 0
+            [created] => 2014-09-11 23:00:18
+            [modified] => 2014-09-12 00:14:30
+            [status] => 1
+        )
+
+    [Group] => Array
+        (
+            [id] => 2
+            [name] => 一般
+            [created] => 2014-09-05 14:43:07
+            [modified] => 2014-09-05 14:43:07
+            [status] => 1
+        )
+
+    [Watchlist] => Array
+        (
+        )
+
+    [Wanted_list] => Array
+        (
+        )
+
+    [Selling_list] => Array
+        (
+        )
+
+    [Selling_thread_list] => Array
+        (
+        )
+
+    [Wanted_thread_list] => Array
+        (
+        )
+
+)
+
+2014-09-16 18:41:39 Log_for_you: End------>
+2014-09-16 18:41:39 Log_for_you: selfはなんだ。
+2014-09-16 18:41:39 Log_for_you: 
+2014-09-16 18:41:40 Log_for_you: 君のためだけのログ
+2014-09-16 18:49:18 Log_for_you: 君のためだけのログ
+2014-09-16 18:50:16 Log_for_you: 君のためだけのログ
+2014-09-16 18:50:56 Log_for_you: 君のためだけのログ
+2014-09-17 09:12:36 Log_for_you: 君のためだけのログ
+2014-09-17 09:13:04 Log_for_you: 君のためだけのログ
+2014-09-17 12:32:14 Log_for_you: 君のためだけのログ
+2014-09-17 12:32:15 Log_for_you: 君のためだけのログ
+2014-09-17 12:32:19 Log_for_you: facebookファンクション------>
+2014-09-17 12:32:19 Log_for_you: Array
+(
+    [User] => Array
+        (
+            [id] => 9
+            [group_id] => 1
+            [facebook_id] => 711110048979107
+            [password] => 2f37c4580b821fc0e28146b4383be9922602064a
+            [name] => 横関 秀樹
+            [block_flg] => 0
+            [del_flg] => 0
+            [created] => 2014-09-05 17:03:03
+            [modified] => 2014-09-05 17:03:03
+            [status] => 1
+        )
+
+    [Group] => Array
+        (
+            [id] => 1
+            [name] => 管理者
+            [created] => 2014-09-05 14:42:18
+            [modified] => 2014-09-05 14:42:18
+            [status] => 1
+        )
+
+    [Watchlist] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 3
+                    [user_id] => 9
+                    [sellinglist_id] => 12
+                    [del_flg] => 0
+                    [created] => 2014-09-05 17:21:58
+                    [modified] => 2014-09-05 17:21:58
+                )
+
+            [1] => Array
+                (
+                    [id] => 4
+                    [user_id] => 9
+                    [sellinglist_id] => 9
+                    [del_flg] => 0
+                    [created] => 2014-09-05 17:22:33
+                    [modified] => 2014-09-05 17:22:33
+                )
+
+            [2] => Array
+                (
+                    [id] => 9
+                    [user_id] => 9
+                    [sellinglist_id] => 15
+                    [del_flg] => 0
+                    [created] => 2014-09-12 16:38:07
+                    [modified] => 2014-09-12 16:38:07
+                )
+
+        )
+
+    [Wanted_list] => Array
+        (
+        )
+
+    [Selling_list] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 13
+                    [user_id] => 9
+                    [category_id] => 4
+                    [trade_person_use_id] => 7
+                    [sellingproduct_price] => 1500
+                    [sellingproduct_name] => 勇者の剣
+                    [sellingproduct_detail] => 僕は昔魔王を倒したおじいちゃんから引き継ぎましたが、現在は秘剣エクスカリバーを手に入れたので必要なくなりました。セブ内に後数匹魔王クラスの化け物が残っていますので、討伐に興味ある方、お譲りします。
+                    [deadline] => 2014-09-20 17:12:00
+                    [img_file_name1] => yuusya.jpg
+                    [img_file_name2] => 
+                    [img_file_name3] => 
+                    [tradedate] => 
+                    [del_flg] => 0
+                    [created] => 2014-09-05 17:18:25
+                    [modified] => 2014-09-16 16:22:37
+                    [status] => 2
+                )
+
+        )
+
+    [Selling_thread_list] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 5
+                    [sellinglist_id] => 13
+                    [user_id] => 9
+                    [thread] => 筋力値120以上で持てます。
+                    [del_flg] => 0
+                    [created] => 2014-09-15 17:36:36
+                    [modified] => 2014-09-15 17:36:36
+                )
+
+        )
+
+    [Wanted_thread_list] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 3
+                    [wantedlist_id] => 6
+                    [user_id] => 9
+                    [thread] => ちゃんと横関で投稿できているか確認。
+                    [del_flg] => 0
+                    [created] => 2014-09-11 17:19:57
+                    [modified] => 2014-09-11 17:19:57
+                )
+
+        )
+
+)
+
+2014-09-17 12:32:19 Log_for_you: End------>
+2014-09-17 12:32:20 Log_for_you: selfはなんだ。
+2014-09-17 12:32:20 Log_for_you: 
+2014-09-17 12:32:20 Log_for_you: 君のためだけのログ
+2014-09-17 12:55:15 Log_for_you: 君のためだけのログ
+2014-09-17 14:27:01 Log_for_you: 君のためだけのログ
+2014-09-17 14:27:12 Log_for_you: 君のためだけのログ
+2014-09-17 14:28:29 Log_for_you: facebookファンクション------>
+2014-09-17 14:28:29 Log_for_you: Array
+(
+    [User] => Array
+        (
+            [id] => 5
+            [group_id] => 1
+            [facebook_id] => 685512441524677
+            [password] => 9040efd21b4156493a59fc06b055466bfb929695
+            [name] => Kayoko Coco Hashi
+            [block_flg] => 0
+            [del_flg] => 0
+            [created] => 2014-09-05 15:37:51
+            [modified] => 2014-09-05 15:37:51
+            [status] => 1
+        )
+
+    [Group] => Array
+        (
+            [id] => 1
+            [name] => 管理者
+            [created] => 2014-09-05 14:42:18
+            [modified] => 2014-09-05 14:42:18
+            [status] => 1
+        )
+
+    [Watchlist] => Array
+        (
+        )
+
+    [Wanted_list] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 7
+                    [user_id] => 5
+                    [wanteddetail] => セリーヌのラゲージがほしい！！！！！
+                    [tradedate] => 
+                    [trade_person_use_id] => 
+                    [del_flg] => 0
+                    [created] => 2014-09-12 00:18:13
+                    [modified] => 2014-09-12 00:18:13
+                    [status] => 0
+                )
+
+        )
+
+    [Selling_list] => Array
+        (
+        )
+
+    [Selling_thread_list] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 4
+                    [sellinglist_id] => 13
+                    [user_id] => 5
+                    [thread] => 女子でも持てる重さですか？
+                    [del_flg] => 0
+                    [created] => 2014-09-12 00:20:16
+                    [modified] => 2014-09-12 00:20:16
+                )
+
+        )
+
+    [Wanted_thread_list] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 6
+                    [wantedlist_id] => 8
+                    [user_id] => 5
+                    [thread] => 愛は受け身で手に入れるものではありません。
+                    [del_flg] => 0
+                    [created] => 2014-09-15 17:47:51
+                    [modified] => 2014-09-15 17:47:51
+                )
+
+            [1] => Array
+                (
+                    [id] => 7
+                    [wantedlist_id] => 7
+                    [user_id] => 5
+                    [thread] => はじめさんがですか？
+                    [del_flg] => 0
+                    [created] => 2014-09-15 17:48:46
+                    [modified] => 2014-09-15 17:48:46
+                )
+
+        )
+
+)
+
+2014-09-17 14:28:29 Log_for_you: End------>
+2014-09-17 14:28:29 Log_for_you: selfはなんだ。
+2014-09-17 14:28:29 Log_for_you: 
+2014-09-17 14:28:30 Log_for_you: 君のためだけのログ
+2014-09-17 14:48:01 Log_for_you: 君のためだけのログ
+2014-09-17 14:48:22 Log_for_you: facebookファンクション------>
+2014-09-17 14:48:22 Log_for_you: Array
+(
+    [User] => Array
+        (
+            [id] => 5
+            [group_id] => 1
+            [facebook_id] => 685512441524677
+            [password] => 9040efd21b4156493a59fc06b055466bfb929695
+            [name] => Kayoko Coco Hashi
+            [block_flg] => 0
+            [del_flg] => 0
+            [created] => 2014-09-05 15:37:51
+            [modified] => 2014-09-05 15:37:51
+            [status] => 1
+        )
+
+    [Group] => Array
+        (
+            [id] => 1
+            [name] => 管理者
+            [created] => 2014-09-05 14:42:18
+            [modified] => 2014-09-05 14:42:18
+            [status] => 1
+        )
+
+    [Watchlist] => Array
+        (
+        )
+
+    [Wanted_list] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 7
+                    [user_id] => 5
+                    [wanteddetail] => セリーヌのラゲージがほしい！！！！！
+                    [tradedate] => 
+                    [trade_person_use_id] => 
+                    [del_flg] => 0
+                    [created] => 2014-09-12 00:18:13
+                    [modified] => 2014-09-12 00:18:13
+                    [status] => 0
+                )
+
+        )
+
+    [Selling_list] => Array
+        (
+        )
+
+    [Selling_thread_list] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 4
+                    [sellinglist_id] => 13
+                    [user_id] => 5
+                    [thread] => 女子でも持てる重さですか？
+                    [del_flg] => 0
+                    [created] => 2014-09-12 00:20:16
+                    [modified] => 2014-09-12 00:20:16
+                )
+
+        )
+
+    [Wanted_thread_list] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 6
+                    [wantedlist_id] => 8
+                    [user_id] => 5
+                    [thread] => 愛は受け身で手に入れるものではありません。
+                    [del_flg] => 0
+                    [created] => 2014-09-15 17:47:51
+                    [modified] => 2014-09-15 17:47:51
+                )
+
+            [1] => Array
+                (
+                    [id] => 7
+                    [wantedlist_id] => 7
+                    [user_id] => 5
+                    [thread] => はじめさんがですか？
+                    [del_flg] => 0
+                    [created] => 2014-09-15 17:48:46
+                    [modified] => 2014-09-15 17:48:46
+                )
+
+        )
+
+)
+
+2014-09-17 14:48:22 Log_for_you: End------>
+2014-09-17 14:48:22 Log_for_you: selfはなんだ。
+2014-09-17 14:48:22 Log_for_you: 
+2014-09-17 14:48:24 Log_for_you: 君のためだけのログ
+2014-09-17 14:51:15 Log_for_you: 君のためだけのログ
+2014-09-17 14:51:19 Log_for_you: facebookファンクション------>
+2014-09-17 14:51:19 Log_for_you: Array
+(
+    [User] => Array
+        (
+            [id] => 5
+            [group_id] => 1
+            [facebook_id] => 685512441524677
+            [password] => 9040efd21b4156493a59fc06b055466bfb929695
+            [name] => Kayoko Coco Hashi
+            [block_flg] => 0
+            [del_flg] => 0
+            [created] => 2014-09-05 15:37:51
+            [modified] => 2014-09-05 15:37:51
+            [status] => 1
+        )
+
+    [Group] => Array
+        (
+            [id] => 1
+            [name] => 管理者
+            [created] => 2014-09-05 14:42:18
+            [modified] => 2014-09-05 14:42:18
+            [status] => 1
+        )
+
+    [Watchlist] => Array
+        (
+        )
+
+    [Wanted_list] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 7
+                    [user_id] => 5
+                    [wanteddetail] => セリーヌのラゲージがほしい！！！！！
+                    [tradedate] => 
+                    [trade_person_use_id] => 
+                    [del_flg] => 0
+                    [created] => 2014-09-12 00:18:13
+                    [modified] => 2014-09-12 00:18:13
+                    [status] => 0
+                )
+
+        )
+
+    [Selling_list] => Array
+        (
+        )
+
+    [Selling_thread_list] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 4
+                    [sellinglist_id] => 13
+                    [user_id] => 5
+                    [thread] => 女子でも持てる重さですか？
+                    [del_flg] => 0
+                    [created] => 2014-09-12 00:20:16
+                    [modified] => 2014-09-12 00:20:16
+                )
+
+        )
+
+    [Wanted_thread_list] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 6
+                    [wantedlist_id] => 8
+                    [user_id] => 5
+                    [thread] => 愛は受け身で手に入れるものではありません。
+                    [del_flg] => 0
+                    [created] => 2014-09-15 17:47:51
+                    [modified] => 2014-09-15 17:47:51
+                )
+
+            [1] => Array
+                (
+                    [id] => 7
+                    [wantedlist_id] => 7
+                    [user_id] => 5
+                    [thread] => はじめさんがですか？
+                    [del_flg] => 0
+                    [created] => 2014-09-15 17:48:46
+                    [modified] => 2014-09-15 17:48:46
+                )
+
+        )
+
+)
+
+2014-09-17 14:51:19 Log_for_you: End------>
+2014-09-17 14:51:19 Log_for_you: selfはなんだ。
+2014-09-17 14:51:19 Log_for_you: 
+2014-09-17 14:51:19 Log_for_you: id
+2014-09-17 14:51:19 Log_for_you: 5
+2014-09-17 14:51:20 Log_for_you: 君のためだけのログ

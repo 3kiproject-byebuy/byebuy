@@ -111,6 +111,27 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 
+/*独自にログファイルを出力する
+define('LOG_FOR_YOU', 'log_for_you');
+ 
+ 
+CakeLog::config('log_for_you', array(
+'engine' => 'FileLog',
+'types' => array('log_for_you'),
+'file' => 'log_for_you',
+));
+*/
+
+/*
+//debugモード０の時に、error.logにエラーを出力する
+if (Configure::read('debug') == 0) {
+    error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+    ini_set('display_errors', 0);
+    ini_set('log_errors', 1);
+    ini_set('error_log', LOGS . DS . 'php_error.log');
+}
+*/
+
 CakePlugin::loadAll(
     array('FaceBook' => array('bootstrap' => true))
     );
