@@ -153,7 +153,7 @@ h4 {
 				);
 			?>
 
-
+      <?php if($self){ //ログインユーザーだったら表示?>
       <?php //↓-------------------利用規約とQ&Aとcopyrightの記述----------------------↓ ?>
 
               <center>
@@ -194,6 +194,11 @@ h4 {
 
               </center>
 <?php //↑-------------------利用規約とQ&Aとcopyrightの記述----------------------↑ ?>
+  <?php }else{?>
+  <center>
+    <p>copyright(c)2014 geechsasia. All rights reserved.</p>
+  </center>
+  <?php } ?>
 		</div>
 	</div>
 	<?php //echo $this->element('sql_dump'); ?>

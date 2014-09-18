@@ -875,8 +875,6 @@
 				<div align = "center">
 					<h2>コメント</h2>
 
-					debug($sellinglists);
-
 					<div class="row">
 						<?php echo $this->Form->create('Selling_thread_list',
 																array(
