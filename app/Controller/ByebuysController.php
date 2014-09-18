@@ -120,6 +120,9 @@ class ByebuysController extends AppController {
         //現在ログインしているユーザー
         //$self = $this->Auth->user();
         $self = $this->Session->read('Auth.User');
+        $conditions = array('User.id' => $self['id']);
+        $self2 = $this->User->find('first',array('conditions' => $conditions));
+        debug($self2);
 
         // $this->log('selfはなんだ。', LOG_FOR_YOU);
         // $this->log($self,LOG_FOR_YOU);
@@ -134,9 +137,9 @@ class ByebuysController extends AppController {
 
         }else{//ログインしているユーザーの場合
 
-            if($self['del_flg']==0){
+            if($self2['User']['del_flg']==0){
 
-                if($self['block_flg']==0){
+                if($self2['User']['block_flg']==0){
             
                     if($self['status']==1){//承認済みユーザーの場合
 

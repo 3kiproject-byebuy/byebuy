@@ -10,7 +10,8 @@ class GroupsController extends AppController {
 
     public function index(){//権限グループの一覧
        
-    	$groups = $this->Group->find('all',array('conditions'=>$conditions));
+    	$groups = $this->Group->find('all');
+        debug($groups);
 
 	    $this->set(compact('groups'));//view用の変数としてセット。
 

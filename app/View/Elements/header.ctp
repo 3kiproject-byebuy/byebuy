@@ -85,19 +85,20 @@ if (is_null($self)){
                 'controller' => 'fbconnects','action' => 'logout'),array('escape' => false));?></h4>
             </div>
         </div>
-      </div>      
+      </div>
 
          
 <?php
     //【ステータス２】または【ステータス３】＝ 【未承認ユーザー】 の場合
     }else{
-
-      echo '<div class="col-md-2" style="margin-top:15px;">';
+      echo '<br /><div class="row" align="right">';
+      echo '<div class=" col-md-3 col-md-offset-9" style="margin-top:15px;">';
       echo $this->Html->link($this->Html->image('active200.png'),array('controller' => 'fbconnects','action' => 'facebook'),array('escape' => false));
-      echo '</div><br />';
-      echo 'あなたは現在承認待ちユーザーです。管理者からの承認をお待ちください';
+      //echo '</div><br />';
+      echo '<span class="label label-danger" style="margin:15px;">未承認ユーザー</span>';
       echo '</div>';
-      
+      echo '</div>';
+      echo '</div>';
     }
 }
 ?>
