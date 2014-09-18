@@ -94,7 +94,7 @@ if (is_null($self)){
 
       echo '<div class="col-md-2" style="margin-top:15px;">';
       echo $this->Html->link($this->Html->image('active200.png'),array('controller' => 'fbconnects','action' => 'facebook'),array('escape' => false));
-      echo '</div>';
+      echo '</div><br />';
       echo 'あなたは現在承認待ちユーザーです。管理者からの承認をお待ちください';
       echo '</div>';
       

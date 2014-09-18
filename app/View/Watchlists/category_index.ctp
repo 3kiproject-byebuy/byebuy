@@ -222,45 +222,81 @@ $self = $this->Session->read('Auth.User');
            
         <?php
         $current_date = date('Y-m-d H:i:s');
+        $finishFlag = 0;
         //締め切り-現在　=> 24h 黒字
         // 締め切り-現在　<= 0 掲載終了
         // 0 ＜　締め切りー現在　＜　24h 赤字
 
-        if($product['Selling_list']['status']==2){
+
+        if($watchlist['Selling_list']['status']==2){
 
                 $finishFlag = 1;
         }else{
 
-            if((strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) >= 86400 ){
+              if((strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) >= 86400 ){
 
-                echo '締め切り:';
-                echo $watchlist['Selling_list']['deadline']; 
+              echo '<br />';
+              echo '締め切り:';
+              echo $watchlist['Selling_list']['deadline']; 
 
-            }
+              }
 
-            if((strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) <= 0){ ?>
+              if((strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) <= 0){ ?>
 
-                  <font color="#ff0000"> 
-                  <?php
-                echo 'この商品取引は終了しました。';
-                ?>
-                </font>
+            
+              <?php $finishFlag = 1; ?>
 
-        <?php  }
+       <?php  }
 
-            if( 0 < (strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) &&
-              (strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) < 86400){ ?>
+          if( 0 < (strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) &&
+            (strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) < 86400){ ?>
 
-                <font color="#ff0000"> 
-                <?php
-                echo '締め切り:';
-                echo $watchlist['Selling_list']['deadline']; ?>
-                </font>
+              <font color="#ff0000"> 
+              <?php
+              echo '<br />';
+              echo '締め切り:';
+              echo $watchlist['Selling_list']['deadline']; ?>
+              </font>
 
           <?php }
           } ?>
 
-        <p>出品者: <?php echo $watchlist['User']['name']; ?></p>
+       <?php
+        echo '出品者:';
+        echo $watchlist['Selling_list']['User']['name']; ?><br /><?php 
+        
+        //ログイン判定
+        if(is_null($self)){  
+
+          if($finishFlag == 1){//取引終了の場合
+
+              echo '<span class="label label-danger">取引終了</span>';
+
+          }
+
+        //ユーザーがログイン中の場合、ステータスを確認
+        }else{
+
+              //承認済みユーザーの場合
+              if($self['status']==1){
+                
+
+                //ウォッチリスト登録ボタン、登録済みバッチ、取引終了バッチ表示
+                //ウォッチリストに未登録かつ、取引終了前だったら
+                if($finishFlag == 0){
+
+                }elseif($finishFlag == 1){//取引終了の場合
+
+                  echo '<span class="label label-danger">取引終了</span>';
+
+                }
+
+                echo $this->Form->end(); 
+
+              }
+                    
+        }?>
+
       </div>
     </div>
 <!--   </div> -->
