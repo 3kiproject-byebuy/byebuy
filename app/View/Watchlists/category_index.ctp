@@ -226,33 +226,39 @@ $self = $this->Session->read('Auth.User');
         // 締め切り-現在　<= 0 掲載終了
         // 0 ＜　締め切りー現在　＜　24h 赤字
 
-        if((strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) >= 86400 ){
+        if($product['Selling_list']['status']==2){
 
-            echo '締め切り:';
-            echo $watchlist['Selling_list']['deadline']; 
+                $finishFlag = 1;
+        }else{
 
-        }
+            if((strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) >= 86400 ){
 
-        if((strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) <= 0){ ?>
+                echo '締め切り:';
+                echo $watchlist['Selling_list']['deadline']; 
 
-              <font color="#ff0000"> 
-              <?php
-            echo 'この商品取引は終了しました。';
-            ?>
-            </font>
+            }
 
-    <?php  }
+            if((strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) <= 0){ ?>
 
-        if( 0 < (strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) &&
-          (strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) < 86400){ ?>
+                  <font color="#ff0000"> 
+                  <?php
+                echo 'この商品取引は終了しました。';
+                ?>
+                </font>
 
-            <font color="#ff0000"> 
-            <?php
-            echo '締め切り:';
-            echo $watchlist['Selling_list']['deadline']; ?>
-            </font>
+        <?php  }
 
-        <?php } ?>
+            if( 0 < (strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) &&
+              (strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) < 86400){ ?>
+
+                <font color="#ff0000"> 
+                <?php
+                echo '締め切り:';
+                echo $watchlist['Selling_list']['deadline']; ?>
+                </font>
+
+          <?php }
+          } ?>
 
         <p>出品者: <?php echo $watchlist['User']['name']; ?></p>
       </div>

@@ -221,34 +221,40 @@ $self = $this->Session->read('Auth.User');?>
         //締め切り-現在　=> 24h 黒字
         // 締め切り-現在　<= 0 掲載終了
         // 0 ＜　締め切りー現在　＜　24h 赤字
+        
+        if($product['Selling_list']['status']==2){
 
-        if((strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) >= 86400 ){
+                $finishFlag = 1;
+        }else{
 
-            echo '締め切り:';
-            echo $watchlist['Selling_list']['deadline']; 
+            if((strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) >= 86400 ){
 
-        }
+                echo '締め切り:';
+                echo $watchlist['Selling_list']['deadline']; 
 
-        if((strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) <= 0){ ?>
+            }
 
-              <font color="#ff0000"> 
-              <?php
-            echo 'この商品取引は終了しました。';
-            ?>
-            </font>
+            if((strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) <= 0){ ?>
 
-    <?php  }
+                  <font color="#ff0000"> 
+                  <?php
+                echo 'この商品取引は終了しました。';
+                ?>
+                </font>
 
-        if( 0 < (strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) &&
-          (strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) < 86400){ ?>
+        <?php  }
 
-            <font color="#ff0000"> 
-            <?php
-            echo '締め切り:';
-            echo $watchlist['Selling_list']['deadline']; ?>
-            </font>
+            if( 0 < (strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) &&
+              (strtotime($watchlist['Selling_list']['deadline']) - strtotime($current_date)) < 86400){ ?>
 
-        <?php } ?>
+                <font color="#ff0000"> 
+                <?php
+                echo '締め切り:';
+                echo $watchlist['Selling_list']['deadline']; ?>
+                </font>
+
+            <?php }
+          }?>
 
         <p>出品者: <?php echo $watchlist['User']['name']; ?></p>
       </div>

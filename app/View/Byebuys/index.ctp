@@ -126,32 +126,41 @@
 
 				$current_date = date('Y-m-d H:i:s');
 				$finishFlag = 0;
-				if((strtotime($product['Selling_list']['deadline']) - strtotime($current_date)) >= 86400 ){
 
-						echo '<br />';
-						echo '締め切り:';
-						echo $product['Selling_list']['deadline']; 
+				if($product['Selling_list']['status']==2){
 
-				}
+		  			$finishFlag = 1;
+		  			
+		  		}else{
 
-				if((strtotime($product['Selling_list']['deadline']) - strtotime($current_date)) <= 0){ ?>
+					if((strtotime($product['Selling_list']['deadline']) - strtotime($current_date)) >= 86400 ){
 
-					
-						<?php $finishFlag = 1; ?>
+							echo '<br />';
+							echo '締め切り:';
+							echo $product['Selling_list']['deadline']; 
 
-		 <?php  }
+					}
 
-				if( 0 < (strtotime($product['Selling_list']['deadline']) - strtotime($current_date)) &&
-					(strtotime($product['Selling_list']['deadline']) - strtotime($current_date)) < 86400){ ?>
+					if((strtotime($product['Selling_list']['deadline']) - strtotime($current_date)) <= 0){ ?>
 
-						<font color="#ff0000"> 
-						<?php
-						echo '<br />';
-						echo '締め切り:';
-						echo $product['Selling_list']['deadline']; ?>
-						</font>
+						
+							<?php $finishFlag = 1; ?>
 
-		  <?php } ?>
+			 <?php  }
+
+					if( 0 < (strtotime($product['Selling_list']['deadline']) - strtotime($current_date)) &&
+						(strtotime($product['Selling_list']['deadline']) - strtotime($current_date)) < 86400){ ?>
+
+							<font color="#ff0000"> 
+							<?php
+							echo '<br />';
+							echo '締め切り:';
+							echo $product['Selling_list']['deadline']; ?>
+							</font>
+
+		 	  <?php }
+
+		 	  	}?>
 
 				<br /><?php
 				echo '出品者:';
