@@ -65,10 +65,10 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql', //データーベースの種類	
 		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'root',//ログインするユーザーはrootにしておく
+		'host' => 'mysql017.phy.lolipop.lan',
+		'login' => 'LAA0492298',//ログインするユーザーはrootにしておく
 		'password' => 'camp2014',
-		'database' => 'ByeBuy',//作成したデータベース名
+		'database' => 'LAA0492298-byebuy',//作成したデータベース名
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);

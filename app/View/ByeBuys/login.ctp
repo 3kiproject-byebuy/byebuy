@@ -1,3 +1,5 @@
-あなたのアカウントは管理者からまだ承認されていない、もしくは削除された可能性があります。
-なんかまああれだったら管理者と連絡とってね♡<br />
-<a href="/byebuy/fbconnects/logout">インデックスに戻る</a>
+<center>
+あなたのアカウントはByeBuy管理者からまだ承認されていません。<br />
+管理者からの承認を今しばらくお待ちください。<br /><br />
+<a href="/byebuy/fbconnects/logout">TOPページへ戻る</a>
+</center>
