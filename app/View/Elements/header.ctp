@@ -93,9 +93,10 @@ if (is_null($self)){
     }else{
       echo '<br /><div class="row" align="right">';
       echo '<div class=" col-md-3 col-md-offset-9" style="margin-top:15px;">';
-      echo $this->Html->link($this->Html->image('active200.png'),array('controller' => 'fbconnects','action' => 'facebook'),array('escape' => false));
       //echo '</div><br />';
       echo '<span class="label label-danger" style="margin:15px;">未承認ユーザー</span>';
+      echo $this->Html->link('<button class="btn btn-sm btn-default" type="button">logout</button>',array(
+                'controller' => 'fbconnects','action' => 'logout'),array('escape' => false));
       echo '</div>';
       echo '</div>';
       echo '</div>';
