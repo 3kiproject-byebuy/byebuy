@@ -231,8 +231,8 @@
 
 					<?php 
 					$current_date = date('Y-m-d H:i:s');
-					//③trade_person_use_idが0では期限内だったらコメント入力を表示
-					if ($sellinglists[0]['Selling_list']['trade_person_use_id'] == 0 && strtotime($sellinglists[0]['Selling_list']['deadline']) > strtotime($current_date)) { ?>
+					//③statusが0では期限内だったらコメント入力を表示
+					if ($sellinglists[0]['Selling_list']['status'] == 0 && strtotime($sellinglists[0]['Selling_list']['deadline']) > strtotime($current_date)) { ?>
 
 
 						<div align = "center">
@@ -279,8 +279,8 @@
 					    	<dl id="acMenu">
 					    	<dt>
 
-							<?php //もしtrade_person_use_idが0だったら and　まだ締め切り日が残っていたら（取引が成立していなかったら）
-							if ($sellinglists[0]['Selling_list']['trade_person_use_id'] == 0 && strtotime($sellinglists[0]['Selling_list']['deadline']) > strtotime($current_date)) 
+							<?php //もしstatusが0だったら and　まだ締め切り日が残っていたら（取引が成立していなかったら）
+							if ($sellinglists[0]['Selling_list']['status'] == 0 && strtotime($sellinglists[0]['Selling_list']['deadline']) > strtotime($current_date)) 
 								{ ?> 
 
 								<?php foreach($sellingthreadlists as $threadlist): ?>
@@ -326,7 +326,7 @@
 
 						<?php } //もしtrade_person_use_idが0だったら（取引が成立していなかったら） 終了
 
-						if($sellinglists[0]['Selling_list']['trade_person_use_id'] == 2 || strtotime($sellinglists[0]['Selling_list']['deadline']) < strtotime($current_date)) { //もしtrade_person_use_idが0ではなかったら（取引が成立していたら）or 取引期限が過ぎていたら ?>
+						if($sellinglists[0]['Selling_list']['status'] == 2 || strtotime($sellinglists[0]['Selling_list']['deadline']) < strtotime($current_date)) { //もしstatusが0ではなかったら（取引が成立していたら）or 取引期限が過ぎていたら ?>
 
 							<center>
 								<br />
@@ -922,13 +922,12 @@
 	    <dt>
 
 		<?php //もしtrade_person_use_idが0もしくは期限がきていなくて、商品出品者=ログインユーザーだったら
-		if(($sellinglists[0]['Selling_list']['trade_person_use_id'] == 0 || strtotime($sellinglists[0]['Selling_list']['deadline']) > strtotime($current_date)) && $sellinglists[0]['Selling_list']['user_id'] == $self['id']){ ?>
+		if(($sellinglists[0]['Selling_list']['status'] == 0 || strtotime($sellinglists[0]['Selling_list']['deadline']) < strtotime($current_date)) && $sellinglists[0]['Selling_list']['user_id'] == $self['id']){ ?>
 
 				<?php foreach($sellingthreadlists as $threadlist): ?>
 
 				<?php //もしコメントにひもづくsellinglist_idが商品idと一緒だったら ?>
 				<?php if ($threadlist['Selling_thread_list']['sellinglist_id'] == $sellinglists[0]['Selling_list']['id']) {?>
-
 
 		        	<div class="media">
 		  						<a class="pull-left" href="#">
@@ -1005,7 +1004,7 @@
 
 
 	//もしtrade_person_use_idが0ではなかったら（取引が成立していたら）or 取引期限が過ぎていたら 尚かつログインユーザー=出品者だったら
-	if($sellinglists[0]['Selling_list']['trade_person_use_id'] == 2 || strtotime($sellinglists[0]['Selling_list']['deadline']) < strtotime($current_date) && $sellinglists[0]['Selling_list']['user_id'] == $self['id']) { ?>
+	if(($sellinglists[0]['Selling_list']['status'] == 2 || strtotime($sellinglists[0]['Selling_list']['deadline']) < strtotime($current_date)) && $sellinglists[0]['Selling_list']['user_id'] == $self['id']) { ?>
 
 	<center>
 	<br />
@@ -1017,7 +1016,7 @@
 		 foreach($sellingthreadlists as $threadlist): 
 
 				//もし商品出品者のid = ログインユーザのidで、とりひきが成立していたら
-				if($sellinglists[0]['Selling_list']['user_id'] == $self['id'] && $sellinglists[0]['Selling_list']['trade_person_use_id'] == 2){
+				if($sellinglists[0]['Selling_list']['user_id'] == $self['id'] && $sellinglists[0]['Selling_list']['status'] == 2){
 
 					//Selling_listのtrade_person_use_idの名前と写真を表示する
 					if($sellinglists[0]['Selling_list']['trade_person_use_id'] == $threadlist['User']['id']) {
